@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WA Scheduler — Gestor de Mensajes</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --green: #25D366;
+    --green-dim: #1a9e4a;
+    --green-glow: rgba(37,211,102,0.15);
+    --amber: #f0a500;
+    --red: #f85149;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,211,102,0.07) 0%, transparent 70%);
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(13,17,23,0.92);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .logo svg { width: 28px; height: 28px; }
+  .logo span { color: var(--green); }
+
+  .header-stats {
+    display: flex;
+    gap: 20px;
+  }
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .stat-pill b { color: var(--text); font-weight: 600; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+  .dot-amber { background: var(--amber); }
+  .dot-muted { background: var(--muted); }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; } 50% { opacity:0.4; }
+  }
+
+  /* ── MOBILE NAV ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(13,17,23,0.97);
+    border-top: 1px solid var(--border);
+    z-index: 200;
+    padding: 0;
+    backdrop-filter: blur(14px);
+  }
+  .mobile-nav-inner {
+    display: flex;
+  }
+  .mnav-btn {
+    flex: 1;
+    padding: 12px 8px 16px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .mnav-btn .mnav-icon { font-size: 20px; line-height: 1; }
+  .mnav-btn.active { color: var(--green); }
+  .mnav-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 2px;
+    background: var(--green);
+    border-radius: 0 0 3px 3px;
+  }
+  .mnav-badge {
+    position: absolute;
+    top: 8px; right: calc(50% - 18px);
+    background: var(--red);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 800;
+    border-radius: 10px;
+    padding: 1px 5px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    main {
+      grid-template-columns: 1fr;
+      padding: 16px 14px 90px;
+      gap: 0;
+    }
+    .mobile-nav { display: block; }
+
+    /* Mobile panels */
+    .panel-form,
+    .panel-queue {
+      display: none;
+    }
+    .panel-form.active,
+    .panel-queue.active {
+      display: block;
+    }
+
+    /* Header compact on mobile */
+    header {
+      padding: 12px 16px;
+    }
+    .header-stats {
+      gap: 8px;
+    }
+    .stat-pill {
+      padding: 3px 9px;
+      font-size: 0.7rem;
+      gap: 4px;
+    }
+    .logo { font-size: 1rem; }
+  }
+
+  /* ── FORM CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .card-head {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-head h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .card-icon {
+    width: 32px; height: 32px;
+    background: var(--green-glow);
+    border: 1px solid rgba(37,211,102,0.3);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .card-body { padding: 20px 22px; }
+
+  label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+  label:first-child { margin-top: 0; }
+
+  input, textarea, select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 13px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(37,211,102,0.12);
+  }
+  textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .char-count {
+    text-align: right;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .sender-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+  .sender-box .wa-icon { color: var(--green); font-size: 18px; }
+  .sender-info { flex: 1; }
+  .sender-info strong { display: block; font-weight: 600; font-size: 0.88rem; }
+  .sender-info span { color: var(--muted); font-size: 0.78rem; }
+
+  /* Interval */
+  .interval-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240,165,0,0.07);
+    border: 1px solid rgba(240,165,0,0.25);
+    border-radius: 10px;
+    padding: 8px 13px;
+    margin-top: 14px;
+  }
+  .interval-row span { font-size: 0.8rem; color: var(--amber); flex: 1; }
+  .interval-row input {
+    width: 60px;
+    padding: 4px 8px;
+    font-size: 0.82rem;
+    margin: 0;
+    text-align: center;
+    background: rgba(240,165,0,0.1);
+    border-color: rgba(240,165,0,0.3);
+  }
+  .interval-row label {
+    margin: 0;
+    color: var(--amber);
+    font-size: 0.72rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    background: var(--green);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  }
+  .btn:hover {
+    background: #1fbc5a;
+    box-shadow: 0 0 20px rgba(37,211,102,0.35);
+  }
+  .btn:active { transform: scale(0.98); }
+
+  /* ── QUEUE ── */
+  .queue-section { display: flex; flex-direction: column; gap: 16px; }
+
+  .queue-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .queue-head h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+  }
+  .btn-sm {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-sm:hover { border-color: var(--red); color: var(--red); }
+
+  /* Search */
+  .search-wrap { position: relative; }
+  .search-wrap input {
+    padding-left: 36px;
+    background: var(--surface);
+    border-color: var(--border);
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  /* Message Items */
+  .msg-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .msg-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: start;
+    transition: border-color 0.2s, transform 0.15s;
+    animation: slideIn 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .msg-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
+  }
+  .msg-item.pending::before { background: var(--amber); }
+  .msg-item.sent::before { background: var(--green); }
+  .msg-item.overdue::before { background: var(--red); }
+  .msg-item.firing::before { background: var(--green); box-shadow: 0 0 10px var(--green); }
+
+  .msg-item:hover { border-color: rgba(37,211,102,0.3); transform: translateY(-1px); }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fireAnim {
+    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+    70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  }
+  .msg-item.firing { animation: fireAnim 1s ease 3; }
+
+  .msg-left { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+
+  .msg-client {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .msg-client strong {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .msg-phone {
+    font-size: 0.78rem;
+    color: var(--green);
+    font-family: monospace;
+    background: var(--green-glow);
+    padding: 1px 7px;
+    border-radius: 4px;
+  }
+
+  .msg-text {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 54px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: max-height 0.3s;
+  }
+  .msg-text.expanded { max-height: 400px; }
+  .msg-text-fade {
+    font-size: 0.7rem;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  .msg-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .meta-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.76rem;
+    color: var(--muted);
+  }
+  .countdown {
+    font-size: 0.76rem;
+    font-weight: 600;
+    font-family: monospace;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: rgba(240,165,0,0.12);
+    color: var(--amber);
+    border: 1px solid rgba(240,165,0,0.25);
+  }
+  .countdown.urgent { background: rgba(248,81,73,0.12); color: var(--red); border-color: rgba(248,81,73,0.25); }
+  .countdown.sent-badge { background: rgba(37,211,102,0.1); color: var(--green); border-color: rgba(37,211,102,0.2); }
+
+  .badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .badge-pending { background: rgba(240,165,0,0.15); color: var(--amber); }
+  .badge-sent { background: rgba(37,211,102,0.15); color: var(--green); }
+  .badge-overdue { background: rgba(248,81,73,0.15); color: var(--red); }
+
+  .msg-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+
+  .icon-btn {
+    width: 30px; height: 30px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .icon-btn:hover { border-color: var(--red); color: var(--red); background: rgba(248,81,73,0.08); }
+  .icon-btn.send-now:hover { border-color: var(--green); color: var(--green); background: rgba(37,211,102,0.08); }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty-state .emoji { font-size: 40px; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.85rem; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--surface);
+    border: 1px solid var(--green);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    z-index: 9999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    max-width: 320px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon { font-size: 18px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
+  .tab {
+    flex: 1;
+    padding: 6px;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    border-radius: 7px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s;
+    border: none;
+    background: none;
+  }
+  .tab.active { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
+  /* FOOTER NOTE */
+  .note-box {
+    background: rgba(88,166,255,0.06);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .note-box strong { color: var(--accent); }
+
+  /* Interval warning */
+  .warn-interval {
+    background: rgba(240,165,0,0.07);
+    border: 1px solid rgba(240,165,0,0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.76rem;
+    color: var(--amber);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#25D366" fill-opacity="0.15"/>
+      <path d="M16 4C9.373 4 4 9.373 4 16c0 2.16.572 4.19 1.57 5.942L4 28l6.23-1.548A11.953 11.953 0 0016 28c6.627 0 12-5.373 12-12S22.627 4 16 4z" fill="#25D366" fill-opacity="0.3" stroke="#25D366" stroke-width="1.2"/>
+      <path d="M21 18.5c-.3-.15-1.74-.86-2.01-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.3-1.03 1.01-1.03 2.46 0 1.45 1.06 2.85 1.21 3.05.15.2 2.08 3.17 5.04 4.45 2.96 1.28 2.96.85 3.49.8.53-.05 1.74-.71 1.98-1.4.25-.68.25-1.27.18-1.4-.07-.12-.27-.2-.57-.35z" fill="#25D366"/>
+    </svg>
+    WA<span>Scheduler</span>
+  </div>
+  <div class="header-stats">
+    <div class="stat-pill"><div class="dot dot-green"></div>Activos: <b id="stat-pending">0</b></div>
+    <div class="stat-pill"><div class="dot dot-amber"></div>Total: <b id="stat-total">0</b></div>
+    <div class="stat-pill"><div class="dot" style="background:var(--green)"></div>Enviados: <b id="stat-sent">0</b></div>
+  </div>
+</header>
+
+<main>
+  <!-- FORM PANEL -->
+  <div class="panel-form active" id="panel-form">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-icon">➕</div>
+        <h2>Nuevo Mensaje Programado</h2>
+      </div>
+      <div class="card-body">
+
+        <label>Mi número (remitente)</label>
+        <div class="sender-box">
+          <span class="wa-icon">📱</span>
+          <div class="sender-info">
+            <strong>+595 981 153 477</strong>
+            <span>Su cuenta de WhatsApp</span>
+          </div>
+        </div>
+
+        <label>Nombre del cliente</label>
+        <input type="text" id="f-name" placeholder="Ej: Jorge García" />
+
+        <label>Número del cliente</label>
+        <input type="tel" id="f-phone" placeholder="+595 985 581265" />
+
+        <label>Fecha y hora de envío</label>
+        <div class="row2">
+          <input type="date" id="f-date" />
+          <input type="time" id="f-time" />
+        </div>
+
+        <label>Mensaje</label>
+        <textarea id="f-msg" placeholder="Escriba el mensaje aquí..."></textarea>
+        <div class="char-count"><span id="char-count">0</span> caracteres</div>
+
+        <button class="btn" onclick="loadDefault()">⚡ Cargar mensaje de ejemplo</button>
+        <button class="btn" style="background:var(--surface2);color:var(--green);border:1px solid var(--green);margin-top:8px;" onclick="addMessage()">
+          📅 Programar Mensaje
+        </button>
+
+        <div class="interval-row">
+          <span>⏱ Intervalo anti-spam entre envíos:</span>
+          <input type="number" id="interval" value="30" min="5" max="600" />
+          <label>seg.</label>
+        </div>
+
+        <div class="note-box" style="margin-top:12px;">
+          <strong>ℹ️ ¿Cómo funciona?</strong><br>
+          Al llegar la hora programada, el sistema abre WhatsApp automáticamente con el número y mensaje cargado. Solo debe presionar <strong>Enviar</strong> en WhatsApp Web. Los mensajes se envían con el intervalo configurado para evitar spam.
+        </div>
+
+      </div>
+    </div><!-- end card -->
+  </div><!-- end panel-form -->
+
+  <!-- QUEUE PANEL -->
+  <div class="panel-queue" id="panel-queue">
+  <div class="queue-section">
+    <div class="queue-head">
+      <h2>📋 Cola de Mensajes</h2>
+      <button class="btn-sm" onclick="clearSent()">🗑 Limpiar enviados</button>
+    </div>
+
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Buscar por nombre o número..." oninput="render()" />
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" id="tab-all" onclick="setTab('all')">Todos</button>
+      <button class="tab" id="tab-pending" onclick="setTab('pending')">Pendientes</button>
+      <button class="tab" id="tab-sent" onclick="setTab('sent')">Enviados</button>
+    </div>
+
+    <div class="msg-list" id="msg-list">
+      <div class="empty-state">
+        <div class="emoji">📭</div>
+        <p>No hay mensajes programados.<br>Agregue su primer cliente.</p>
+      </div>
+    </div>
+  </div><!-- end queue-section -->
+  </div><!-- end panel-queue -->
+</main>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mnav-btn active" id="mnav-form" onclick="mobileTab('form')">
+      <span class="mnav-icon">➕</span>
+      Nuevo
+    </button>
+    <button class="mnav-btn" id="mnav-queue" onclick="mobileTab('queue')">
+      <span class="mnav-icon">📋</span>
+      Cola
+      <span class="mnav-badge" id="mnav-badge" style="display:none">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-text"></span>
+</div>
+
+<script>
+// ── STATE ──
+let messages = JSON.parse(localStorage.getItem('wa_msgs') || '[]');
+let activeTab = 'all';
+let firingQueue = [];
+let isFiring = false;
+
+const SENDER_PHONE = '+595981153477';
+const SENDER_LINK  = 'https://wa.link/mfbqci';
+
+// ── HELPERS ──
+function save() {
+  localStorage.setItem('wa_msgs', JSON.stringify(messages));
+  updateStats();
+}
+
+function toast(msg, icon='✅', isError=false) {
+  const t = document.getElementById('toast');
+  const ti = document.getElementById('toast-icon');
+  const tt = document.getElementById('toast-text');
+  t.style.borderColor = isError ? 'var(--red)' : 'var(--green)';
+  ti.textContent = icon;
+  tt.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-PY', { day:'2-digit', month:'short', year:'numeric' })
+    + ' ' + d.toLocaleTimeString('es-PY', { hour:'2-digit', minute:'2-digit' });
+}
+
+function countdown(isoTarget) {
+  const diff = new Date(isoTarget) - Date.now();
+  if (diff <= 0) return null;
+  const h = Math.floor(diff/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  if (h > 48) {
+    const days = Math.ceil(diff/86400000);
+    return `en ${days}d`;
+  }
+  if (h > 0) return `en ${h}h ${m}m`;
+  if (m > 0) return `en ${m}m ${s}s`;
+  return `en ${s}s`;
+}
+
+function updateStats() {
+  const pending = messages.filter(m => m.status === 'pending').length;
+  const sent    = messages.filter(m => m.status === 'sent').length;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('stat-total').textContent   = messages.length;
+  document.getElementById('stat-sent').textContent    = sent;
+  // Mobile badge
+  const badge = document.getElementById('mnav-badge');
+  if (badge) {
+    badge.textContent = pending;
+    badge.style.display = pending > 0 ? 'block' : 'none';
+  }
+}
+
+// ── MOBILE TAB SWITCH ──
+function mobileTab(tab) {
+  const pForm  = document.getElementById('panel-form');
+  const pQueue = document.getElementById('panel-queue');
+  const bForm  = document.getElementById('mnav-form');
+  const bQueue = document.getElementById('mnav-queue');
+  if (tab === 'form') {
+    pForm.classList.add('active');
+    pQueue.classList.remove('active');
+    bForm.classList.add('active');
+    bQueue.classList.remove('active');
+  } else {
+    pQueue.classList.add('active');
+    pForm.classList.remove('active');
+    bQueue.classList.add('active');
+    bForm.classList.remove('active');
+  }
+}
+
+// ── LOAD EXAMPLE ──
+function loadDefault() {
+  document.getElementById('f-name').value  = 'Jorge García';
+  document.getElementById('f-phone').value = '+595985581265';
+  // set to 1 minute from now
+  const t = new Date(Date.now() + 60000);
+  document.getElementById('f-date').value  = t.toISOString().slice(0,10);
+  document.getElementById('f-time').value  = t.toTimeString().slice(0,5);
+  document.getElementById('f-msg').value   = `Buen día Sr. Jorge 👋 ¿cómo está?\nQuería comentarle que ya tengo una versión publicada tipo página real, para que pueda ver claramente cómo sería el resultado final.\nLe comparto aquí: https://carcoragu.github.io/aquahunzapy.com/\nLa idea es aplicar este mismo nivel de diseño y estructura a su proyecto, totalmente adaptado a su empresa.\nQuedo atento a sus comentarios o a cualquier novedad con la autorización 👍`;
+  updateCharCount();
+  toast('Mensaje de ejemplo cargado', '📋');
+}
+
+function updateCharCount() {
+  const v = document.getElementById('f-msg').value;
+  document.getElementById('char-count').textContent = v.length;
+}
+document.getElementById('f-msg').addEventListener('input', updateCharCount);
+
+// ── ADD ──
+function addMessage() {
+  const name  = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim().replace(/\s/g,'');
+  const date  = document.getElementById('f-date').value;
+  const time  = document.getElementById('f-time').value;
+  const msg   = document.getElementById('f-msg').value.trim();
+
+  if (!name)  return toast('Ingrese el nombre del cliente', '⚠️', true);
+  if (!phone) return toast('Ingrese el número del cliente', '⚠️', true);
+  if (!date || !time) return toast('Seleccione fecha y hora', '⚠️', true);
+  if (!msg)   return toast('Escriba el mensaje', '⚠️', true);
+
+  const scheduled = new Date(`${date}T${time}`).toISOString();
+  if (new Date(scheduled) < Date.now()) {
+    return toast('La fecha/hora ya pasó', '⚠️', true);
+  }
+
+  messages.push({
+    id: Date.now().toString(),
+    name,
+    phone,
+    scheduled,
+    msg,
+    status: 'pending',
+    created: new Date().toISOString()
+  });
+
+  save();
+  render();
+
+  // clear form
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-phone').value = '';
+  document.getElementById('f-date').value = '';
+  document.getElementById('f-time').value = '';
+  document.getElementById('f-msg').value = '';
+  document.getElementById('char-count').textContent = '0';
+
+  toast(`Mensaje para ${name} programado ✅`);
+
+  // On mobile, switch to queue view automatically
+  if (window.innerWidth <= 860) mobileTab('queue');
+}
+
+// ── DELETE ──
+function deleteMsg(id) {
+  messages = messages.filter(m => m.id !== id);
+  save();
+  render();
+  toast('Mensaje eliminado', '🗑');
+}
+
+function clearSent() {
+  const count = messages.filter(m => m.status === 'sent').length;
+  messages = messages.filter(m => m.status !== 'sent');
+  save();
+  render();
+  toast(`${count} mensaje(s) enviado(s) eliminado(s)`, '🧹');
+}
+
+// ── SEND ──
+function sendNow(id) {
+  const m = messages.find(x => x.id === id);
+  if (!m) return;
+  openWhatsApp(m);
+  m.status = 'sent';
+  m.sentAt = new Date().toISOString();
+  save();
+  render();
+  toast(`Abriendo WhatsApp para ${m.name}...`, '📲');
+}
+
+function openWhatsApp(m) {
+  const clean = m.phone.replace(/[^0-9]/g,'');
+  const encoded = encodeURIComponent(m.msg);
+  const url = `https://wa.me/${clean}?text=${encoded}`;
+  window.open(url, '_blank');
+}
+
+// ── TABS ──
+function setTab(t) {
+  activeTab = t;
+  ['all','pending','sent'].forEach(x => {
+    document.getElementById('tab-'+x).classList.toggle('active', x === t);
+  });
+  render();
+}
+
+// ── RENDER ──
+function render() {
+  const search = (document.getElementById('search').value || '').toLowerCase();
+  let list = messages.filter(m => {
+    if (activeTab === 'pending' && m.status !== 'pending') return false;
+    if (activeTab === 'sent'    && m.status !== 'sent')    return false;
+    if (search && !m.name.toLowerCase().includes(search) && !m.phone.includes(search)) return false;
+    return true;
+  });
+
+  // Sort: pending first, then by scheduled time
+  list.sort((a,b) => {
+    if (a.status === 'pending' && b.status !== 'pending') return -1;
+    if (b.status === 'pending' && a.status !== 'pending') return 1;
+    return new Date(a.scheduled) - new Date(b.scheduled);
+  });
+
+  const container = document.getElementById('msg-list');
+
+  if (!list.length) {
+    container.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>Sin mensajes en esta vista.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = list.map(m => {
+    const now = Date.now();
+    const scheduled = new Date(m.scheduled).getTime();
+    const isOverdue = m.status === 'pending' && scheduled < now;
+    const statusClass = m.status === 'sent' ? 'sent' : (isOverdue ? 'overdue' : 'pending');
+    const cd = m.status === 'pending' ? countdown(m.scheduled) : null;
+    const diffSec = (scheduled - now) / 1000;
+    const isUrgent = m.status === 'pending' && diffSec > 0 && diffSec < 120;
+
+    return `
+      <div class="msg-item ${statusClass}" id="item-${m.id}">
+        <div class="msg-left">
+          <div class="msg-client">
+            <strong>${m.name}</strong>
+            <span class="msg-phone">${m.phone}</span>
+            <span class="badge badge-${statusClass}">${m.status === 'sent' ? 'Enviado' : isOverdue ? 'Vencido' : 'Pendiente'}</span>
+          </div>
+          <div class="msg-text" id="txt-${m.id}" onclick="toggleExpand('${m.id}')">${escapeHtml(m.msg)}</div>
+          <span class="msg-text-fade" onclick="toggleExpand('${m.id}')">ver más / menos</span>
+          <div class="msg-meta">
+            <span class="meta-time">📅 ${formatDate(m.scheduled)}</span>
+            ${cd ? `<span class="countdown ${isUrgent ? 'urgent' : ''}">${cd}</span>` : ''}
+            ${m.status === 'sent' ? `<span class="countdown sent-badge">✓ ${m.sentAt ? formatDate(m.sentAt) : 'Enviado'}</span>` : ''}
+            ${isOverdue ? `<span class="countdown urgent">⚠ Vencido</span>` : ''}
+          </div>
+        </div>
+        <div class="msg-actions">
+          <button class="icon-btn send-now" title="Enviar ahora por WhatsApp" onclick="sendNow('${m.id}')">📲</button>
+          <button class="icon-btn" title="Eliminar" onclick="deleteMsg('${m.id}')">🗑</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function escapeHtml(t) {
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+function toggleExpand(id) {
+  document.getElementById('txt-'+id)?.classList.toggle('expanded');
+}
+
+// ── AUTO-FIRE SCHEDULER ──
+let lastFired = 0;
+
+function checkScheduler() {
+  const now = Date.now();
+  const interval = parseInt(document.getElementById('interval').value || '30') * 1000;
+
+  const due = messages.filter(m =>
+    m.status === 'pending' &&
+    new Date(m.scheduled).getTime() <= now
+  ).sort((a,b) => new Date(a.scheduled) - new Date(b.scheduled));
+
+  if (due.length === 0) return;
+
+  if (now - lastFired < interval) return; // respect interval
+
+  const m = due[0];
+  lastFired = now;
+
+  // Visual cue
+  const el = document.getElementById('item-'+m.id);
+  if (el) { el.classList.add('firing'); setTimeout(() => el.classList.remove('firing'), 3500); }
+
+  // Open WhatsApp
+  openWhatsApp(m);
+  m.status = 'sent';
+  m.sentAt = new Date().toISOString();
+  save();
+  render();
+
+  toast(`📲 Enviando a ${m.name}...`, '✅');
+}
+
+// ── TICK (every second for countdown refresh, every 10s for scheduler check) ──
+let ticks = 0;
+setInterval(() => {
+  ticks++;
+  if (ticks % 10 === 0) checkScheduler();
+  // Refresh countdowns in DOM
+  messages.filter(m => m.status === 'pending').forEach(m => {
+    const cd = countdown(m.scheduled);
+    const now = Date.now();
+    const scheduled = new Date(m.scheduled).getTime();
+    const diffSec = (scheduled - now) / 1000;
+    const isUrgent = diffSec > 0 && diffSec < 120;
+    const els = document.querySelectorAll(`#item-${m.id} .countdown:not(.sent-badge)`);
+    if (els.length) {
+      const cdEl = [...els].find(e => !e.classList.contains('sent-badge'));
+      if (cdEl) {
+        if (!cd) {
+          cdEl.textContent = '⚠ Enviando...';
+          cdEl.classList.add('urgent');
+        } else {
+          cdEl.textContent = cd;
+          cdEl.classList.toggle('urgent', isUrgent);
+        }
+      }
+    }
+  });
+}, 1000);
+
+// ── INIT ──
+render();
+updateStats();
+
+// Set min date to today
+const today = new Date().toISOString().slice(0,10);
+document.getElementById('f-date').min = today;
+
+console.log('%c WA Scheduler activo 🟢', 'color:#25D366;font-weight:bold;font-size:14px');
+</script>
+</body>
+</html>
