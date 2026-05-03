@@ -12,7 +12,6 @@
     --surface2: #1c2330;
     --border: #30363d;
     --green: #25D366;
-    --green-dim: #1a9e4a;
     --green-glow: rgba(37,211,102,0.15);
     --amber: #f0a500;
     --red: #f85149;
@@ -20,562 +19,183 @@
     --muted: #8b949e;
     --accent: #58a6ff;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,211,102,0.07) 0%, transparent 70%);
+    background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37,211,102,0.07) 0%, transparent 70%);
   }
 
-  /* ── HEADER ── */
   header {
-    padding: 20px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(13,17,23,0.92);
-    backdrop-filter: blur(12px);
-    z-index: 100;
+    position: sticky; top: 0;
+    background: rgba(13,17,23,0.95); backdrop-filter: blur(12px); z-index: 100; gap: 12px;
   }
   .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: -0.5px; flex-shrink: 0;
   }
-  .logo svg { width: 28px; height: 28px; }
+  .logo svg { width: 26px; height: 26px; }
   .logo span { color: var(--green); }
-
-  .header-stats {
-    display: flex;
-    gap: 20px;
-  }
+  .header-stats { display: flex; gap: 8px; flex-wrap: wrap; }
   .stat-pill {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 0.78rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+    padding: 3px 10px; font-size: 0.72rem; color: var(--muted);
+    display: flex; align-items: center; gap: 5px;
   }
   .stat-pill b { color: var(--text); font-weight: 600; }
   .dot { width: 7px; height: 7px; border-radius: 50%; }
   .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
   .dot-amber { background: var(--amber); }
-  .dot-muted { background: var(--muted); }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  @keyframes pulse {
-    0%,100% { opacity:1; } 50% { opacity:0.4; }
+  .sync-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 6px 24px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--muted);
+  }
+  .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+  .sync-dot.ok { background: var(--green); box-shadow: 0 0 5px var(--green); }
+  .sync-dot.loading { background: var(--amber); animation: pulse 1s infinite; }
+  .sync-dot.error { background: var(--red); }
+  .sync-time { margin-left: auto; font-size: 0.7rem; }
+
+  main {
+    max-width: 1100px; margin: 0 auto; padding: 28px 24px;
+    display: grid; grid-template-columns: 400px 1fr; gap: 24px; align-items: start;
   }
 
-  /* ── MOBILE NAV ── */
   .mobile-nav {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(13,17,23,0.97);
-    border-top: 1px solid var(--border);
-    z-index: 200;
-    padding: 0;
-    backdrop-filter: blur(14px);
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(13,17,23,0.97); border-top: 1px solid var(--border);
+    z-index: 200; backdrop-filter: blur(14px);
   }
-  .mobile-nav-inner {
-    display: flex;
-  }
+  .mobile-nav-inner { display: flex; }
   .mnav-btn {
-    flex: 1;
-    padding: 12px 8px 16px;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    transition: color 0.2s;
-    position: relative;
+    flex: 1; padding: 11px 8px 15px; background: none; border: none; color: var(--muted);
+    font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px;
+    transition: color 0.2s; position: relative;
   }
-  .mnav-btn .mnav-icon { font-size: 20px; line-height: 1; }
+  .mnav-btn .mi { font-size: 20px; line-height: 1; }
   .mnav-btn.active { color: var(--green); }
   .mnav-btn.active::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 20%; right: 20%;
-    height: 2px;
-    background: var(--green);
-    border-radius: 0 0 3px 3px;
+    content: ''; position: absolute; top: 0; left: 20%; right: 20%;
+    height: 2px; background: var(--green); border-radius: 0 0 3px 3px;
   }
   .mnav-badge {
-    position: absolute;
-    top: 8px; right: calc(50% - 18px);
-    background: var(--red);
-    color: #fff;
-    font-size: 0.6rem;
-    font-weight: 800;
-    border-radius: 10px;
-    padding: 1px 5px;
-    min-width: 16px;
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  /* ── MAIN ── */
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 32px 24px;
-    display: grid;
-    grid-template-columns: 420px 1fr;
-    gap: 28px;
-    align-items: start;
+    position: absolute; top: 7px; right: calc(50% - 20px);
+    background: var(--red); color: #fff; font-size: 0.58rem; font-weight: 800;
+    border-radius: 10px; padding: 1px 5px; min-width: 16px; text-align: center; line-height: 1.4;
   }
 
   @media (max-width: 860px) {
-    main {
-      grid-template-columns: 1fr;
-      padding: 16px 14px 90px;
-      gap: 0;
-    }
+    main { grid-template-columns: 1fr; padding: 14px 12px 90px; gap: 0; }
     .mobile-nav { display: block; }
-
-    /* Mobile panels */
-    .panel-form,
-    .panel-queue {
-      display: none;
-    }
-    .panel-form.active,
-    .panel-queue.active {
-      display: block;
-    }
-
-    /* Header compact on mobile */
-    header {
-      padding: 12px 16px;
-    }
-    .header-stats {
-      gap: 8px;
-    }
-    .stat-pill {
-      padding: 3px 9px;
-      font-size: 0.7rem;
-      gap: 4px;
-    }
-    .logo { font-size: 1rem; }
+    .panel-form, .panel-queue { display: none; }
+    .panel-form.active, .panel-queue.active { display: block; }
+    header { padding: 10px 14px; }
+    .sync-bar { padding: 5px 14px; }
   }
 
-  /* ── FORM CARD ── */
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .card-head {
-    padding: 18px 22px 14px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .card-head h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-  .card-icon {
-    width: 32px; height: 32px;
-    background: var(--green-glow);
-    border: 1px solid rgba(37,211,102,0.3);
-    border-radius: 8px;
-    display: grid; place-items: center;
-    font-size: 14px;
-    flex-shrink: 0;
-  }
-  .card-body { padding: 20px 22px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .card-head { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .card-head h2 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; }
+  .card-icon { width: 30px; height: 30px; background: var(--green-glow); border: 1px solid rgba(37,211,102,0.3); border-radius: 8px; display: grid; place-items: center; font-size: 13px; flex-shrink: 0; }
+  .card-body { padding: 18px 20px; }
 
-  label {
-    display: block;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 6px;
-    margin-top: 14px;
-  }
+  label { display: block; font-size: 0.75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; margin-top: 13px; }
   label:first-child { margin-top: 0; }
-
-  input, textarea, select {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 13px;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
+  input, textarea {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 13px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(37,211,102,0.12);
-  }
-  textarea {
-    min-height: 110px;
-    resize: vertical;
-    line-height: 1.5;
-  }
+  input:focus, textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(37,211,102,0.12); }
+  textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .char-count { text-align: right; font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
 
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .sender-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 9px 13px; display: flex; align-items: center; gap: 10px; }
+  .sender-info strong { display: block; font-weight: 600; font-size: 0.86rem; }
+  .sender-info span { color: var(--muted); font-size: 0.75rem; }
 
-  .char-count {
-    text-align: right;
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+  .interval-row { display: flex; align-items: center; gap: 8px; background: rgba(240,165,0,0.07); border: 1px solid rgba(240,165,0,0.25); border-radius: 10px; padding: 8px 13px; margin-top: 13px; }
+  .interval-row span { font-size: 0.78rem; color: var(--amber); flex: 1; }
+  .interval-row input { width: 60px; padding: 4px 8px; font-size: 0.8rem; margin: 0; text-align: center; background: rgba(240,165,0,0.1); border-color: rgba(240,165,0,0.3); }
+  .interval-row label { margin: 0; color: var(--amber); font-size: 0.7rem; }
 
-  .sender-box {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 10px 13px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-  }
-  .sender-box .wa-icon { color: var(--green); font-size: 18px; }
-  .sender-info { flex: 1; }
-  .sender-info strong { display: block; font-weight: 600; font-size: 0.88rem; }
-  .sender-info span { color: var(--muted); font-size: 0.78rem; }
-
-  /* Interval */
-  .interval-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(240,165,0,0.07);
-    border: 1px solid rgba(240,165,0,0.25);
-    border-radius: 10px;
-    padding: 8px 13px;
-    margin-top: 14px;
-  }
-  .interval-row span { font-size: 0.8rem; color: var(--amber); flex: 1; }
-  .interval-row input {
-    width: 60px;
-    padding: 4px 8px;
-    font-size: 0.82rem;
-    margin: 0;
-    text-align: center;
-    background: rgba(240,165,0,0.1);
-    border-color: rgba(240,165,0,0.3);
-  }
-  .interval-row label {
-    margin: 0;
-    color: var(--amber);
-    font-size: 0.72rem;
-  }
-
-  .btn {
-    width: 100%;
-    margin-top: 18px;
-    padding: 12px;
-    background: var(--green);
-    color: #000;
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-  }
-  .btn:hover {
-    background: #1fbc5a;
-    box-shadow: 0 0 20px rgba(37,211,102,0.35);
-  }
+  .btn { width: 100%; margin-top: 14px; padding: 12px; background: var(--green); color: #000; font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s, transform 0.1s, box-shadow 0.2s; }
+  .btn:hover { background: #1fbc5a; box-shadow: 0 0 20px rgba(37,211,102,0.3); }
   .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-outline { background: var(--surface2); color: var(--green); border: 1px solid var(--green); margin-top: 8px; }
+  .btn-outline:hover { background: var(--green-glow); box-shadow: none; }
 
-  /* ── QUEUE ── */
-  .queue-section { display: flex; flex-direction: column; gap: 16px; }
-
-  .queue-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .queue-head h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 800;
-  }
-  .btn-sm {
-    padding: 6px 14px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--muted);
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Syne', sans-serif;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
+  .queue-section { display: flex; flex-direction: column; gap: 14px; }
+  .queue-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .queue-head h2 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 800; }
+  .btn-sm { padding: 5px 12px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 8px; cursor: pointer; font-family: 'Syne', sans-serif; transition: all 0.2s; white-space: nowrap; }
   .btn-sm:hover { border-color: var(--red); color: var(--red); }
+  .btn-sm.refresh:hover { border-color: var(--green); color: var(--green); }
 
-  /* Search */
   .search-wrap { position: relative; }
-  .search-wrap input {
-    padding-left: 36px;
-    background: var(--surface);
-    border-color: var(--border);
-  }
-  .search-icon {
-    position: absolute;
-    left: 12px; top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 14px;
-    pointer-events: none;
-  }
+  .search-wrap input { padding-left: 34px; }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 13px; pointer-events: none; }
 
-  /* Message Items */
+  .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
+  .tab { flex: 1; padding: 6px; text-align: center; font-size: 0.75rem; font-weight: 600; font-family: 'Syne', sans-serif; border-radius: 7px; cursor: pointer; color: var(--muted); transition: all 0.2s; border: none; background: none; }
+  .tab.active { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+
   .msg-list { display: flex; flex-direction: column; gap: 10px; }
-
-  .msg-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 16px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px;
-    align-items: start;
-    transition: border-color 0.2s, transform 0.15s;
-    animation: slideIn 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .msg-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    border-radius: 3px 0 0 3px;
-  }
+  .msg-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 13px 15px; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: start; transition: border-color 0.2s, transform 0.15s; animation: slideIn 0.3s ease; position: relative; overflow: hidden; }
+  .msg-item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; }
   .msg-item.pending::before { background: var(--amber); }
   .msg-item.sent::before { background: var(--green); }
   .msg-item.overdue::before { background: var(--red); }
-  .msg-item.firing::before { background: var(--green); box-shadow: 0 0 10px var(--green); }
-
   .msg-item:hover { border-color: rgba(37,211,102,0.3); transform: translateY(-1px); }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fireAnim {
-    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
-    70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
-    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-  }
+  @keyframes slideIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fireAnim { 0%{box-shadow:0 0 0 0 rgba(37,211,102,0.6)} 70%{box-shadow:0 0 0 14px rgba(37,211,102,0)} 100%{box-shadow:0 0 0 0 rgba(37,211,102,0)} }
   .msg-item.firing { animation: fireAnim 1s ease 3; }
 
-  .msg-left { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-
-  .msg-client {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .msg-client strong {
-    font-size: 0.92rem;
-    font-weight: 600;
-  }
-  .msg-phone {
-    font-size: 0.78rem;
-    color: var(--green);
-    font-family: monospace;
-    background: var(--green-glow);
-    padding: 1px 7px;
-    border-radius: 4px;
-  }
-
-  .msg-text {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.45;
-    white-space: pre-wrap;
-    word-break: break-word;
-    max-height: 54px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: max-height 0.3s;
-  }
+  .msg-left { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .msg-client { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .msg-client strong { font-size: 0.9rem; font-weight: 600; }
+  .msg-phone { font-size: 0.75rem; color: var(--green); font-family: monospace; background: var(--green-glow); padding: 1px 6px; border-radius: 4px; }
+  .msg-text { font-size: 0.8rem; color: var(--muted); line-height: 1.45; white-space: pre-wrap; word-break: break-word; max-height: 50px; overflow: hidden; cursor: pointer; transition: max-height 0.3s; }
   .msg-text.expanded { max-height: 400px; }
-  .msg-text-fade {
-    font-size: 0.7rem;
-    color: var(--accent);
-    cursor: pointer;
-  }
-
-  .msg-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .meta-time {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.76rem;
-    color: var(--muted);
-  }
-  .countdown {
-    font-size: 0.76rem;
-    font-weight: 600;
-    font-family: monospace;
-    padding: 2px 8px;
-    border-radius: 5px;
-    background: rgba(240,165,0,0.12);
-    color: var(--amber);
-    border: 1px solid rgba(240,165,0,0.25);
-  }
+  .msg-text-toggle { font-size: 0.68rem; color: var(--accent); cursor: pointer; }
+  .msg-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .meta-time { display: flex; align-items: center; gap: 4px; font-size: 0.73rem; color: var(--muted); }
+  .countdown { font-size: 0.73rem; font-weight: 600; font-family: monospace; padding: 2px 7px; border-radius: 5px; background: rgba(240,165,0,0.12); color: var(--amber); border: 1px solid rgba(240,165,0,0.25); }
   .countdown.urgent { background: rgba(248,81,73,0.12); color: var(--red); border-color: rgba(248,81,73,0.25); }
   .countdown.sent-badge { background: rgba(37,211,102,0.1); color: var(--green); border-color: rgba(37,211,102,0.2); }
-
-  .badge {
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    padding: 2px 8px;
-    border-radius: 4px;
-  }
+  .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; padding: 2px 7px; border-radius: 4px; }
   .badge-pending { background: rgba(240,165,0,0.15); color: var(--amber); }
   .badge-sent { background: rgba(37,211,102,0.15); color: var(--green); }
   .badge-overdue { background: rgba(248,81,73,0.15); color: var(--red); }
 
   .msg-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
-
-  .icon-btn {
-    width: 30px; height: 30px;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    border-radius: 7px;
-    display: grid;
-    place-items: center;
-    font-size: 13px;
-    cursor: pointer;
-    color: var(--muted);
-    transition: all 0.2s;
-  }
+  .icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); background: var(--surface2); border-radius: 7px; display: grid; place-items: center; font-size: 13px; cursor: pointer; color: var(--muted); transition: all 0.2s; }
   .icon-btn:hover { border-color: var(--red); color: var(--red); background: rgba(248,81,73,0.08); }
   .icon-btn.send-now:hover { border-color: var(--green); color: var(--green); background: rgba(37,211,102,0.08); }
 
-  .empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-  }
-  .empty-state .emoji { font-size: 40px; margin-bottom: 12px; }
-  .empty-state p { font-size: 0.85rem; }
+  .empty-state { text-align: center; padding: 50px 20px; color: var(--muted); }
+  .empty-state .emoji { font-size: 36px; margin-bottom: 10px; }
+  .empty-state p { font-size: 0.82rem; line-height: 1.6; }
 
-  /* Toast */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: var(--surface);
-    border: 1px solid var(--green);
-    border-radius: 12px;
-    padding: 12px 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-    z-index: 9999;
-    transform: translateY(80px);
-    opacity: 0;
-    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    max-width: 320px;
-  }
+  .loading-overlay { text-align: center; padding: 40px 20px; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to{transform:rotate(360deg)} }
+
+  .toast { position: fixed; bottom: 80px; right: 20px; background: var(--surface); border: 1px solid var(--green); border-radius: 12px; padding: 11px 16px; display: flex; align-items: center; gap: 9px; font-size: 0.82rem; z-index: 9999; transform: translateY(80px); opacity: 0; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 8px 30px rgba(0,0,0,0.4); max-width: 300px; }
   .toast.show { transform: translateY(0); opacity: 1; }
-  .toast-icon { font-size: 18px; }
 
-  /* Tabs */
-  .tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
-  .tab {
-    flex: 1;
-    padding: 6px;
-    text-align: center;
-    font-size: 0.78rem;
-    font-weight: 600;
-    font-family: 'Syne', sans-serif;
-    border-radius: 7px;
-    cursor: pointer;
-    color: var(--muted);
-    transition: all 0.2s;
-    border: none;
-    background: none;
-  }
-  .tab.active { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-
-  /* FOOTER NOTE */
-  .note-box {
-    background: rgba(88,166,255,0.06);
-    border: 1px solid rgba(88,166,255,0.2);
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-top: 4px;
-  }
+  .note-box { background: rgba(88,166,255,0.06); border: 1px solid rgba(88,166,255,0.2); border-radius: 10px; padding: 10px 13px; font-size: 0.76rem; color: var(--muted); line-height: 1.5; margin-top: 4px; }
   .note-box strong { color: var(--accent); }
-
-  /* Interval warning */
-  .warn-interval {
-    background: rgba(240,165,0,0.07);
-    border: 1px solid rgba(240,165,0,0.2);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 0.76rem;
-    color: var(--amber);
-    margin-top: 8px;
-  }
 </style>
 </head>
 <body>
@@ -590,14 +210,19 @@
     WA<span>Scheduler</span>
   </div>
   <div class="header-stats">
-    <div class="stat-pill"><div class="dot dot-green"></div>Activos: <b id="stat-pending">0</b></div>
+    <div class="stat-pill"><div class="dot dot-green"></div>Pendientes: <b id="stat-pending">0</b></div>
     <div class="stat-pill"><div class="dot dot-amber"></div>Total: <b id="stat-total">0</b></div>
     <div class="stat-pill"><div class="dot" style="background:var(--green)"></div>Enviados: <b id="stat-sent">0</b></div>
   </div>
 </header>
 
+<div class="sync-bar">
+  <div class="sync-dot loading" id="sync-dot"></div>
+  <span id="sync-text">Conectando con Google Sheets...</span>
+  <span class="sync-time" id="sync-time"></span>
+</div>
+
 <main>
-  <!-- FORM PANEL -->
   <div class="panel-form active" id="panel-form">
     <div class="card">
       <div class="card-head">
@@ -605,147 +230,144 @@
         <h2>Nuevo Mensaje Programado</h2>
       </div>
       <div class="card-body">
-
         <label>Mi número (remitente)</label>
         <div class="sender-box">
-          <span class="wa-icon">📱</span>
+          <span style="color:var(--green);font-size:18px">📱</span>
           <div class="sender-info">
             <strong>+595 981 153 477</strong>
             <span>Su cuenta de WhatsApp</span>
           </div>
         </div>
-
         <label>Nombre del cliente</label>
         <input type="text" id="f-name" placeholder="Ej: Jorge García" />
-
-        <label>Número del cliente</label>
+        <label>Número del cliente (con código país)</label>
         <input type="tel" id="f-phone" placeholder="+595 985 581265" />
-
         <label>Fecha y hora de envío</label>
         <div class="row2">
           <input type="date" id="f-date" />
           <input type="time" id="f-time" />
         </div>
-
         <label>Mensaje</label>
         <textarea id="f-msg" placeholder="Escriba el mensaje aquí..."></textarea>
         <div class="char-count"><span id="char-count">0</span> caracteres</div>
-
-        <button class="btn" onclick="loadDefault()">⚡ Cargar mensaje de ejemplo</button>
-        <button class="btn" style="background:var(--surface2);color:var(--green);border:1px solid var(--green);margin-top:8px;" onclick="addMessage()">
-          📅 Programar Mensaje
-        </button>
-
+        <button class="btn btn-outline" onclick="loadDefault()">⚡ Cargar mensaje de ejemplo</button>
+        <button class="btn" id="btn-add" onclick="addMessage()">📅 Programar Mensaje</button>
         <div class="interval-row">
-          <span>⏱ Intervalo anti-spam entre envíos:</span>
+          <span>⏱ Intervalo anti-spam:</span>
           <input type="number" id="interval" value="30" min="5" max="600" />
           <label>seg.</label>
         </div>
-
         <div class="note-box" style="margin-top:12px;">
-          <strong>ℹ️ ¿Cómo funciona?</strong><br>
-          Al llegar la hora programada, el sistema abre WhatsApp automáticamente con el número y mensaje cargado. Solo debe presionar <strong>Enviar</strong> en WhatsApp Web. Los mensajes se envían con el intervalo configurado para evitar spam.
+          <strong>☁️ Sincronizado con Google Sheets</strong><br>
+          Los mensajes se guardan en la nube y se ven en todos sus dispositivos en tiempo real. Se actualiza automáticamente cada 30 segundos.
         </div>
-
       </div>
-    </div><!-- end card -->
-  </div><!-- end panel-form -->
+    </div>
+  </div>
 
-  <!-- QUEUE PANEL -->
   <div class="panel-queue" id="panel-queue">
-  <div class="queue-section">
-    <div class="queue-head">
-      <h2>📋 Cola de Mensajes</h2>
-      <button class="btn-sm" onclick="clearSent()">🗑 Limpiar enviados</button>
-    </div>
-
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="search" placeholder="Buscar por nombre o número..." oninput="render()" />
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" id="tab-all" onclick="setTab('all')">Todos</button>
-      <button class="tab" id="tab-pending" onclick="setTab('pending')">Pendientes</button>
-      <button class="tab" id="tab-sent" onclick="setTab('sent')">Enviados</button>
-    </div>
-
-    <div class="msg-list" id="msg-list">
-      <div class="empty-state">
-        <div class="emoji">📭</div>
-        <p>No hay mensajes programados.<br>Agregue su primer cliente.</p>
+    <div class="queue-section">
+      <div class="queue-head">
+        <h2>📋 Cola de Mensajes</h2>
+        <div style="display:flex;gap:8px">
+          <button class="btn-sm refresh" onclick="loadMessages()">🔄 Actualizar</button>
+          <button class="btn-sm" onclick="clearSent()">🗑 Limpiar enviados</button>
+        </div>
+      </div>
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search" placeholder="Buscar por nombre o número..." oninput="render()" />
+      </div>
+      <div class="tabs">
+        <button class="tab active" id="tab-all" onclick="setTab('all')">Todos</button>
+        <button class="tab" id="tab-pending" onclick="setTab('pending')">Pendientes</button>
+        <button class="tab" id="tab-sent" onclick="setTab('sent')">Enviados</button>
+      </div>
+      <div class="msg-list" id="msg-list">
+        <div class="loading-overlay">
+          <div class="spinner"></div>
+          <span>Cargando desde Google Sheets...</span>
+        </div>
       </div>
     </div>
-  </div><!-- end queue-section -->
-  </div><!-- end panel-queue -->
+  </div>
 </main>
 
-<!-- MOBILE BOTTOM NAV -->
 <nav class="mobile-nav">
   <div class="mobile-nav-inner">
     <button class="mnav-btn active" id="mnav-form" onclick="mobileTab('form')">
-      <span class="mnav-icon">➕</span>
-      Nuevo
+      <span class="mi">➕</span>Nuevo
     </button>
     <button class="mnav-btn" id="mnav-queue" onclick="mobileTab('queue')">
-      <span class="mnav-icon">📋</span>
-      Cola
+      <span class="mi">📋</span>Cola
       <span class="mnav-badge" id="mnav-badge" style="display:none">0</span>
     </button>
   </div>
 </nav>
 
 <div class="toast" id="toast">
-  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-icon">✅</span>
   <span id="toast-text"></span>
 </div>
 
 <script>
-// ── STATE ──
-let messages = JSON.parse(localStorage.getItem('wa_msgs') || '[]');
+const API_URL = 'https://script.google.com/macros/s/AKfycbw3SU_4SJGY-0OPBwh2rRwMzQ-rrjuF2EcpiZ8PkrWAHKqYYKlRLOlAItb1hOvvibPT/exec';
+
+let messages = [];
 let activeTab = 'all';
-let firingQueue = [];
-let isFiring = false;
-
-const SENDER_PHONE = '+595981153477';
-const SENDER_LINK  = 'https://wa.link/mfbqci';
-
-// ── HELPERS ──
-function save() {
-  localStorage.setItem('wa_msgs', JSON.stringify(messages));
-  updateStats();
-}
+let lastFired = 0;
+let ticks = 0;
 
 function toast(msg, icon='✅', isError=false) {
   const t = document.getElementById('toast');
-  const ti = document.getElementById('toast-icon');
-  const tt = document.getElementById('toast-text');
   t.style.borderColor = isError ? 'var(--red)' : 'var(--green)';
-  ti.textContent = icon;
-  tt.textContent = msg;
+  document.getElementById('toast-icon').textContent = icon;
+  document.getElementById('toast-text').textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-function formatDate(iso) {
-  const d = new Date(iso);
-  return d.toLocaleDateString('es-PY', { day:'2-digit', month:'short', year:'numeric' })
-    + ' ' + d.toLocaleTimeString('es-PY', { hour:'2-digit', minute:'2-digit' });
+function syncStatus(state, text) {
+  document.getElementById('sync-dot').className = 'sync-dot ' + state;
+  document.getElementById('sync-text').textContent = text;
+  if (state === 'ok') {
+    const now = new Date();
+    document.getElementById('sync-time').textContent =
+      'Actualizado: ' + now.toLocaleTimeString('es-PY', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  }
 }
 
-function countdown(isoTarget) {
-  const diff = new Date(isoTarget) - Date.now();
-  if (diff <= 0) return null;
-  const h = Math.floor(diff/3600000);
-  const m = Math.floor((diff%3600000)/60000);
-  const s = Math.floor((diff%60000)/1000);
-  if (h > 48) {
-    const days = Math.ceil(diff/86400000);
-    return `en ${days}d`;
+async function loadMessages() {
+  syncStatus('loading', 'Sincronizando con Google Sheets...');
+  try {
+    const res = await fetch(API_URL + '?action=getAll');
+    const data = await res.json();
+    if (data.ok) {
+      messages = (data.data || []).map(r => ({
+        id: String(r.id),
+        name: r.nombre || '',
+        phone: r.telefono || '',
+        msg: r.mensaje || '',
+        scheduled: r.fecha_hora || '',
+        status: r.estado || 'pending',
+        sentAt: r.enviado_en || ''
+      }));
+      syncStatus('ok', 'Sincronizado con Google Sheets ☁️');
+      updateStats();
+      render();
+    } else {
+      syncStatus('error', 'Error: ' + (data.error || 'desconocido'));
+      toast('Error al cargar datos', '❌', true);
+    }
+  } catch(e) {
+    syncStatus('error', 'Sin conexión a Google Sheets');
+    toast('Sin conexión', '❌', true);
   }
-  if (h > 0) return `en ${h}h ${m}m`;
-  if (m > 0) return `en ${m}m ${s}s`;
-  return `en ${s}s`;
+}
+
+async function apiPost(body) {
+  const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify(body) });
+  return await res.json();
 }
 
 function updateStats() {
@@ -754,277 +376,246 @@ function updateStats() {
   document.getElementById('stat-pending').textContent = pending;
   document.getElementById('stat-total').textContent   = messages.length;
   document.getElementById('stat-sent').textContent    = sent;
-  // Mobile badge
   const badge = document.getElementById('mnav-badge');
-  if (badge) {
-    badge.textContent = pending;
-    badge.style.display = pending > 0 ? 'block' : 'none';
-  }
+  badge.textContent = pending;
+  badge.style.display = pending > 0 ? 'block' : 'none';
 }
 
-// ── MOBILE TAB SWITCH ──
-function mobileTab(tab) {
-  const pForm  = document.getElementById('panel-form');
-  const pQueue = document.getElementById('panel-queue');
-  const bForm  = document.getElementById('mnav-form');
-  const bQueue = document.getElementById('mnav-queue');
-  if (tab === 'form') {
-    pForm.classList.add('active');
-    pQueue.classList.remove('active');
-    bForm.classList.add('active');
-    bQueue.classList.remove('active');
-  } else {
-    pQueue.classList.add('active');
-    pForm.classList.remove('active');
-    bQueue.classList.add('active');
-    bForm.classList.remove('active');
-  }
+function formatDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  return d.toLocaleDateString('es-PY', {day:'2-digit',month:'short',year:'numeric'})
+    + ' ' + d.toLocaleTimeString('es-PY', {hour:'2-digit',minute:'2-digit'});
 }
 
-// ── LOAD EXAMPLE ──
+function countdown(isoTarget) {
+  const diff = new Date(isoTarget) - Date.now();
+  if (diff <= 0) return null;
+  const h = Math.floor(diff/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  if (h > 48) return `en ${Math.ceil(diff/86400000)}d`;
+  if (h > 0) return `en ${h}h ${m}m`;
+  if (m > 0) return `en ${m}m ${s}s`;
+  return `en ${s}s`;
+}
+
+function escapeHtml(t) {
+  return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
 function loadDefault() {
   document.getElementById('f-name').value  = 'Jorge García';
   document.getElementById('f-phone').value = '+595985581265';
-  // set to 1 minute from now
-  const t = new Date(Date.now() + 60000);
+  const t = new Date(Date.now() + 3600000);
   document.getElementById('f-date').value  = t.toISOString().slice(0,10);
   document.getElementById('f-time').value  = t.toTimeString().slice(0,5);
   document.getElementById('f-msg').value   = `Buen día Sr. Jorge 👋 ¿cómo está?\nQuería comentarle que ya tengo una versión publicada tipo página real, para que pueda ver claramente cómo sería el resultado final.\nLe comparto aquí: https://carcoragu.github.io/aquahunzapy.com/\nLa idea es aplicar este mismo nivel de diseño y estructura a su proyecto, totalmente adaptado a su empresa.\nQuedo atento a sus comentarios o a cualquier novedad con la autorización 👍`;
-  updateCharCount();
+  document.getElementById('char-count').textContent = document.getElementById('f-msg').value.length;
   toast('Mensaje de ejemplo cargado', '📋');
 }
 
-function updateCharCount() {
-  const v = document.getElementById('f-msg').value;
-  document.getElementById('char-count').textContent = v.length;
-}
-document.getElementById('f-msg').addEventListener('input', updateCharCount);
+document.getElementById('f-msg').addEventListener('input', () => {
+  document.getElementById('char-count').textContent = document.getElementById('f-msg').value.length;
+});
 
-// ── ADD ──
-function addMessage() {
+async function addMessage() {
   const name  = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim().replace(/\s/g,'');
   const date  = document.getElementById('f-date').value;
   const time  = document.getElementById('f-time').value;
   const msg   = document.getElementById('f-msg').value.trim();
 
-  if (!name)  return toast('Ingrese el nombre del cliente', '⚠️', true);
-  if (!phone) return toast('Ingrese el número del cliente', '⚠️', true);
-  if (!date || !time) return toast('Seleccione fecha y hora', '⚠️', true);
-  if (!msg)   return toast('Escriba el mensaje', '⚠️', true);
+  if (!name)        return toast('Ingrese el nombre del cliente', '⚠️', true);
+  if (!phone)       return toast('Ingrese el número del cliente', '⚠️', true);
+  if (!date||!time) return toast('Seleccione fecha y hora', '⚠️', true);
+  if (!msg)         return toast('Escriba el mensaje', '⚠️', true);
 
   const scheduled = new Date(`${date}T${time}`).toISOString();
-  if (new Date(scheduled) < Date.now()) {
-    return toast('La fecha/hora ya pasó', '⚠️', true);
+  if (new Date(scheduled) < Date.now()) return toast('La fecha/hora ya pasó', '⚠️', true);
+
+  const btn = document.getElementById('btn-add');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Guardando en Google Sheets...';
+  syncStatus('loading', 'Guardando...');
+
+  try {
+    const id = Date.now().toString();
+    const res = await apiPost({ action:'add', id, nombre:name, telefono:phone, mensaje:msg, fecha_hora:scheduled, estado:'pending' });
+    if (res.ok) {
+      messages.push({ id, name, phone, msg, scheduled, status:'pending', sentAt:'' });
+      updateStats(); render();
+      syncStatus('ok', 'Guardado en Google Sheets ☁️');
+      toast(`✅ Mensaje para ${name} programado`);
+      document.getElementById('f-name').value  = '';
+      document.getElementById('f-phone').value = '';
+      document.getElementById('f-date').value  = '';
+      document.getElementById('f-time').value  = '';
+      document.getElementById('f-msg').value   = '';
+      document.getElementById('char-count').textContent = '0';
+      if (window.innerWidth <= 860) mobileTab('queue');
+    } else {
+      toast('Error al guardar: ' + (res.error||''), '❌', true);
+      syncStatus('error', 'Error al guardar');
+    }
+  } catch(e) {
+    toast('Error de conexión', '❌', true);
+    syncStatus('error', 'Sin conexión');
   }
-
-  messages.push({
-    id: Date.now().toString(),
-    name,
-    phone,
-    scheduled,
-    msg,
-    status: 'pending',
-    created: new Date().toISOString()
-  });
-
-  save();
-  render();
-
-  // clear form
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-phone').value = '';
-  document.getElementById('f-date').value = '';
-  document.getElementById('f-time').value = '';
-  document.getElementById('f-msg').value = '';
-  document.getElementById('char-count').textContent = '0';
-
-  toast(`Mensaje para ${name} programado ✅`);
-
-  // On mobile, switch to queue view automatically
-  if (window.innerWidth <= 860) mobileTab('queue');
+  btn.disabled = false;
+  btn.innerHTML = '📅 Programar Mensaje';
 }
 
-// ── DELETE ──
-function deleteMsg(id) {
-  messages = messages.filter(m => m.id !== id);
-  save();
-  render();
-  toast('Mensaje eliminado', '🗑');
+async function deleteMsg(id) {
+  if (!confirm('¿Eliminar este mensaje?')) return;
+  syncStatus('loading', 'Eliminando...');
+  try {
+    await apiPost({ action:'delete', id });
+    messages = messages.filter(m => m.id !== id);
+    updateStats(); render();
+    syncStatus('ok', 'Eliminado ☁️');
+    toast('Mensaje eliminado', '🗑');
+  } catch(e) { toast('Error al eliminar', '❌', true); }
 }
 
-function clearSent() {
+async function clearSent() {
   const count = messages.filter(m => m.status === 'sent').length;
-  messages = messages.filter(m => m.status !== 'sent');
-  save();
-  render();
-  toast(`${count} mensaje(s) enviado(s) eliminado(s)`, '🧹');
+  if (!count) return toast('No hay mensajes enviados', '⚠️');
+  if (!confirm(`¿Eliminar ${count} mensaje(s) enviado(s)?`)) return;
+  syncStatus('loading', 'Limpiando...');
+  try {
+    await apiPost({ action:'deleteAllSent' });
+    messages = messages.filter(m => m.status !== 'sent');
+    updateStats(); render();
+    syncStatus('ok', 'Limpiado ☁️');
+    toast(`${count} mensaje(s) eliminado(s)`, '🧹');
+  } catch(e) { toast('Error', '❌', true); }
 }
 
-// ── SEND ──
-function sendNow(id) {
+function openWhatsApp(m) {
+  const clean = m.phone.replace(/[^0-9]/g,'');
+  window.open(`https://wa.me/${clean}?text=${encodeURIComponent(m.msg)}`, '_blank');
+}
+
+async function sendNow(id) {
   const m = messages.find(x => x.id === id);
   if (!m) return;
   openWhatsApp(m);
   m.status = 'sent';
   m.sentAt = new Date().toISOString();
-  save();
-  render();
+  updateStats(); render();
   toast(`Abriendo WhatsApp para ${m.name}...`, '📲');
+  try {
+    await apiPost({ action:'updateStatus', id, estado:'sent', enviado_en:m.sentAt });
+    syncStatus('ok', 'Estado actualizado ☁️');
+  } catch(e) {}
 }
 
-function openWhatsApp(m) {
-  const clean = m.phone.replace(/[^0-9]/g,'');
-  const encoded = encodeURIComponent(m.msg);
-  const url = `https://wa.me/${clean}?text=${encoded}`;
-  window.open(url, '_blank');
-}
-
-// ── TABS ──
 function setTab(t) {
   activeTab = t;
-  ['all','pending','sent'].forEach(x => {
-    document.getElementById('tab-'+x).classList.toggle('active', x === t);
-  });
+  ['all','pending','sent'].forEach(x => document.getElementById('tab-'+x).classList.toggle('active', x===t));
   render();
 }
 
-// ── RENDER ──
-function render() {
-  const search = (document.getElementById('search').value || '').toLowerCase();
-  let list = messages.filter(m => {
-    if (activeTab === 'pending' && m.status !== 'pending') return false;
-    if (activeTab === 'sent'    && m.status !== 'sent')    return false;
-    if (search && !m.name.toLowerCase().includes(search) && !m.phone.includes(search)) return false;
-    return true;
-  });
+function mobileTab(tab) {
+  document.getElementById('panel-form').classList.toggle('active', tab==='form');
+  document.getElementById('panel-queue').classList.toggle('active', tab==='queue');
+  document.getElementById('mnav-form').classList.toggle('active', tab==='form');
+  document.getElementById('mnav-queue').classList.toggle('active', tab==='queue');
+}
 
-  // Sort: pending first, then by scheduled time
-  list.sort((a,b) => {
-    if (a.status === 'pending' && b.status !== 'pending') return -1;
-    if (b.status === 'pending' && a.status !== 'pending') return 1;
+function render() {
+  const search = (document.getElementById('search').value||'').toLowerCase();
+  let list = messages.filter(m => {
+    if (activeTab==='pending' && m.status!=='pending') return false;
+    if (activeTab==='sent'    && m.status!=='sent')    return false;
+    if (search && !m.name.toLowerCase().includes(search) && !(m.phone||'').includes(search)) return false;
+    return true;
+  }).sort((a,b) => {
+    if (a.status==='pending' && b.status!=='pending') return -1;
+    if (b.status==='pending' && a.status!=='pending') return 1;
     return new Date(a.scheduled) - new Date(b.scheduled);
   });
 
   const container = document.getElementById('msg-list');
-
   if (!list.length) {
-    container.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>Sin mensajes en esta vista.</p></div>`;
+    container.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>Sin mensajes en esta vista.<br>Agregue clientes desde el formulario.</p></div>`;
     return;
   }
 
   container.innerHTML = list.map(m => {
     const now = Date.now();
-    const scheduled = new Date(m.scheduled).getTime();
-    const isOverdue = m.status === 'pending' && scheduled < now;
-    const statusClass = m.status === 'sent' ? 'sent' : (isOverdue ? 'overdue' : 'pending');
-    const cd = m.status === 'pending' ? countdown(m.scheduled) : null;
-    const diffSec = (scheduled - now) / 1000;
-    const isUrgent = m.status === 'pending' && diffSec > 0 && diffSec < 120;
-
-    return `
-      <div class="msg-item ${statusClass}" id="item-${m.id}">
-        <div class="msg-left">
-          <div class="msg-client">
-            <strong>${m.name}</strong>
-            <span class="msg-phone">${m.phone}</span>
-            <span class="badge badge-${statusClass}">${m.status === 'sent' ? 'Enviado' : isOverdue ? 'Vencido' : 'Pendiente'}</span>
-          </div>
-          <div class="msg-text" id="txt-${m.id}" onclick="toggleExpand('${m.id}')">${escapeHtml(m.msg)}</div>
-          <span class="msg-text-fade" onclick="toggleExpand('${m.id}')">ver más / menos</span>
-          <div class="msg-meta">
-            <span class="meta-time">📅 ${formatDate(m.scheduled)}</span>
-            ${cd ? `<span class="countdown ${isUrgent ? 'urgent' : ''}">${cd}</span>` : ''}
-            ${m.status === 'sent' ? `<span class="countdown sent-badge">✓ ${m.sentAt ? formatDate(m.sentAt) : 'Enviado'}</span>` : ''}
-            ${isOverdue ? `<span class="countdown urgent">⚠ Vencido</span>` : ''}
-          </div>
+    const sched = new Date(m.scheduled).getTime();
+    const isOverdue = m.status==='pending' && sched < now;
+    const sc = m.status==='sent' ? 'sent' : (isOverdue ? 'overdue' : 'pending');
+    const cd = m.status==='pending' ? countdown(m.scheduled) : null;
+    const isUrgent = m.status==='pending' && (sched-now)/1000 < 120 && (sched-now) > 0;
+    return `<div class="msg-item ${sc}" id="item-${m.id}">
+      <div class="msg-left">
+        <div class="msg-client">
+          <strong>${escapeHtml(m.name)}</strong>
+          <span class="msg-phone">${escapeHtml(m.phone)}</span>
+          <span class="badge badge-${sc}">${m.status==='sent'?'Enviado':isOverdue?'Vencido':'Pendiente'}</span>
         </div>
-        <div class="msg-actions">
-          <button class="icon-btn send-now" title="Enviar ahora por WhatsApp" onclick="sendNow('${m.id}')">📲</button>
-          <button class="icon-btn" title="Eliminar" onclick="deleteMsg('${m.id}')">🗑</button>
+        <div class="msg-text" id="txt-${m.id}" onclick="toggleExpand('${m.id}')">${escapeHtml(m.msg)}</div>
+        <span class="msg-text-toggle" onclick="toggleExpand('${m.id}')">ver más / menos</span>
+        <div class="msg-meta">
+          <span class="meta-time">📅 ${formatDate(m.scheduled)}</span>
+          ${cd ? `<span class="countdown ${isUrgent?'urgent':''}" id="cd-${m.id}">${cd}</span>` : ''}
+          ${m.status==='sent' ? `<span class="countdown sent-badge">✓ ${formatDate(m.sentAt)||'Enviado'}</span>` : ''}
+          ${isOverdue ? `<span class="countdown urgent">⚠ Vencido</span>` : ''}
         </div>
-      </div>`;
+      </div>
+      <div class="msg-actions">
+        <button class="icon-btn send-now" title="Abrir WhatsApp ahora" onclick="sendNow('${m.id}')">📲</button>
+        <button class="icon-btn" title="Eliminar" onclick="deleteMsg('${m.id}')">🗑</button>
+      </div>
+    </div>`;
   }).join('');
-}
-
-function escapeHtml(t) {
-  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
 }
 
 function toggleExpand(id) {
   document.getElementById('txt-'+id)?.classList.toggle('expanded');
 }
 
-// ── AUTO-FIRE SCHEDULER ──
-let lastFired = 0;
-
 function checkScheduler() {
   const now = Date.now();
-  const interval = parseInt(document.getElementById('interval').value || '30') * 1000;
-
-  const due = messages.filter(m =>
-    m.status === 'pending' &&
-    new Date(m.scheduled).getTime() <= now
-  ).sort((a,b) => new Date(a.scheduled) - new Date(b.scheduled));
-
-  if (due.length === 0) return;
-
-  if (now - lastFired < interval) return; // respect interval
-
+  const interval = parseInt(document.getElementById('interval').value||'30') * 1000;
+  const due = messages.filter(m => m.status==='pending' && new Date(m.scheduled).getTime() <= now)
+    .sort((a,b) => new Date(a.scheduled)-new Date(b.scheduled));
+  if (!due.length || now-lastFired < interval) return;
   const m = due[0];
   lastFired = now;
-
-  // Visual cue
   const el = document.getElementById('item-'+m.id);
-  if (el) { el.classList.add('firing'); setTimeout(() => el.classList.remove('firing'), 3500); }
-
-  // Open WhatsApp
+  if (el) { el.classList.add('firing'); setTimeout(()=>el.classList.remove('firing'),3500); }
   openWhatsApp(m);
   m.status = 'sent';
   m.sentAt = new Date().toISOString();
-  save();
-  render();
-
-  toast(`📲 Enviando a ${m.name}...`, '✅');
+  updateStats(); render();
+  toast(`📲 Enviando a ${m.name}...`);
+  apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt }).catch(()=>{});
 }
 
-// ── TICK (every second for countdown refresh, every 10s for scheduler check) ──
-let ticks = 0;
 setInterval(() => {
   ticks++;
   if (ticks % 10 === 0) checkScheduler();
-  // Refresh countdowns in DOM
-  messages.filter(m => m.status === 'pending').forEach(m => {
+  messages.filter(m => m.status==='pending').forEach(m => {
+    const el = document.getElementById('cd-'+m.id);
+    if (!el) return;
     const cd = countdown(m.scheduled);
-    const now = Date.now();
-    const scheduled = new Date(m.scheduled).getTime();
-    const diffSec = (scheduled - now) / 1000;
-    const isUrgent = diffSec > 0 && diffSec < 120;
-    const els = document.querySelectorAll(`#item-${m.id} .countdown:not(.sent-badge)`);
-    if (els.length) {
-      const cdEl = [...els].find(e => !e.classList.contains('sent-badge'));
-      if (cdEl) {
-        if (!cd) {
-          cdEl.textContent = '⚠ Enviando...';
-          cdEl.classList.add('urgent');
-        } else {
-          cdEl.textContent = cd;
-          cdEl.classList.toggle('urgent', isUrgent);
-        }
-      }
-    }
+    const diffSec = (new Date(m.scheduled)-Date.now())/1000;
+    if (!cd) { el.textContent='⚠ Enviando...'; el.classList.add('urgent'); }
+    else { el.textContent=cd; el.classList.toggle('urgent', diffSec<120 && diffSec>0); }
   });
 }, 1000);
 
-// ── INIT ──
-render();
-updateStats();
+// Auto-refresh every 30 seconds
+setInterval(loadMessages, 30000);
 
-// Set min date to today
-const today = new Date().toISOString().slice(0,10);
-document.getElementById('f-date').min = today;
-
-console.log('%c WA Scheduler activo 🟢', 'color:#25D366;font-weight:bold;font-size:14px');
+// INIT
+document.getElementById('f-date').min = new Date().toISOString().slice(0,10);
+loadMessages();
 </script>
 </body>
 </html>
