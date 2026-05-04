@@ -356,7 +356,10 @@ function apiPost(body) {
       if (script.parentNode) script.parentNode.removeChild(script);
       reject(new Error('Error de red'));
     };
-    script.src = POST_URL + '?callback=' + cbName + '&body=' + encodeURIComponent(JSON.stringify(body));
+    // Codificar en base64 para evitar problemas con saltos de línea y caracteres especiales
+    const jsonStr = JSON.stringify(body);
+    const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+    script.src = POST_URL + '?callback=' + cbName + '&body=' + b64;
     document.head.appendChild(script);
     setTimeout(() => {
       if (done) return;
