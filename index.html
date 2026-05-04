@@ -289,24 +289,52 @@ function syncStatus(state, text) {
   }
 }
 
-// ── PARSE CSV ──
+// ── PARSE CSV (maneja campos multilínea entre comillas) ──
 function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  if (lines.length < 2) return [];
-  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,'').toLowerCase());
-  return lines.slice(1).map(line => {
-    const cols = [];
-    let cur = '', inQ = false;
-    for (let i = 0; i < line.length; i++) {
-      if (line[i] === '"') { inQ = !inQ; }
-      else if (line[i] === ',' && !inQ) { cols.push(cur); cur = ''; }
-      else { cur += line[i]; }
+  const result = [];
+  let i = 0;
+
+  function parseField() {
+    let val = '';
+    if (text[i] === '"') {
+      i++; // saltar comilla de apertura
+      while (i < text.length) {
+        if (text[i] === '"') {
+          if (text[i+1] === '"') { val += '"'; i += 2; } // comilla escapada
+          else { i++; break; } // comilla de cierre
+        } else {
+          val += text[i++];
+        }
+      }
+    } else {
+      while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
+        val += text[i++];
+      }
     }
-    cols.push(cur);
+    return val.trim();
+  }
+
+  function parseRow() {
+    const cols = [];
+    while (i < text.length && text[i] !== '\n' && text[i] !== '\r') {
+      cols.push(parseField());
+      if (text[i] === ',') i++;
+    }
+    // saltar \r\n o \n
+    if (text[i] === '\r') i++;
+    if (text[i] === '\n') i++;
+    return cols;
+  }
+
+  const headers = parseRow().map(h => h.toLowerCase());
+  while (i < text.length) {
+    const cols = parseRow();
+    if (cols.length === 0 || (cols.length === 1 && cols[0] === '')) continue;
     const obj = {};
-    headers.forEach((h, i) => { obj[h] = (cols[i] || '').trim().replace(/^"|"$/g,''); });
-    return obj;
-  }).filter(r => r.id && r.id.trim() !== '' && r.id !== 'id');
+    headers.forEach((h, idx) => { obj[h] = cols[idx] || ''; });
+    if (obj.id && obj.id !== 'id') result.push(obj);
+  }
+  return result;
 }
 
 // ── LOAD desde CSV público (sin CORS) ──
