@@ -293,46 +293,52 @@ function syncStatus(state, text) {
 function parseCSV(text) {
   const result = [];
   let i = 0;
-
-  function parseField() {
-    let val = '';
-    if (text[i] === '"') {
-      i++; // saltar comilla de apertura
-      while (i < text.length) {
-        if (text[i] === '"') {
-          if (text[i+1] === '"') { val += '"'; i += 2; } // comilla escapada
-          else { i++; break; } // comilla de cierre
-        } else {
-          val += text[i++];
-        }
-      }
-    } else {
-      while (i < text.length && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
-        val += text[i++];
-      }
-    }
-    return val.trim();
-  }
+  const n = text.length;
 
   function parseRow() {
     const cols = [];
-    while (i < text.length && text[i] !== '\n' && text[i] !== '\r') {
-      cols.push(parseField());
-      if (text[i] === ',') i++;
+    while (i < n) {
+      // Inicio de campo
+      if (text[i] === '"') {
+        // Campo entre comillas — puede tener saltos de línea adentro
+        i++; // saltar comilla apertura
+        let val = '';
+        while (i < n) {
+          if (text[i] === '"') {
+            if (text[i+1] === '"') { val += '"'; i += 2; } // comilla escapada ""
+            else { i++; break; } // comilla de cierre
+          } else {
+            val += text[i++];
+          }
+        }
+        cols.push(val);
+      } else {
+        // Campo sin comillas — termina en coma o salto de línea
+        let val = '';
+        while (i < n && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
+          val += text[i++];
+        }
+        cols.push(val.trim());
+      }
+      // Después del campo: coma = siguiente campo, salto = fin de fila
+      if (i < n && text[i] === ',') { i++; continue; }
+      break;
     }
-    // saltar \r\n o \n
-    if (text[i] === '\r') i++;
-    if (text[i] === '\n') i++;
+    // Saltar salto de línea al final de la fila
+    if (i < n && text[i] === '\r') i++;
+    if (i < n && text[i] === '\n') i++;
     return cols;
   }
 
-  const headers = parseRow().map(h => h.toLowerCase());
-  while (i < text.length) {
+  // Primera fila = encabezados
+  const headers = parseRow().map(h => h.trim().toLowerCase());
+
+  while (i < n) {
     const cols = parseRow();
-    if (cols.length === 0 || (cols.length === 1 && cols[0] === '')) continue;
+    if (!cols.length || (cols.length === 1 && cols[0].trim() === '')) continue;
     const obj = {};
-    headers.forEach((h, idx) => { obj[h] = cols[idx] || ''; });
-    if (obj.id && obj.id !== 'id') result.push(obj);
+    headers.forEach((h, idx) => { obj[h] = (cols[idx] || '').trim(); });
+    if (obj.id && obj.id.trim() !== '' && obj.id !== 'id') result.push(obj);
   }
   return result;
 }
