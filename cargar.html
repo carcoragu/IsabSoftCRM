@@ -84,40 +84,22 @@ function log(txt, tipo='ok'){
   d.scrollTop = d.scrollHeight;
 }
 
-// Despierta el GAS antes de enviar mensajes (cold start puede tardar 15-20s)
-function warmup(){
-  return new Promise((resolve) => {
-    const cb = 'wu_' + Date.now();
-    window[cb] = function(){ delete window[cb]; resolve(true); };
-    const s = document.createElement('script');
-    s.src = `${POST_URL}?callback=${cb}&ping=1`;
-    s.onerror = () => { delete window[cb]; resolve(false); };
-    document.head.appendChild(s);
-    setTimeout(() => { delete window[cb]; resolve(false); }, 22000);
-  });
+async function warmup(){
+  try { await fetch(POST_URL + '?ping=1', { mode:'no-cors' }); } catch(e){}
 }
 
-function postMsg(data){
-  return new Promise((resolve) => {
-    const id   = Date.now();
-    const body = { action:'add', id: String(id), nombre: data.nombre, telefono: data.telefono,
-                   mensaje: data.mensaje, fecha_hora: data.fecha_hora,
-                   estado: 'pending', enviado_en: '' };
-    const b64  = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
-    const cb   = 'cb' + id;
-    let done   = false;
-
-    window[cb] = function(r){ done = true; delete window[cb]; resolve({ ok: true, r }); };
-    const s = document.createElement('script');
-    s.src = `${POST_URL}?callback=${cb}&body=${b64}`;
-    s.onerror = () => { done = true; delete window[cb]; resolve({ ok: false }); };
-    document.head.appendChild(s);
-    setTimeout(() => {
-      if(done) return;
-      done = true; delete window[cb];
-      resolve({ ok: true, timeout: true });
-    }, 20000);
-  });
+async function postMsg(data){
+  const id   = Date.now();
+  const body = { action:'add', id: String(id), nombre: data.nombre, telefono: data.telefono,
+                 mensaje: data.mensaje, fecha_hora: data.fecha_hora,
+                 estado: 'pending', enviado_en: '' };
+  const b64  = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
+  try {
+    await fetch(POST_URL + '?body=' + b64, { mode:'no-cors' });
+    return { ok: true };
+  } catch(e) {
+    return { ok: false };
+  }
 }
 
 async function cargar(){
@@ -125,28 +107,26 @@ async function cargar(){
   btn.disabled = true;
   document.getElementById('log').innerHTML = '';
 
-  log('⏳ Conectando con el servidor de Google... (puede tardar hasta 20 seg)', 'wait');
+  log('⏳ Conectando con Google... esperá un momento', 'wait');
   await warmup();
-  log('✅ Servidor listo. Iniciando carga...', 'ok');
-  await new Promise(r => setTimeout(r, 800));
+  await new Promise(r => setTimeout(r, 3000));
+  log('✅ Listo. Cargando mensajes (3 seg entre cada uno)...', 'ok');
 
-  let ok = 0, err = 0;
   for(let i = 0; i < MENSAJES.length; i++){
     const m = MENSAJES[i];
     const fecha = m.fecha_hora.substring(0,10);
     log(`⏳ (${i+1}/${MENSAJES.length}) ${m.nombre} — ${fecha}`, 'wait');
     const res = await postMsg(m);
-    if(res.ok){ ok++;
+    if(res.ok){
       log(`✅ (${i+1}/${MENSAJES.length}) ${m.nombre} — ${fecha}`);
-    } else { err++;
-      log(`❌ (${i+1}/${MENSAJES.length}) ${m.nombre} — Error`, 'err');
+    } else {
+      log(`❌ (${i+1}/${MENSAJES.length}) ${m.nombre} — Error de red`, 'err');
     }
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 3000));
   }
 
   log('', '');
-  log(`🎯 Terminado: ${ok} OK · ${err} errores`, ok===MENSAJES.length?'ok':'wait');
-  log('Abrí el CRM y dale F5 para ver los mensajes ↗', 'ok');
+  log('🎯 Terminado — abrí el CRM y dale F5 para verificar ↗', 'ok');
   btn.textContent = '✅ Completado';
 }
 </script>
