@@ -92,7 +92,7 @@ function log(txt, tipo='ok'){
 function postMsg(data){
   return new Promise((resolve) => {
     const id   = Date.now();
-    const body = { id: String(id), nombre: data.nombre, telefono: data.telefono,
+    const body = { action: 'add', id: String(id), nombre: data.nombre, telefono: data.telefono,
                    mensaje: data.mensaje, fecha_hora: data.fecha_hora,
                    estado: 'pending', enviado_en: '' };
     const b64  = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
