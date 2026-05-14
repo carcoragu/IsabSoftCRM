@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
@@ -17,70 +17,65 @@
 <body>
 <h2>📋 Cargar Agenda al CRM</h2>
 <div class="sub">Cargador automático de seguimiento — IsabSoft<br>Hacé clic en el botón para agregar todos los mensajes pendientes.</div>
-<button id="btn" onclick="cargar()">▶ Cargar agenda completa (13 mensajes)</button>
+<button id="btn" onclick="cargar()">▶ Cargar agenda completa (12 mensajes)</button>
 <div class="log" id="log">Listo para cargar...</div>
 
 <script>
 const POST_URL = 'https://script.google.com/macros/s/AKfycby3_FzX56NWkVWDlvuBX4wvrzJv9Dtvpih-exA-ufyGKmwLSvrKDcvsKOODWlATMAU8/exec';
-
 const nl = '\n';
 
 const MENSAJES = [
   // ── KAREN ORTELLADO ──
   { nombre:'Karen Ortellado', telefono:'+595981797880',
     mensaje:'Hola Karen! 😊' + nl + nl + 'Espero que hayas podido explorar el sistema.' + nl + '¿Alguna duda que te haya surgido mientras lo probabas?' + nl + 'Estoy disponible para lo que necesites. 👍',
-    fecha_hora:'2026-05-14T18:00:00.000Z' },
+    fecha_hora:'2026-05-14T21:00:00.000Z' },
 
   { nombre:'Karen Ortellado', telefono:'+595981797880',
     mensaje:'Buen lunes Karen! 👋' + nl + nl + '¿Cómo estuvo el fin de semana en el campo?' + nl + '¿Pudiste ver el sistema con más calma?' + nl + 'Cuando quieras arrancamos con la carga de tus animales. 🐄',
-    fecha_hora:'2026-05-18T09:00:00.000Z' },
+    fecha_hora:'2026-05-18T12:00:00.000Z' },
 
   { nombre:'Karen Ortellado', telefono:'+595981797880',
     mensaje:'Hola Karen! 💪' + nl + nl + 'Esta semana tenemos disponibilidad para arrancar con tu sistema.' + nl + '¿Confirmamos para empezar la carga de tus lotes?',
-    fecha_hora:'2026-05-20T10:00:00.000Z' },
+    fecha_hora:'2026-05-20T13:00:00.000Z' },
 
   { nombre:'Karen Ortellado', telefono:'+595981797880',
     mensaje:'Hola Karen! 🐄' + nl + nl + 'Esta semana cerramos la entrega de tu sistema IsabSoft.' + nl + '¿Confirmamos el saldo para arrancar con la carga de tus animales?',
-    fecha_hora:'2026-05-22T09:00:00.000Z' },
+    fecha_hora:'2026-05-22T12:00:00.000Z' },
 
   // ── JORGE ──
   { nombre:'Jorge', telefono:'+595985581265',
     mensaje:'Feliz Día de la Independencia Jorge! 🇵🇾🎉' + nl + nl + 'Que este 215 aniversario traiga muchos proyectos para ambas empresas.' + nl + 'Cuando tengas novedades de la gerencia, avisame. 👍',
-    fecha_hora:'2026-05-15T10:00:00.000Z' },
+    fecha_hora:'2026-05-15T13:00:00.000Z' },
 
   { nombre:'Jorge', telefono:'+595985581265',
     mensaje:'Hola Jorge, buen inicio de semana! 👋' + nl + nl + '¿Pudo revisar la gerencia la propuesta?' + nl + 'El backup de Best Investment está listo — podemos tener el sitio online en 72 horas desde que confirmemos.' + nl + '¿Coordinamos una llamada esta semana?',
-    fecha_hora:'2026-05-18T09:30:00.000Z' },
+    fecha_hora:'2026-05-18T12:30:00.000Z' },
 
   { nombre:'Jorge', telefono:'+595985581265',
     mensaje:'Jorge, te consulto directamente para organizar mi agenda 👋' + nl + nl + '¿Están evaluando avanzar con los dos sitios, solo con uno, o lo dejamos para más adelante?' + nl + 'No hay problema en cualquier caso. 🙏',
-    fecha_hora:'2026-05-20T10:00:00.000Z' },
+    fecha_hora:'2026-05-20T13:00:00.000Z' },
 
-  // ── CRISTIAN CBTEC ──
+  // ── CRISTIAN | CBTEC ──
   { nombre:'Cristian | CBTEC', telefono:'+595981981091',
     mensaje:'Buen día Cristian 👍' + nl + nl + 'Quedo atento para coordinar el abono pendiente y dejar ordenada también la parte administrativa de la integración IVA que venimos utilizando en el sistema.' + nl + nl + 'Cuando puedas me avisás 👍',
-    fecha_hora:'2026-05-15T09:00:00.000Z' },
+    fecha_hora:'2026-05-15T12:00:00.000Z' },
 
   { nombre:'Cristian | CBTEC', telefono:'+595981981091',
     mensaje:'Buen día Cristian 👍' + nl + nl + 'Quería dejar coordinado contigo el tema administrativo de la integración SET/DNIT que ya venimos utilizando en el sistema desde enero junto con la contadora.' + nl + nl + 'Así también dejamos regularizado ese punto pendiente 👍' + nl + nl + 'Quedo atento.',
-    fecha_hora:'2026-05-18T09:30:00.000Z' },
+    fecha_hora:'2026-05-18T12:30:00.000Z' },
 
   { nombre:'Cristian | CBTEC', telefono:'+595981981091',
     mensaje:'Cristian, buenas 👍' + nl + nl + 'Te escribo para poder cerrar y ordenar administrativamente el tema de la integración fiscal SET/DNIT ya implementada y utilizada en el sistema.' + nl + nl + 'Cuando tengas un momento coordinamos 👍',
-    fecha_hora:'2026-05-20T14:30:00.000Z' },
+    fecha_hora:'2026-05-20T17:30:00.000Z' },
 
-  // ── NATO ──
+  // ── NATO — sábado o lunes (confirmó que vuelve hoy y ve el sáb/lun) ──
   { nombre:'NATO', telefono:'+595985462841',
-    mensaje:'Buen feriado NATO 👍' + nl + nl + 'Quedo atento cuando quiera retomar la demo o mirar alguna parte específica del sistema 👌',
-    fecha_hora:'2026-05-14T11:00:00.000Z' },
-
-  { nombre:'NATO', telefono:'+595985462841',
-    mensaje:'Buen día NATO 👍' + nl + nl + 'Espero que esté pasando bien el feriado.' + nl + nl + 'Cuando quiera retomamos tranquilo la demo enfocada en la parte de cría y engorde 👍',
-    fecha_hora:'2026-05-15T10:30:00.000Z' },
+    mensaje:'Buen sábado NATO 👍' + nl + nl + '¿Cómo quedamos para hoy? Estoy disponible cuando usted diga para hacer la demo de cría y engorde 👌',
+    fecha_hora:'2026-05-17T12:00:00.000Z' },
 
   { nombre:'NATO', telefono:'+595985462841',
-    mensaje:'Buen día NATO 👍' + nl + nl + 'Ahora que ya pasaron los feriados, si quiere coordinamos una demo rápida y le muestro aplicado directamente a su manejo de cría y engorde 👌' + nl + nl + '¿Le queda mejor hoy de mañana o de tarde?',
-    fecha_hora:'2026-05-18T09:00:00.000Z' },
+    mensaje:'Buen lunes NATO 👋' + nl + nl + 'Por si el sábado no pudo, seguimos disponibles para la demo esta semana.' + nl + '¿Le queda mejor hoy o mañana? 👍',
+    fecha_hora:'2026-05-19T12:00:00.000Z' },
 ];
 
 function log(txt, tipo='ok'){
@@ -92,16 +87,14 @@ function log(txt, tipo='ok'){
 function postMsg(data){
   return new Promise((resolve) => {
     const id   = Date.now();
-    const body = { action: 'add', id: String(id), nombre: data.nombre, telefono: data.telefono,
+    const body = { action:'add', id: String(id), nombre: data.nombre, telefono: data.telefono,
                    mensaje: data.mensaje, fecha_hora: data.fecha_hora,
                    estado: 'pending', enviado_en: '' };
     const b64  = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
     const cb   = 'cb' + id;
     let done   = false;
 
-    window[cb] = function(r){
-      done = true; delete window[cb]; resolve({ ok: true, r });
-    };
+    window[cb] = function(r){ done = true; delete window[cb]; resolve({ ok: true, r }); };
     const s = document.createElement('script');
     s.src = `${POST_URL}?callback=${cb}&body=${b64}`;
     s.onerror = () => { done = true; delete window[cb]; resolve({ ok: false }); };
@@ -131,12 +124,12 @@ async function cargar(){
     } else { err++;
       log(`❌ (${i+1}/${MENSAJES.length}) ${m.nombre} — Error`, 'err');
     }
-    await new Promise(r => setTimeout(r, 1100));
+    await new Promise(r => setTimeout(r, 1200));
   }
 
   log('', '');
   log(`🎯 Terminado: ${ok} OK · ${err} errores`, ok===MENSAJES.length?'ok':'wait');
-  log('Abrí tu CRM y dale F5 para ver los mensajes ↗', 'ok');
+  log('Abrí el CRM y dale F5 para ver los mensajes ↗', 'ok');
   btn.textContent = '✅ Completado';
 }
 </script>
