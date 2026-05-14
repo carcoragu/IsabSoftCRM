@@ -84,6 +84,19 @@ function log(txt, tipo='ok'){
   d.scrollTop = d.scrollHeight;
 }
 
+// Despierta el GAS antes de enviar mensajes (cold start puede tardar 15-20s)
+function warmup(){
+  return new Promise((resolve) => {
+    const cb = 'wu_' + Date.now();
+    window[cb] = function(){ delete window[cb]; resolve(true); };
+    const s = document.createElement('script');
+    s.src = `${POST_URL}?callback=${cb}&ping=1`;
+    s.onerror = () => { delete window[cb]; resolve(false); };
+    document.head.appendChild(s);
+    setTimeout(() => { delete window[cb]; resolve(false); }, 22000);
+  });
+}
+
 function postMsg(data){
   return new Promise((resolve) => {
     const id   = Date.now();
@@ -103,7 +116,7 @@ function postMsg(data){
       if(done) return;
       done = true; delete window[cb];
       resolve({ ok: true, timeout: true });
-    }, 12000);
+    }, 20000);
   });
 }
 
@@ -111,7 +124,11 @@ async function cargar(){
   const btn = document.getElementById('btn');
   btn.disabled = true;
   document.getElementById('log').innerHTML = '';
-  log(`Cargando ${MENSAJES.length} mensajes...`, 'wait');
+
+  log('⏳ Conectando con el servidor de Google... (puede tardar hasta 20 seg)', 'wait');
+  await warmup();
+  log('✅ Servidor listo. Iniciando carga...', 'ok');
+  await new Promise(r => setTimeout(r, 800));
 
   let ok = 0, err = 0;
   for(let i = 0; i < MENSAJES.length; i++){
