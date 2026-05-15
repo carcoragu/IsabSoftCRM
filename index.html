@@ -164,6 +164,12 @@
   .btn-wa-evento:disabled { background:#30363d; color:#555; cursor:not-allowed; }
   .chk-enviado { width:18px; height:18px; accent-color:var(--green); cursor:pointer; flex-shrink:0; }
   .evento-empty { text-align:center; padding:40px 20px; color:var(--muted); font-size:.85rem; }
+  .manual-add-row { display:flex; gap:8px; margin-top:8px; }
+  .manual-add-row input { flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:9px 13px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:.88rem; outline:none; transition:border-color .2s; }
+  .manual-add-row input:focus { border-color:var(--amber); }
+  .btn-add-manual { padding:9px 16px; background:var(--amber); color:#000; border:none; border-radius:10px; font-size:.85rem; font-weight:700; cursor:pointer; white-space:nowrap; font-family:'Syne',sans-serif; transition:background .2s; }
+  .btn-add-manual:hover { background:#d49200; }
+  .manual-list { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
 </style>
 </head>
 <body>
@@ -245,9 +251,19 @@
       <div class="card-body">
         <label>Mensaje del evento (se envía igual a todos)</label>
         <textarea class="evento-msg-area" id="evento-msg" placeholder="Ej: Feliz Día de la Madre! Que tengas un día muy especial..."></textarea>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;">
-          <label style="margin:0;">Contactos únicos del CRM</label>
-          <button class="btn-sm refresh" onclick="renderEvento()" style="font-size:.72rem;">🔄 Actualizar lista</button>
+        <!-- Números manuales -->
+        <label style="margin-top:14px;">Agregar número manual (talleres, nuevos clientes)</label>
+        <div class="manual-add-row">
+          <input type="tel" id="manual-phone" placeholder="+595 981 000000" onkeydown="if(event.key==='Enter')addManual()"/>
+          <input type="text" id="manual-name" placeholder="Nombre (opcional)"/>
+          <button class="btn-add-manual" onclick="addManual()">+ Agregar</button>
+        </div>
+        <div class="manual-list" id="manual-list"></div>
+
+        <!-- Contactos del CRM -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;">
+          <label style="margin:0;">Contactos del CRM</label>
+          <button class="btn-sm refresh" onclick="renderEvento()" style="font-size:.72rem;">🔄 Actualizar</button>
         </div>
         <div class="evento-contacts" id="evento-contacts">
           <div class="evento-empty">Cargando contactos...</div>
@@ -637,6 +653,50 @@ function renderEvento() {
       <button class="btn-wa-evento" onclick="enviarEvento('${c.phone}','${c.name}',${i})">📲 WhatsApp</button>
       <input type="checkbox" class="chk-enviado" title="Marcar como enviado" onchange="document.getElementById('ec-${i}').classList.toggle('done',this.checked)">
     </div>`).join('');
+}
+
+let manualContacts = [];
+
+function addManual() {
+  const phone = document.getElementById('manual-phone').value.trim();
+  const name  = document.getElementById('manual-name').value.trim() || phone;
+  if (!phone) { toast('Ingresá un número', '⚠️', true); return; }
+  const idx = 'm' + Date.now();
+  manualContacts.push({ phone, name, idx });
+  document.getElementById('manual-phone').value = '';
+  document.getElementById('manual-name').value  = '';
+  renderManual();
+  toast('Agregado: ' + name, '✅');
+}
+
+function renderManual() {
+  const box = document.getElementById('manual-list');
+  if (!manualContacts.length) { box.innerHTML = ''; return; }
+  box.innerHTML = manualContacts.map((c,i) => `
+    <div class="evento-contact" id="mc-${c.idx}">
+      <div class="evento-avatar">📱</div>
+      <div class="evento-info">
+        <strong>${c.name}</strong>
+        <span>${c.phone}</span>
+      </div>
+      <button class="btn-wa-evento" onclick="enviarManual('${c.phone}','${c.name}','${c.idx}')">📲 WhatsApp</button>
+      <button onclick="removeManual(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:16px;padding:4px;">✕</button>
+      <input type="checkbox" class="chk-enviado" title="Enviado" onchange="document.getElementById('mc-${c.idx}').classList.toggle('done',this.checked)">
+    </div>`).join('');
+}
+
+function removeManual(i) {
+  manualContacts.splice(i, 1);
+  renderManual();
+}
+
+function enviarManual(phone, name, idx) {
+  const msg = document.getElementById('evento-msg').value.trim();
+  if (!msg) { toast('Escribí el mensaje del evento primero', '⚠️', true); return; }
+  const clean = phone.replace(/\D/g,'');
+  window.open('https://wa.me/' + clean + '?text=' + encodeURIComponent(msg), '_blank');
+  const el = document.getElementById('mc-' + idx);
+  if (el) { el.querySelector('.chk-enviado').checked = true; el.classList.add('done'); }
 }
 
 function enviarEvento(phone, name, idx) {
