@@ -26,7 +26,6 @@
   .dot-amber { background: var(--amber); }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  /* SYNC BAR */
   .sync-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 5px 32px; display: flex; align-items: center; gap: 8px; font-size: 0.73rem; color: var(--muted); }
   .sync-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: var(--muted); }
   .sync-dot.ok { background: var(--green); box-shadow: 0 0 5px var(--green); }
@@ -34,7 +33,10 @@
   .sync-dot.error { background: var(--red); }
   .sync-time { margin-left: auto; font-size: 0.68rem; }
 
-  /* MOBILE NAV */
+  .notif-bar { background: rgba(37,211,102,0.08); border-bottom: 1px solid rgba(37,211,102,0.2); padding: 6px 32px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--green); cursor: pointer; transition: background 0.2s; }
+  .notif-bar:hover { background: rgba(37,211,102,0.15); }
+  .notif-bar.blocked { background: rgba(248,81,73,0.08); border-color: rgba(248,81,73,0.2); color: var(--red); cursor: default; }
+
   .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13,17,23,0.97); border-top: 1px solid var(--border); z-index: 200; backdrop-filter: blur(14px); }
   .mobile-nav-inner { display: flex; }
   .mnav-btn { flex: 1; padding: 12px 8px 16px; background: none; border: none; color: var(--muted); font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: color 0.2s; position: relative; }
@@ -55,6 +57,7 @@
     .stat-pill { padding: 3px 9px; font-size: 0.7rem; gap: 4px; }
     .logo { font-size: 1rem; }
     .sync-bar { padding: 5px 14px; }
+    .notif-bar { padding: 6px 14px; }
   }
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
@@ -109,7 +112,7 @@
   .msg-item:hover { border-color: rgba(37,211,102,0.3); transform: translateY(-1px); }
   @keyframes slideIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
   @keyframes fireAnim { 0%{box-shadow:0 0 0 0 rgba(37,211,102,0.6)} 70%{box-shadow:0 0 0 14px rgba(37,211,102,0)} 100%{box-shadow:0 0 0 0 rgba(37,211,102,0)} }
-  .msg-item.firing { animation: fireAnim 1s ease 3; }
+  .msg-item.firing { animation: fireAnim 1s ease 3; border-color: var(--green) !important; }
 
   .msg-left { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
   .msg-client { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -147,7 +150,6 @@
   .note-box { background: rgba(88,166,255,0.06); border: 1px solid rgba(88,166,255,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-top: 4px; }
   .note-box strong { color: var(--accent); }
 
-  /* ── EVENTO ── */
   .panel-evento { display: none; grid-column: 1 / -1; }
   .panel-evento.active { display: block; }
   .evento-msg-area { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; resize:vertical; min-height:120px; line-height:1.5; transition:border-color .2s,box-shadow .2s; }
@@ -196,6 +198,11 @@
   <span class="sync-time" id="sync-time"></span>
 </div>
 
+<div class="notif-bar" id="notif-bar" onclick="requestNotificationPermission()">
+  <span id="notif-icon">🔔</span>
+  <span id="notif-text">Cargando estado de notificaciones...</span>
+</div>
+
 <main>
   <div class="panel-form active" id="panel-form">
     <div class="card">
@@ -241,7 +248,6 @@
     </div>
   </div>
 
-  <!-- ── PANEL EVENTO ── -->
   <div class="panel-evento" id="panel-evento">
     <div class="card">
       <div class="card-head">
@@ -251,7 +257,6 @@
       <div class="card-body">
         <label>Mensaje del evento (se envía igual a todos)</label>
         <textarea class="evento-msg-area" id="evento-msg" placeholder="Ej: Feliz Día de la Madre! Que tengas un día muy especial..."></textarea>
-        <!-- Números manuales -->
         <label style="margin-top:14px;">Agregar número manual (talleres, nuevos clientes)</label>
         <div class="manual-add-row">
           <input type="tel" id="manual-phone" placeholder="+595 981 000000" onkeydown="if(event.key==='Enter')addManual()"/>
@@ -260,7 +265,6 @@
         </div>
         <div class="manual-list" id="manual-list"></div>
 
-        <!-- Contactos del CRM -->
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;">
           <label style="margin:0;">Contactos del CRM</label>
           <button class="btn-sm refresh" onclick="renderEvento()" style="font-size:.72rem;">🔄 Actualizar</button>
@@ -327,6 +331,55 @@ let activeTab = 'all';
 let lastFired = 0;
 let ticks = 0;
 
+// ── NOTIFICACIONES ──
+function updateNotifBar() {
+  const bar  = document.getElementById('notif-bar');
+  const icon = document.getElementById('notif-icon');
+  const text = document.getElementById('notif-text');
+  if (!('Notification' in window)) {
+    bar.className = 'notif-bar blocked';
+    icon.textContent = '🚫';
+    text.textContent = 'Este navegador no soporta notificaciones.';
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    bar.className = 'notif-bar';
+    bar.style.cursor = 'default';
+    icon.textContent = '🔔';
+    text.textContent = 'Notificaciones activas — cuando llegue la hora recibirás un aviso y solo debés hacer clic para abrir WhatsApp.';
+  } else if (Notification.permission === 'denied') {
+    bar.className = 'notif-bar blocked';
+    icon.textContent = '🔕';
+    text.textContent = 'Notificaciones bloqueadas — habilitá los permisos en la configuración del navegador para que funcione automático.';
+  } else {
+    bar.className = 'notif-bar';
+    icon.textContent = '🔔';
+    text.textContent = 'Hacé clic aquí para activar las notificaciones automáticas de WhatsApp.';
+  }
+}
+
+async function requestNotificationPermission() {
+  if (!('Notification' in window)) return;
+  if (Notification.permission === 'granted' || Notification.permission === 'denied') return;
+  await Notification.requestPermission();
+  updateNotifBar();
+}
+
+function beep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.4);
+  } catch(e) {}
+}
+
 // ── TOAST ──
 function toast(msg, icon='✅', isError=false) {
   const t = document.getElementById('toast');
@@ -347,7 +400,7 @@ function syncStatus(state, text) {
   }
 }
 
-// ── PARSE CSV (maneja campos multilínea entre comillas) ──
+// ── PARSE CSV ──
 function parseCSV(text) {
   const result = [];
   let i = 0;
@@ -356,39 +409,33 @@ function parseCSV(text) {
   function parseRow() {
     const cols = [];
     while (i < n) {
-      // Inicio de campo
       if (text[i] === '"') {
-        // Campo entre comillas — puede tener saltos de línea adentro
-        i++; // saltar comilla apertura
+        i++;
         let val = '';
         while (i < n) {
           if (text[i] === '"') {
-            if (text[i+1] === '"') { val += '"'; i += 2; } // comilla escapada ""
-            else { i++; break; } // comilla de cierre
+            if (text[i+1] === '"') { val += '"'; i += 2; }
+            else { i++; break; }
           } else {
             val += text[i++];
           }
         }
         cols.push(val);
       } else {
-        // Campo sin comillas — termina en coma o salto de línea
         let val = '';
         while (i < n && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
           val += text[i++];
         }
         cols.push(val.trim());
       }
-      // Después del campo: coma = siguiente campo, salto = fin de fila
       if (i < n && text[i] === ',') { i++; continue; }
       break;
     }
-    // Saltar salto de línea al final de la fila
     if (i < n && text[i] === '\r') i++;
     if (i < n && text[i] === '\n') i++;
     return cols;
   }
 
-  // Primera fila = encabezados
   const headers = parseRow().map(h => h.trim().toLowerCase());
 
   while (i < n) {
@@ -401,7 +448,7 @@ function parseCSV(text) {
   return result;
 }
 
-// ── LOAD desde CSV público (sin CORS) ──
+// ── LOAD ──
 async function loadMessages() {
   syncStatus('loading', 'Sincronizando con Google Sheets...');
   try {
@@ -422,7 +469,6 @@ async function loadMessages() {
     render();
   } catch(e) {
     syncStatus('error', 'Error de conexión — reintentando...');
-    // fallback a localStorage si falla la red
     const local = JSON.parse(localStorage.getItem('wa_msgs_backup') || '[]');
     if (local.length) { messages = local; updateStats(); render(); }
   }
@@ -448,7 +494,6 @@ function apiPost(body) {
       if (script.parentNode) script.parentNode.removeChild(script);
       reject(new Error('Error de red'));
     };
-    // Codificar en base64 para evitar problemas con saltos de línea y caracteres especiales
     const jsonStr = JSON.stringify(body);
     const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
     script.src = POST_URL + '?callback=' + cbName + '&body=' + b64;
@@ -458,7 +503,6 @@ function apiPost(body) {
       done = true;
       delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
-      // timeout — asumimos éxito y recargamos del sheet
       resolve({ ok: true, timeout: true });
     }, 12000);
   });
@@ -474,7 +518,6 @@ function updateStats() {
   const badge = document.getElementById('mnav-badge');
   badge.textContent = pending;
   badge.style.display = pending > 0 ? 'block' : 'none';
-  // backup local
   localStorage.setItem('wa_msgs_backup', JSON.stringify(messages));
 }
 
@@ -539,7 +582,6 @@ async function addMessage() {
   syncStatus('loading', 'Guardando en Google Sheets...');
 
   const id = Date.now().toString();
-  // Optimistic update — lo agrego localmente ya
   const newMsg = { id, name, phone, msg, scheduled, status:'pending', sentAt:'' };
   messages.push(newMsg);
   updateStats(); render();
@@ -599,19 +641,23 @@ function openWhatsApp(m) {
   window.open(`https://wa.me/${clean}?text=${encodeURIComponent(m.msg)}`, '_blank');
 }
 
+async function markSent(m) {
+  m.status = 'sent';
+  m.sentAt = new Date().toISOString();
+  updateStats(); render();
+  try {
+    await apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt });
+    syncStatus('ok', 'Estado actualizado ☁️');
+    setTimeout(loadMessages, 60000);
+  } catch(e) {}
+}
+
 async function sendNow(id) {
   const m = messages.find(x => x.id === id);
   if (!m) return;
   openWhatsApp(m);
-  m.status = 'sent';
-  m.sentAt = new Date().toISOString();
-  updateStats(); render();
   toast(`📲 Abriendo WhatsApp para ${m.name}...`);
-  try {
-    await apiPost({ action:'updateStatus', id, estado:'sent', enviado_en:m.sentAt });
-    syncStatus('ok', 'Estado actualizado ☁️');
-    setTimeout(loadMessages, 60000);
-  } catch(e) {}
+  await markSent(m);
 }
 
 // ── TABS ──
@@ -763,23 +809,40 @@ function toggleExpand(id) {
   document.getElementById('txt-'+id)?.classList.toggle('expanded');
 }
 
-// ── SCHEDULER AUTOMÁTICO ──
+// ── SCHEDULER ──
 function checkScheduler() {
   const now = Date.now();
   const interval = parseInt(document.getElementById('interval').value||'30') * 1000;
   const due = messages.filter(m => m.status==='pending' && new Date(m.scheduled).getTime() <= now)
     .sort((a,b) => new Date(a.scheduled)-new Date(b.scheduled));
   if (!due.length || now-lastFired < interval) return;
+
   const m = due[0];
   lastFired = now;
+
   const el = document.getElementById('item-'+m.id);
   if (el) { el.classList.add('firing'); setTimeout(()=>el.classList.remove('firing'),3500); }
-  openWhatsApp(m);
-  m.status = 'sent';
-  m.sentAt = new Date().toISOString();
-  updateStats(); render();
-  toast(`📲 Enviando a ${m.name}...`);
-  apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt }).catch(()=>{});
+
+  beep();
+
+  if ('Notification' in window && Notification.permission === 'granted') {
+    const notif = new Notification('📲 Mensaje para ' + m.name, {
+      body: m.msg.substring(0, 120) + (m.msg.length > 120 ? '...' : ''),
+      tag: m.id,
+      requireInteraction: true
+    });
+    notif.onclick = function() {
+      notif.close();
+      window.focus();
+      openWhatsApp(m);
+      markSent(m);
+    };
+    toast(`🔔 Notificación enviada para ${m.name} — hacé clic en el aviso`, '🔔');
+  } else {
+    openWhatsApp(m);
+    markSent(m);
+    toast(`📲 Abriendo WhatsApp para ${m.name}...`);
+  }
 }
 
 // ── TICK ──
@@ -796,11 +859,13 @@ setInterval(() => {
   });
 }, 1000);
 
-// Auto-refresh cada 30s
+// Auto-refresh
 setInterval(loadMessages, 30000);
 
 // ── INIT ──
 document.getElementById('f-date').min = new Date().toISOString().slice(0,10);
+updateNotifBar();
+requestNotificationPermission();
 loadMessages();
 </script>
 </body>
