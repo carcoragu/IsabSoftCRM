@@ -33,31 +33,29 @@
   .sync-dot.error { background: var(--red); }
   .sync-time { margin-left: auto; font-size: 0.68rem; }
 
-  .notif-bar { background: rgba(37,211,102,0.08); border-bottom: 1px solid rgba(37,211,102,0.2); padding: 6px 32px; display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--green); cursor: pointer; transition: background 0.2s; }
-  .notif-bar:hover { background: rgba(37,211,102,0.15); }
-  .notif-bar.blocked { background: rgba(248,81,73,0.08); border-color: rgba(248,81,73,0.2); color: var(--red); cursor: default; }
 
   .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13,17,23,0.97); border-top: 1px solid var(--border); z-index: 200; backdrop-filter: blur(14px); }
   .mobile-nav-inner { display: flex; }
-  .mnav-btn { flex: 1; padding: 12px 8px 16px; background: none; border: none; color: var(--muted); font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: color 0.2s; position: relative; }
-  .mnav-btn .mnav-icon { font-size: 20px; line-height: 1; }
+  .mnav-btn { flex: 1; padding: 10px 4px 14px; background: none; border: none; color: var(--muted); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; transition: color 0.2s; position: relative; }
+  .mnav-btn .mnav-icon { font-size: 18px; line-height: 1; }
   .mnav-btn.active { color: var(--green); }
   .mnav-btn.active::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2px; background: var(--green); border-radius: 0 0 3px 3px; }
-  .mnav-badge { position: absolute; top: 8px; right: calc(50% - 18px); background: var(--red); color: #fff; font-size: 0.6rem; font-weight: 800; border-radius: 10px; padding: 1px 5px; min-width: 16px; text-align: center; line-height: 1.4; }
+  .mnav-badge { position: absolute; top: 6px; right: calc(50% - 18px); background: var(--red); color: #fff; font-size: 0.6rem; font-weight: 800; border-radius: 10px; padding: 1px 5px; min-width: 16px; text-align: center; line-height: 1.4; }
 
   main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 420px 1fr; gap: 28px; align-items: start; }
 
   @media (max-width: 860px) {
     main { grid-template-columns: 1fr; padding: 16px 14px 90px; gap: 0; }
     .mobile-nav { display: block; }
-    .panel-form, .panel-queue { display: none; }
-    .panel-form.active, .panel-queue.active { display: block; }
+    .panel-form, .panel-queue, .panel-agenda { display: none; }
+    .panel-form.active, .panel-queue.active, .panel-agenda.active { display: block; }
+    .panel-evento { display: none !important; }
+    .panel-evento.active { display: block !important; }
     header { padding: 12px 16px; }
     .header-stats { gap: 8px; }
     .stat-pill { padding: 3px 9px; font-size: 0.7rem; gap: 4px; }
     .logo { font-size: 1rem; }
     .sync-bar { padding: 5px 14px; }
-    .notif-bar { padding: 6px 14px; }
   }
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
@@ -128,12 +126,40 @@
   .countdown.sent-badge { background: rgba(37,211,102,0.1); color: var(--green); border-color: rgba(37,211,102,0.2); }
   .badge { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; padding: 2px 8px; border-radius: 4px; }
   .badge-pending { background: rgba(240,165,0,0.15); color: var(--amber); }
-  .badge-sent { background: rgba(37,211,102,0.15); color: var(--green); }
+  .badge-sent    { background: rgba(37,211,102,0.15); color: var(--green); }
   .badge-overdue { background: rgba(248,81,73,0.15); color: var(--red); }
+  .badge-ws      { background: rgba(37,211,102,0.12); color: var(--green); }
+  .badge-call    { background: rgba(88,166,255,0.12); color: var(--accent); }
+  .badge-fb      { background: rgba(129,140,248,0.12); color: #818cf8; }
+  .badge-nota    { background: rgba(240,165,0,0.12); color: var(--amber); }
+
   .msg-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
   .icon-btn { width: 30px; height: 30px; border: 1px solid var(--border); background: var(--surface2); border-radius: 7px; display: grid; place-items: center; font-size: 13px; cursor: pointer; color: var(--muted); transition: all 0.2s; }
   .icon-btn:hover { border-color: var(--red); color: var(--red); background: rgba(248,81,73,0.08); }
   .icon-btn.send-now:hover { border-color: var(--green); color: var(--green); background: rgba(37,211,102,0.08); }
+
+  /* ── AGENDA ── */
+  .agenda-nav { display: flex; align-items: center; gap: 8px; }
+  .agenda-nav h2 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; flex: 1; text-align: center; }
+  .agenda-stats { font-size: 0.8rem; color: var(--muted); text-align: center; padding: 2px 0 4px; }
+  .agenda-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+  .agenda-item:hover { border-color: rgba(37,211,102,0.3); }
+  .agenda-item.agenda-done { opacity: 0.4; }
+  .agenda-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; user-select: none; }
+  .agenda-hora { color: var(--muted); font-size: 0.78rem; min-width: 42px; font-family: monospace; flex-shrink: 0; }
+  .agenda-nombre { font-weight: 600; font-size: 0.9rem; }
+  .agenda-preview { color: var(--muted); font-size: 0.77rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 1px; }
+  .agenda-body { display: none; border-top: 1px solid var(--border); }
+  .agenda-item.open .agenda-body { display: block; }
+  .agenda-msg { background: var(--surface2); margin: 12px 14px; border-radius: 8px; padding: 11px 13px; font-size: 0.82rem; line-height: 1.7; color: #cdd9e5; white-space: pre-wrap; word-break: break-word; }
+  .agenda-btns { display: flex; gap: 8px; flex-wrap: wrap; padding: 0 14px 14px; }
+  .btn-wa-agenda  { background: var(--green); color: #000; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 700; font-size: 0.83rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-wa-agenda:hover { background: #1fbc5a; }
+  .btn-call-agenda { background: #1f6feb; color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 700; font-size: 0.83rem; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-call-agenda:hover { background: #388bfd; }
+  .btn-done-agenda { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); padding: 9px 16px; border-radius: 8px; font-size: 0.83rem; cursor: pointer; }
+  .btn-done-agenda:hover { background: var(--border); color: var(--text); }
+  .btn-done-agenda.marcado { background: rgba(37,211,102,0.1); color: var(--green); border-color: var(--green); }
 
   .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
   .empty-state .emoji { font-size: 40px; margin-bottom: 12px; }
@@ -152,6 +178,8 @@
 
   .panel-evento { display: none; grid-column: 1 / -1; }
   .panel-evento.active { display: block; }
+  .panel-agenda { display: none; grid-column: 1 / -1; }
+  .panel-agenda.active { display: block; }
   .evento-msg-area { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; resize:vertical; min-height:120px; line-height:1.5; transition:border-color .2s,box-shadow .2s; }
   .evento-msg-area:focus { border-color:var(--amber); box-shadow:0 0 0 3px rgba(240,165,0,.12); }
   .evento-contacts { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
@@ -196,11 +224,6 @@
   <div class="sync-dot loading" id="sync-dot"></div>
   <span id="sync-text">Sincronizando...</span>
   <span class="sync-time" id="sync-time"></span>
-</div>
-
-<div class="notif-bar" id="notif-bar" onclick="requestNotificationPermission()">
-  <span id="notif-icon">🔔</span>
-  <span id="notif-text">Cargando estado de notificaciones...</span>
 </div>
 
 <main>
@@ -264,7 +287,6 @@
           <button class="btn-add-manual" onclick="addManual()">+ Agregar</button>
         </div>
         <div class="manual-list" id="manual-list"></div>
-
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px;">
           <label style="margin:0;">Contactos del CRM</label>
           <button class="btn-sm refresh" onclick="renderEvento()" style="font-size:.72rem;">🔄 Actualizar</button>
@@ -272,6 +294,22 @@
         <div class="evento-contacts" id="evento-contacts">
           <div class="evento-empty">Cargando contactos...</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL AGENDA ── -->
+  <div class="panel-agenda" id="panel-agenda">
+    <div class="queue-section">
+      <div class="agenda-nav">
+        <button class="btn-sm" onclick="agendaMoverDia(-1)">◀</button>
+        <h2 id="agenda-fecha-txt">—</h2>
+        <button class="btn-sm" onclick="agendaMoverDia(1)">▶</button>
+        <button class="btn-sm refresh" onclick="renderAgenda()" title="Actualizar">🔄</button>
+      </div>
+      <div class="agenda-stats" id="agenda-stats"></div>
+      <div class="msg-list" id="agenda-list">
+        <div class="loading-overlay"><div class="spinner"></div><span>Cargando agenda...</span></div>
       </div>
     </div>
   </div>
@@ -306,6 +344,10 @@
     <button class="mnav-btn active" id="mnav-form" onclick="mobileTab('form')">
       <span class="mnav-icon">➕</span>Nuevo
     </button>
+    <button class="mnav-btn" id="mnav-agenda" onclick="mobileTab('agenda')">
+      <span class="mnav-icon">📅</span>Agenda
+      <span class="mnav-badge" id="mnav-agenda-badge" style="display:none">0</span>
+    </button>
     <button class="mnav-btn" id="mnav-queue" onclick="mobileTab('queue')">
       <span class="mnav-icon">📋</span>Cola
       <span class="mnav-badge" id="mnav-badge" style="display:none">0</span>
@@ -325,45 +367,13 @@
 // ── CONFIGURACIÓN ──
 const CSV_URL  = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRrt_sTvw-VRuI3crXbKmjhF15bg56M8yJgSe11AQXJvTn_CvVSyCRcD5sKB0CWOUvz9BbTSQ_XHY1F/pub?gid=0&single=true&output=csv';
 const POST_URL = 'https://script.google.com/macros/s/AKfycby3_FzX56NWkVWDlvuBX4wvrzJv9Dtvpih-exA-ufyGKmwLSvrKDcvsKOODWlATMAU8/exec';
+const NEW_URL  = 'https://script.google.com/macros/s/AKfycbxcy4RXhnS3zgyG0rzyJKyHdtmvDBCkJqq09TEQPtIecLxWzLFSTc77TU4vM08mIiXR/exec';
 
 let messages = [];
 let activeTab = 'all';
 let lastFired = 0;
 let ticks = 0;
 
-// ── NOTIFICACIONES ──
-function updateNotifBar() {
-  const bar  = document.getElementById('notif-bar');
-  const icon = document.getElementById('notif-icon');
-  const text = document.getElementById('notif-text');
-  if (!('Notification' in window)) {
-    bar.className = 'notif-bar blocked';
-    icon.textContent = '🚫';
-    text.textContent = 'Este navegador no soporta notificaciones.';
-    return;
-  }
-  if (Notification.permission === 'granted') {
-    bar.className = 'notif-bar';
-    bar.style.cursor = 'default';
-    icon.textContent = '🔔';
-    text.textContent = 'Notificaciones activas — cuando llegue la hora recibirás un aviso y solo debés hacer clic para abrir WhatsApp.';
-  } else if (Notification.permission === 'denied') {
-    bar.className = 'notif-bar blocked';
-    icon.textContent = '🔕';
-    text.textContent = 'Notificaciones bloqueadas — habilitá los permisos en la configuración del navegador para que funcione automático.';
-  } else {
-    bar.className = 'notif-bar';
-    icon.textContent = '🔔';
-    text.textContent = 'Hacé clic aquí para activar las notificaciones automáticas de WhatsApp.';
-  }
-}
-
-async function requestNotificationPermission() {
-  if (!('Notification' in window)) return;
-  if (Notification.permission === 'granted' || Notification.permission === 'denied') return;
-  await Notification.requestPermission();
-  updateNotifBar();
-}
 
 function beep() {
   try {
@@ -405,7 +415,6 @@ function parseCSV(text) {
   const result = [];
   let i = 0;
   const n = text.length;
-
   function parseRow() {
     const cols = [];
     while (i < n) {
@@ -416,16 +425,12 @@ function parseCSV(text) {
           if (text[i] === '"') {
             if (text[i+1] === '"') { val += '"'; i += 2; }
             else { i++; break; }
-          } else {
-            val += text[i++];
-          }
+          } else { val += text[i++]; }
         }
         cols.push(val);
       } else {
         let val = '';
-        while (i < n && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
-          val += text[i++];
-        }
+        while (i < n && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') val += text[i++];
         cols.push(val.trim());
       }
       if (i < n && text[i] === ',') { i++; continue; }
@@ -435,9 +440,7 @@ function parseCSV(text) {
     if (i < n && text[i] === '\n') i++;
     return cols;
   }
-
   const headers = parseRow().map(h => h.trim().toLowerCase());
-
   while (i < n) {
     const cols = parseRow();
     if (!cols.length || (cols.length === 1 && cols[0].trim() === '')) continue;
@@ -467,6 +470,8 @@ async function loadMessages() {
     syncStatus('ok', 'Sincronizado ☁️');
     updateStats();
     render();
+    const agendaPanel = document.getElementById('panel-agenda');
+    if (agendaPanel && agendaPanel.classList.contains('active')) renderAgenda();
   } catch(e) {
     syncStatus('error', 'Error de conexión — reintentando...');
     const local = JSON.parse(localStorage.getItem('wa_msgs_backup') || '[]');
@@ -475,49 +480,48 @@ async function loadMessages() {
 }
 
 // ── POST via JSONP ──
-function apiPost(body) {
+function apiCall(body, url) {
+  const target = url || POST_URL;
   return new Promise((resolve, reject) => {
     const cbName = 'wacb_' + Date.now();
     const script = document.createElement('script');
     let done = false;
-
     window[cbName] = function(data) {
-      done = true;
-      delete window[cbName];
+      done = true; delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
       resolve(data);
     };
     script.onerror = function() {
-      if (done) return;
-      done = true;
-      delete window[cbName];
+      if (done) return; done = true; delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
       reject(new Error('Error de red'));
     };
-    const jsonStr = JSON.stringify(body);
-    const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
-    script.src = POST_URL + '?callback=' + cbName + '&body=' + b64;
+    const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
+    script.src = target + '?callback=' + cbName + '&body=' + b64;
     document.head.appendChild(script);
     setTimeout(() => {
-      if (done) return;
-      done = true;
-      delete window[cbName];
+      if (done) return; done = true; delete window[cbName];
       if (script.parentNode) script.parentNode.removeChild(script);
       resolve({ ok: true, timeout: true });
     }, 12000);
   });
 }
+function apiPost(body) { return apiCall(body, POST_URL); }
 
 // ── HELPERS ──
 function updateStats() {
   const pending = messages.filter(m => m.status === 'pending').length;
-  const sent    = messages.filter(m => m.status === 'sent').length;
+  const sent    = messages.filter(m => m.status === 'sent' || m.status === 'enviado').length;
   document.getElementById('stat-pending').textContent = pending;
   document.getElementById('stat-total').textContent   = messages.length;
   document.getElementById('stat-sent').textContent    = sent;
   const badge = document.getElementById('mnav-badge');
   badge.textContent = pending;
   badge.style.display = pending > 0 ? 'block' : 'none';
+  // Agenda badge: hoy pendientes
+  const hoyPend = agendaDeHoy().filter(m => !agendaIsDone(m)).length;
+  const aBadge = document.getElementById('mnav-agenda-badge');
+  if (aBadge) { aBadge.textContent = hoyPend; aBadge.style.display = hoyPend > 0 ? 'block' : 'none'; }
   localStorage.setItem('wa_msgs_backup', JSON.stringify(messages));
 }
 
@@ -567,72 +571,51 @@ async function addMessage() {
   const date  = document.getElementById('f-date').value;
   const time  = document.getElementById('f-time').value;
   const msg   = document.getElementById('f-msg').value.trim();
-
-  if (!name)         return toast('Ingrese el nombre del cliente', '⚠️', true);
-  if (!phone)        return toast('Ingrese el número del cliente', '⚠️', true);
+  if (!name)          return toast('Ingrese el nombre del cliente', '⚠️', true);
+  if (!phone)         return toast('Ingrese el número del cliente', '⚠️', true);
   if (!date || !time) return toast('Seleccione fecha y hora', '⚠️', true);
-  if (!msg)          return toast('Escriba el mensaje', '⚠️', true);
-
+  if (!msg)           return toast('Escriba el mensaje', '⚠️', true);
   const scheduled = new Date(`${date}T${time}`).toISOString();
   if (new Date(scheduled) < Date.now()) return toast('La fecha/hora ya pasó', '⚠️', true);
-
   const btn = document.getElementById('btn-add');
-  btn.disabled = true;
-  btn.textContent = '⏳ Guardando...';
+  btn.disabled = true; btn.textContent = '⏳ Guardando...';
   syncStatus('loading', 'Guardando en Google Sheets...');
-
   const id = Date.now().toString();
   const newMsg = { id, name, phone, msg, scheduled, status:'pending', sentAt:'' };
-  messages.push(newMsg);
-  updateStats(); render();
-
+  messages.push(newMsg); updateStats(); render();
   try {
     await apiPost({ action:'add', id, nombre:name, telefono:phone, mensaje:msg, fecha_hora:scheduled, estado:'pending' });
     syncStatus('ok', 'Guardado en Google Sheets ☁️');
     toast(`✅ Mensaje para ${name} programado`);
-    document.getElementById('f-name').value  = '';
-    document.getElementById('f-phone').value = '';
-    document.getElementById('f-date').value  = '';
-    document.getElementById('f-time').value  = '';
-    document.getElementById('f-msg').value   = '';
+    document.getElementById('f-name').value = document.getElementById('f-phone').value =
+    document.getElementById('f-date').value = document.getElementById('f-time').value =
+    document.getElementById('f-msg').value  = '';
     document.getElementById('char-count').textContent = '0';
     if (window.innerWidth <= 860) mobileTab('queue');
     setTimeout(loadMessages, 60000);
   } catch(e) {
     syncStatus('error', 'Error al guardar');
     toast('Error al conectar con Google Sheets', '❌', true);
-    messages = messages.filter(m => m.id !== id);
-    updateStats(); render();
+    messages = messages.filter(m => m.id !== id); updateStats(); render();
   }
-  btn.disabled = false;
-  btn.textContent = '📅 Programar Mensaje';
+  btn.disabled = false; btn.textContent = '📅 Programar Mensaje';
 }
 
 // ── ELIMINAR ──
 async function deleteMsg(id) {
   if (!confirm('¿Eliminar este mensaje?')) return;
-  messages = messages.filter(m => m.id !== id);
-  updateStats(); render();
+  messages = messages.filter(m => m.id !== id); updateStats(); render();
   toast('Eliminado', '🗑');
-  try {
-    await apiPost({ action:'delete', id });
-    syncStatus('ok', 'Eliminado ☁️');
-    setTimeout(loadMessages, 60000);
-  } catch(e) {}
+  try { await apiPost({ action:'delete', id }); syncStatus('ok', 'Eliminado ☁️'); setTimeout(loadMessages, 60000); } catch(e) {}
 }
 
 async function clearSent() {
-  const count = messages.filter(m => m.status === 'sent').length;
+  const count = messages.filter(m => m.status === 'sent' || m.status === 'enviado').length;
   if (!count) return toast('No hay enviados', '⚠️');
   if (!confirm(`¿Eliminar ${count} mensaje(s) enviado(s)?`)) return;
-  messages = messages.filter(m => m.status !== 'sent');
-  updateStats(); render();
-  toast(`${count} eliminado(s)`, '🧹');
-  try {
-    await apiPost({ action:'deleteAllSent' });
-    syncStatus('ok', 'Limpiado ☁️');
-    setTimeout(loadMessages, 60000);
-  } catch(e) {}
+  messages = messages.filter(m => m.status !== 'sent' && m.status !== 'enviado');
+  updateStats(); render(); toast(`${count} eliminado(s)`, '🧹');
+  try { await apiPost({ action:'deleteAllSent' }); syncStatus('ok', 'Limpiado ☁️'); setTimeout(loadMessages, 60000); } catch(e) {}
 }
 
 // ── ENVIAR ──
@@ -642,14 +625,9 @@ function openWhatsApp(m) {
 }
 
 async function markSent(m) {
-  m.status = 'sent';
-  m.sentAt = new Date().toISOString();
+  m.status = 'sent'; m.sentAt = new Date().toISOString();
   updateStats(); render();
-  try {
-    await apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt });
-    syncStatus('ok', 'Estado actualizado ☁️');
-    setTimeout(loadMessages, 60000);
-  } catch(e) {}
+  try { await apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt }); syncStatus('ok', 'Estado actualizado ☁️'); setTimeout(loadMessages, 60000); } catch(e) {}
 }
 
 async function sendNow(id) {
@@ -668,107 +646,198 @@ function setTab(t) {
 }
 
 function mobileTab(tab) {
-  document.getElementById('panel-form').classList.toggle('active', tab==='form');
-  document.getElementById('panel-queue').classList.toggle('active', tab==='queue');
-  document.getElementById('panel-evento').classList.toggle('active', tab==='evento');
-  document.getElementById('mnav-form').classList.toggle('active', tab==='form');
-  document.getElementById('mnav-queue').classList.toggle('active', tab==='queue');
-  document.getElementById('mnav-evento').classList.toggle('active', tab==='evento');
+  ['form','queue','evento','agenda'].forEach(p => {
+    document.getElementById('panel-'+p).classList.toggle('active', p===tab);
+    const btn = document.getElementById('mnav-'+p);
+    if (btn) btn.classList.toggle('active', p===tab);
+  });
   if (tab==='evento') renderEvento();
+  if (tab==='agenda') renderAgenda();
 }
 
 // ── EVENTO ──
 function renderEvento() {
   const seen = new Map();
-  messages.forEach(m => {
-    if (!seen.has(m.phone)) seen.set(m.phone, m.name);
-  });
+  messages.forEach(m => { if (!seen.has(m.phone)) seen.set(m.phone, m.name); });
   const contacts = [...seen.entries()].map(([phone, name]) => ({ phone, name }));
   const box = document.getElementById('evento-contacts');
-  if (!contacts.length) {
-    box.innerHTML = '<div class="evento-empty">No hay contactos en el CRM aún.</div>';
-    return;
-  }
+  if (!contacts.length) { box.innerHTML = '<div class="evento-empty">No hay contactos en el CRM aún.</div>'; return; }
   box.innerHTML = contacts.map((c, i) => `
     <div class="evento-contact" id="ec-${i}">
       <div class="evento-avatar">👤</div>
-      <div class="evento-info">
-        <strong>${c.name}</strong>
-        <span>${c.phone}</span>
-      </div>
+      <div class="evento-info"><strong>${c.name}</strong><span>${c.phone}</span></div>
       <button class="btn-wa-evento" onclick="enviarEvento('${c.phone}','${c.name}',${i})">📲 WhatsApp</button>
       <input type="checkbox" class="chk-enviado" title="Marcar como enviado" onchange="document.getElementById('ec-${i}').classList.toggle('done',this.checked)">
     </div>`).join('');
 }
 
 let manualContacts = [];
-
 function addManual() {
   const phone = document.getElementById('manual-phone').value.trim();
   const name  = document.getElementById('manual-name').value.trim() || phone;
   if (!phone) { toast('Ingresá un número', '⚠️', true); return; }
   const idx = 'm' + Date.now();
   manualContacts.push({ phone, name, idx });
-  document.getElementById('manual-phone').value = '';
-  document.getElementById('manual-name').value  = '';
-  renderManual();
-  toast('Agregado: ' + name, '✅');
+  document.getElementById('manual-phone').value = document.getElementById('manual-name').value = '';
+  renderManual(); toast('Agregado: ' + name, '✅');
 }
-
 function renderManual() {
   const box = document.getElementById('manual-list');
   if (!manualContacts.length) { box.innerHTML = ''; return; }
   box.innerHTML = manualContacts.map((c,i) => `
     <div class="evento-contact" id="mc-${c.idx}">
       <div class="evento-avatar">📱</div>
-      <div class="evento-info">
-        <strong>${c.name}</strong>
-        <span>${c.phone}</span>
-      </div>
+      <div class="evento-info"><strong>${c.name}</strong><span>${c.phone}</span></div>
       <button class="btn-wa-evento" onclick="enviarManual('${c.phone}','${c.name}','${c.idx}')">📲 WhatsApp</button>
       <button onclick="removeManual(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:16px;padding:4px;">✕</button>
       <input type="checkbox" class="chk-enviado" title="Enviado" onchange="document.getElementById('mc-${c.idx}').classList.toggle('done',this.checked)">
     </div>`).join('');
 }
-
-function removeManual(i) {
-  manualContacts.splice(i, 1);
-  renderManual();
-}
-
+function removeManual(i) { manualContacts.splice(i, 1); renderManual(); }
 function enviarManual(phone, name, idx) {
   const msg = document.getElementById('evento-msg').value.trim();
   if (!msg) { toast('Escribí el mensaje del evento primero', '⚠️', true); return; }
-  const clean = phone.replace(/\D/g,'');
-  window.open('https://wa.me/' + clean + '?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/' + phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
   const el = document.getElementById('mc-' + idx);
   if (el) { el.querySelector('.chk-enviado').checked = true; el.classList.add('done'); }
 }
-
 function enviarEvento(phone, name, idx) {
   const msg = document.getElementById('evento-msg').value.trim();
   if (!msg) { toast('Escribí el mensaje del evento primero', '⚠️', true); return; }
-  const clean = phone.replace(/\D/g,'');
-  const url = `https://wa.me/${clean}?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
+  window.open('https://wa.me/' + phone.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg), '_blank');
   const chk = document.querySelector(`#ec-${idx} .chk-enviado`);
   if (chk) { chk.checked = true; document.getElementById(`ec-${idx}`).classList.add('done'); }
 }
 
-// ── RENDER ──
+// ══════════════════════════════════════════
+// ── AGENDA ──────────────────────────────
+// ══════════════════════════════════════════
+let agendaFecha = agendaIsoHoy();
+
+function agendaIsoHoy() {
+  const d = new Date();
+  const off = d.getTimezoneOffset();
+  const py = new Date(d.getTime() - (off + 180) * 60000);
+  return py.toISOString().slice(0, 10);
+}
+
+function agendaFmtFecha(iso) {
+  const dias   = ['dom','lun','mar','mié','jue','vie','sáb'];
+  const meses  = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const [y,m,d] = iso.split('-').map(Number);
+  const f = new Date(y, m-1, d);
+  return `${dias[f.getDay()]} ${d} ${meses[m-1]} ${y}`;
+}
+
+function agendaMoverDia(delta) {
+  const [y,m,d] = agendaFecha.split('-').map(Number);
+  const f = new Date(y, m-1, d+delta);
+  agendaFecha = f.toISOString().slice(0, 10);
+  renderAgenda();
+}
+
+function agendaTipo(estado, msg) {
+  const e = String(estado || '').toLowerCase();
+  const m = String(msg || '').substring(0, 50).toUpperCase();
+  if (e.includes('facebook') || e.includes('fb') || m.includes('FACEBOOK') || m.startsWith('REVISAR F') || m.startsWith('SI NO RESPONDIERON'))
+    return { cls:'badge-fb',   lbl:'🔵 Facebook' };
+  if (e.includes('llamada') || m.startsWith('LLAMAR'))
+    return { cls:'badge-call', lbl:'📞 Llamada' };
+  if (e.includes('preparacion') || e.includes('accion') || e.includes('nota') || e.includes('revision') ||
+      m.startsWith('PREPARAR') || m.startsWith('ESPERAR') || m.startsWith('NOTA:') || m.startsWith('REVISAR'))
+    return { cls:'badge-nota', lbl:'📝 Acción' };
+  return { cls:'badge-ws', lbl:'💬 WhatsApp' };
+}
+
+function agendaHoraUTC3(isoStr) {
+  const d = new Date(isoStr);
+  const h = ((d.getUTCHours() - 3 + 24) % 24).toString().padStart(2,'0');
+  const mn = d.getUTCMinutes().toString().padStart(2,'0');
+  return h + ':' + mn;
+}
+
+function agendaIsDone(m) {
+  return m.status === 'sent' || m.status === 'enviado' || m.status === 'done';
+}
+
+function agendaDeHoy() {
+  return messages.filter(m => String(m.scheduled || '').startsWith(agendaFecha));
+}
+
+function toggleAgendaItem(id) {
+  const el = document.getElementById('aitem-' + id);
+  if (el) el.classList.toggle('open');
+}
+
+async function agendaMarcarHecho(id) {
+  const m = messages.find(x => x.id === id);
+  if (!m) return;
+  m.status = 'enviado'; m.sentAt = new Date().toISOString();
+  updateStats(); renderAgenda();
+  toast('✓ Marcado como hecho');
+  try {
+    await apiCall({ action:'update', id, estado:'enviado' }, NEW_URL);
+  } catch(e) {}
+}
+
+function renderAgenda() {
+  document.getElementById('agenda-fecha-txt').textContent = agendaFmtFecha(agendaFecha);
+  const hoy = agendaDeHoy().sort((a,b) => new Date(a.scheduled) - new Date(b.scheduled));
+  const done = hoy.filter(m => agendaIsDone(m)).length;
+  const pend = hoy.length - done;
+  document.getElementById('agenda-stats').innerHTML =
+    `<span style="color:var(--amber);font-weight:700">${pend}</span> pendientes &nbsp;·&nbsp; ` +
+    `<span style="color:var(--green);font-weight:700">${done}</span> hechas &nbsp;·&nbsp; ` +
+    `<span style="color:var(--muted)">${hoy.length}</span> total`;
+  const box = document.getElementById('agenda-list');
+  if (!hoy.length) {
+    box.innerHTML = '<div class="empty-state"><div class="emoji">📅</div><p>Sin entradas para este día.<br>Usá las flechas para cambiar la fecha.</p></div>';
+    return;
+  }
+  box.innerHTML = hoy.map(m => {
+    const hora  = agendaHoraUTC3(m.scheduled);
+    const tipo  = agendaTipo(m.status, m.msg);
+    const isDone = agendaIsDone(m);
+    const tel   = String(m.phone || '').replace(/\D/g,'');
+    const msgEnc = encodeURIComponent(m.msg || '');
+    const esWS   = tipo.cls === 'badge-ws';
+    const esCall = tipo.cls === 'badge-call';
+    const prev   = String(m.msg || '').split('\n')[0].substring(0, 52);
+    return `<div class="agenda-item${isDone ? ' agenda-done' : ''}" id="aitem-${m.id}">
+  <div class="agenda-top" onclick="toggleAgendaItem('${m.id}')">
+    <span class="agenda-hora">${hora}</span>
+    <span class="badge ${tipo.cls}">${tipo.lbl}</span>
+    <div style="flex:1;min-width:0">
+      <div class="agenda-nombre">${escapeHtml(m.name)}${isDone ? ' <span style="color:var(--green);font-size:.7rem">✓</span>' : ''}</div>
+      <div class="agenda-preview">${escapeHtml(prev)}</div>
+    </div>
+    <span style="color:var(--muted);font-size:.7rem;flex-shrink:0">▼</span>
+  </div>
+  <div class="agenda-body">
+    <div class="agenda-msg">${escapeHtml(m.msg || '')}</div>
+    <div class="agenda-btns">
+      ${esWS   ? `<a class="btn-wa-agenda"   href="https://wa.me/${tel}?text=${msgEnc}" target="_blank">💬 Abrir WhatsApp</a>` : ''}
+      ${esCall ? `<a class="btn-call-agenda" href="tel:+${tel}">📞 Llamar ${m.phone}</a>` : ''}
+      <button class="btn-done-agenda${isDone ? ' marcado' : ''}" onclick="agendaMarcarHecho('${m.id}')">${isDone ? '✓ Hecho' : 'Marcar hecho'}</button>
+    </div>
+  </div>
+</div>`;
+  }).join('');
+}
+
+// ── RENDER COLA ──
 function render() {
   const search = (document.getElementById('search').value||'').toLowerCase();
   let list = messages.filter(m => {
     if (activeTab==='pending' && m.status!=='pending') return false;
-    if (activeTab==='sent'    && m.status!=='sent')    return false;
+    if (activeTab==='sent' && m.status!=='sent' && m.status!=='enviado') return false;
     if (search && !m.name.toLowerCase().includes(search) && !(m.phone||'').includes(search)) return false;
     return true;
   }).sort((a,b) => {
-    if (a.status==='pending' && b.status!=='pending') return -1;
-    if (b.status==='pending' && a.status!=='pending') return 1;
+    if ((a.status==='pending') && (b.status!=='pending')) return -1;
+    if ((b.status==='pending') && (a.status!=='pending')) return 1;
     return new Date(a.scheduled) - new Date(b.scheduled);
   });
-
   const container = document.getElementById('msg-list');
   if (!list.length) {
     container.innerHTML = `<div class="empty-state"><div class="emoji">📭</div><p>Sin mensajes en esta vista.<br>Agregue su primer cliente.</p></div>`;
@@ -778,7 +847,7 @@ function render() {
     const now = Date.now();
     const sched = new Date(m.scheduled).getTime();
     const isOverdue = m.status==='pending' && sched < now;
-    const sc = m.status==='sent' ? 'sent' : (isOverdue ? 'overdue' : 'pending');
+    const sc = (m.status==='sent'||m.status==='enviado') ? 'sent' : (isOverdue ? 'overdue' : 'pending');
     const cd = m.status==='pending' ? countdown(m.scheduled) : null;
     const isUrgent = m.status==='pending' && (sched-now)/1000 < 120 && (sched-now)>0;
     return `<div class="msg-item ${sc}" id="item-${m.id}">
@@ -786,14 +855,14 @@ function render() {
         <div class="msg-client">
           <strong>${escapeHtml(m.name)}</strong>
           <span class="msg-phone">${escapeHtml(m.phone)}</span>
-          <span class="badge badge-${sc}">${m.status==='sent'?'Enviado':isOverdue?'Vencido':'Pendiente'}</span>
+          <span class="badge badge-${sc}">${(m.status==='sent'||m.status==='enviado')?'Enviado':isOverdue?'Vencido':'Pendiente'}</span>
         </div>
         <div class="msg-text" id="txt-${m.id}" onclick="toggleExpand('${m.id}')">${escapeHtml(m.msg)}</div>
         <span class="msg-text-fade" onclick="toggleExpand('${m.id}')">ver más / menos</span>
         <div class="msg-meta">
           <span class="meta-time">📅 ${formatDate(m.scheduled)}</span>
           ${cd ? `<span class="countdown ${isUrgent?'urgent':''}" id="cd-${m.id}">${cd}</span>` : ''}
-          ${m.status==='sent' ? `<span class="countdown sent-badge">✓ ${formatDate(m.sentAt)||'Enviado'}</span>` : ''}
+          ${(m.status==='sent'||m.status==='enviado') ? `<span class="countdown sent-badge">✓ ${formatDate(m.sentAt)||'Enviado'}</span>` : ''}
           ${isOverdue ? `<span class="countdown urgent">⚠ Vencido</span>` : ''}
         </div>
       </div>
@@ -805,9 +874,7 @@ function render() {
   }).join('');
 }
 
-function toggleExpand(id) {
-  document.getElementById('txt-'+id)?.classList.toggle('expanded');
-}
+function toggleExpand(id) { document.getElementById('txt-'+id)?.classList.toggle('expanded'); }
 
 // ── SCHEDULER ──
 function checkScheduler() {
@@ -816,33 +883,12 @@ function checkScheduler() {
   const due = messages.filter(m => m.status==='pending' && new Date(m.scheduled).getTime() <= now)
     .sort((a,b) => new Date(a.scheduled)-new Date(b.scheduled));
   if (!due.length || now-lastFired < interval) return;
-
-  const m = due[0];
-  lastFired = now;
-
+  const m = due[0]; lastFired = now;
   const el = document.getElementById('item-'+m.id);
   if (el) { el.classList.add('firing'); setTimeout(()=>el.classList.remove('firing'),3500); }
-
   beep();
-
-  if ('Notification' in window && Notification.permission === 'granted') {
-    const notif = new Notification('📲 Mensaje para ' + m.name, {
-      body: m.msg.substring(0, 120) + (m.msg.length > 120 ? '...' : ''),
-      tag: m.id,
-      requireInteraction: true
-    });
-    notif.onclick = function() {
-      notif.close();
-      window.focus();
-      openWhatsApp(m);
-      markSent(m);
-    };
-    toast(`🔔 Notificación enviada para ${m.name} — hacé clic en el aviso`, '🔔');
-  } else {
-    openWhatsApp(m);
-    markSent(m);
-    toast(`📲 Abriendo WhatsApp para ${m.name}...`);
-  }
+  openWhatsApp(m); markSent(m);
+  toast(`📲 Abriendo WhatsApp para ${m.name}...`);
 }
 
 // ── TICK ──
@@ -859,14 +905,11 @@ setInterval(() => {
   });
 }, 1000);
 
-// Auto-refresh
 setInterval(loadMessages, 30000);
 
 // ── INIT ──
 document.getElementById('f-date').min = new Date().toISOString().slice(0,10);
-updateNotifBar();
-requestNotificationPermission();
-loadMessages();
+loadMessages().then(() => renderAgenda());
 </script>
 </body>
 </html>
