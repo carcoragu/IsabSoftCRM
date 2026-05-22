@@ -372,7 +372,7 @@ const NEW_URL  = 'https://script.google.com/macros/s/AKfycbxcy4RXhnS3zgyG0rzyJKy
 let messages = [];
 let activeTab = 'all';
 let lastFired = 0;
-let sentLocally = new Set();
+let sentLocally = new Set(JSON.parse(localStorage.getItem('crm_sent') || '[]'));
 let ticks = 0;
 
 
@@ -628,6 +628,7 @@ function openWhatsApp(m) {
 async function markSent(m) {
   m.status = 'sent'; m.sentAt = new Date().toISOString();
   sentLocally.add(m.id);
+  localStorage.setItem('crm_sent', JSON.stringify([...sentLocally]));
   updateStats(); render();
   try { await apiPost({ action:'updateStatus', id:m.id, estado:'sent', enviado_en:m.sentAt }); syncStatus('ok', 'Estado actualizado ☁️'); setTimeout(loadMessages, 60000); } catch(e) {}
 }
