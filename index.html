@@ -43,10 +43,15 @@
   .mnav-badge { position: absolute; top: 6px; right: calc(50% - 18px); background: var(--red); color: #fff; font-size: 0.6rem; font-weight: 800; border-radius: 10px; padding: 1px 5px; min-width: 16px; text-align: center; line-height: 1.4; }
 
   main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 420px 1fr; gap: 28px; align-items: start; }
+  .desktop-nav { display: flex; gap: 8px; padding: 12px 24px; max-width: 1100px; margin: 0 auto; }
+  .dnav-btn { background: var(--surface); border: 1px solid var(--border); color: var(--muted); padding: 7px 20px; border-radius: 8px; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .dnav-btn:hover { border-color: rgba(37,211,102,0.4); color: var(--text); }
+  .dnav-btn.active { background: rgba(37,211,102,0.1); border-color: var(--green); color: var(--green); }
 
   @media (max-width: 860px) {
     main { grid-template-columns: 1fr; padding: 16px 14px 90px; gap: 0; }
     .mobile-nav { display: block; }
+    .desktop-nav { display: none; }
     .panel-form, .panel-queue, .panel-agenda { display: none; }
     .panel-form.active, .panel-queue.active, .panel-agenda.active { display: block; }
     .panel-evento { display: none !important; }
@@ -224,6 +229,12 @@
   <div class="sync-dot loading" id="sync-dot"></div>
   <span id="sync-text">Sincronizando...</span>
   <span class="sync-time" id="sync-time"></span>
+</div>
+
+<div class="desktop-nav">
+  <button class="dnav-btn active" id="dnav-cola" onclick="desktopTab('cola')">📋 Cola</button>
+  <button class="dnav-btn" id="dnav-agenda" onclick="desktopTab('agenda')">📅 Agenda</button>
+  <button class="dnav-btn" id="dnav-evento" onclick="desktopTab('evento')">📢 Evento</button>
 </div>
 
 <main>
@@ -646,6 +657,20 @@ function setTab(t) {
   activeTab = t;
   ['all','pending','sent'].forEach(x => document.getElementById('tab-'+x).classList.toggle('active', x===t));
   render();
+}
+
+function desktopTab(tab) {
+  ['cola','agenda','evento'].forEach(t => {
+    const btn = document.getElementById('dnav-'+t);
+    if (btn) btn.classList.toggle('active', t===tab);
+  });
+  const isMain = tab==='cola';
+  document.getElementById('panel-form').style.display = isMain ? '' : 'none';
+  document.getElementById('panel-queue').style.display = isMain ? '' : 'none';
+  document.getElementById('panel-agenda').classList.toggle('active', tab==='agenda');
+  document.getElementById('panel-evento').classList.toggle('active', tab==='evento');
+  if (tab==='agenda') renderAgenda();
+  if (tab==='evento') renderEvento();
 }
 
 function mobileTab(tab) {
