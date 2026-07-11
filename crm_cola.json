@@ -1130,6 +1130,146 @@
             "mensaje": "Sr. Jorge, buen día. Quedo atento a la lista de cambios que necesita en la web. Cuando la tenga me la envía y arrancamos.",
             "estado": "programado",
             "nota": "Respondió 10/07 pidiendo cambios en la web. Carlos respondió 'desde Gs.200k según necesidad'. Esperando lista de cambios de Jorge."
+        },
+        {
+            "id": "KAREN-13072026-AMISTAT",
+            "nombre": "Karen Ortellado",
+            "telefono": "+595981797880",
+            "fecha": "2026-07-13",
+            "hora": "11:00",
+            "mensaje": "Karen, buen día. Esta semana activamos un productor nuevo con el sistema — hacienda y registro de campo desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando tengas 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería Tru-Test. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "ALCIDES-13072026-AMISTAT",
+            "nombre": "Alcides Fernández",
+            "telefono": "+595983670608",
+            "fecha": "2026-07-13",
+            "hora": "11:15",
+            "mensaje": "Alcides, buen día. Esta semana activamos un productor nuevo con el sistema — módulo de inseminación y seguimiento de hacienda desde el campo.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quiere verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando quiera lo vemos en 10 minutos, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería/inseminación. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "NATO-13072026-AMISTAT",
+            "nombre": "Nato",
+            "telefono": "+595985462841",
+            "fecha": "2026-07-13",
+            "hora": "11:30",
+            "mensaje": "Nato, buen día. Esta semana activamos un productor nuevo con el sistema — registro de hacienda y seguimiento de cría desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando tengas 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería cría y engorde. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "EULOGIO-13072026-AMISTAT",
+            "nombre": "Eulogio",
+            "telefono": "+595986491067",
+            "fecha": "2026-07-13",
+            "hora": "11:45",
+            "mensaje": "Don Eulogio, buen día. Esta semana activamos un productor nuevo con el sistema — módulo de inseminación y hacienda desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quiere verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando tenga 10 minutos lo vemos, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería inseminación. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "SSG-13072026-AMISTAT",
+            "nombre": "S.S.G.",
+            "telefono": "+595981220528",
+            "fecha": "2026-07-13",
+            "hora": "12:00",
+            "mensaje": "Buen día. Esta semana activamos un productor nuevo con el sistema — hacienda y gestión de campo desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando quieras lo vemos en 10 minutos, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería. Dijo 'dale dale perfecto' 01/06, luego silencio. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "GANADERO-13072026-AMISTAT",
+            "nombre": "Ganadero (Ped Soft)",
+            "telefono": "+595985673022",
+            "fecha": "2026-07-13",
+            "hora": "12:15",
+            "mensaje": "Buen día. Esta semana activamos un productor nuevo con el sistema — hacienda y seguimiento de campo desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/IsabSoftAgroSoft/\n\nCuando quieras lo vemos en 10 minutos, sin compromiso.",
+            "estado": "programado",
+            "nota": "Ganadería. Dijo 'Okei' 01/06 a demo AgroSoft, luego silencio. Mes de la Amistad — instalación gratis + link AgroSoft."
+        },
+        {
+            "id": "SANABRIA-14072026-AMISTAT",
+            "nombre": "Taller Sanabria",
+            "telefono": "+595976753697",
+            "fecha": "2026-07-14",
+            "hora": "11:30",
+            "mensaje": "Don Sanabria, buen día. Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quiere verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tenga 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller mecánico. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "OSCAR-14072026-AMISTAT",
+            "nombre": "Oscar Acuña (Taller)",
+            "telefono": "solo Messenger",
+            "fecha": "2026-07-14",
+            "hora": "11:45",
+            "mensaje": "Oscar, buen día. Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengas 10 minutos lo vemos, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller mecánico. Solo Messenger. Visto 08/06 sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "PEDRO-14072026-AMISTAT",
+            "nombre": "Pedro José Fernández",
+            "telefono": "+595992547312",
+            "fecha": "2026-07-14",
+            "hora": "12:00",
+            "mensaje": "Pedro, buen día. Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si querés verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengas 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller mecánico completo. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "DIMA-14072026-AMISTAT",
+            "nombre": "Taller Dima",
+            "telefono": "+595981577775",
+            "fecha": "2026-07-14",
+            "hora": "12:15",
+            "mensaje": "Buen día, ¿cómo están? Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quieren verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengan 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller mecánico. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "CHESS-14072026-AMISTAT",
+            "nombre": "Taller Chess",
+            "telefono": "solo Messenger",
+            "fecha": "2026-07-14",
+            "hora": "12:30",
+            "mensaje": "Buen día, ¿cómo van? Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quieren verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengan 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller mecánico. Solo Messenger. Múltiples msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "LSAUTO-14072026-AMISTAT",
+            "nombre": "LS Autocentro",
+            "telefono": "+595973549820",
+            "fecha": "2026-07-14",
+            "hora": "12:45",
+            "mensaje": "Buen día, ¿cómo están? Esta semana activamos un taller nuevo con el sistema — presupuestos, clientes, stock de repuestos y vehículos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quieren verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengan 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Taller + repuestos + neumáticos. Último msg 10/06 calificación stock sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "VERTICAL-16072026-AMISTAT",
+            "nombre": "Vertical Reformas y Construcciones",
+            "telefono": "+595993284383",
+            "fecha": "2026-07-16",
+            "hora": "11:00",
+            "mensaje": "Buen día. Esta semana activamos un cliente nuevo con el sistema — presupuestos, clientes y seguimiento de proyectos desde el celular.\n\nPor el Mes de la Amistad la instalación es sin costo — arrancás con Gs. 350.000/mes.\n\nPor si quieren verlo: carcoragu.github.io/gestfact-demo/\n\nCuando tengan 10 minutos lo vemos en vivo, sin compromiso.",
+            "estado": "programado",
+            "nota": "Construcción y reformas. Msgs junio sin respuesta. Mes de la Amistad — instalación gratis + link GestFact."
+        },
+        {
+            "id": "ENCISO-16072026-AMISTAT",
+            "nombre": "Enrique Enciso",
+            "telefono": "+595971233644",
+            "fecha": "2026-07-16",
+            "hora": "11:15",
+            "mensaje": "Enrique, buen día. Esta semana arrancamos un desarrollo nuevo con un cliente. Por el Mes de la Amistad tenemos condiciones especiales para proyectos nuevos.\n\n¿Sigue en pie la app de estadísticas? Si querés retomamos esta semana.",
+            "estado": "programado",
+            "nota": "App estadísticas fútbol — desarrollo a medida. Múltiples msgs junio sin respuesta. Mes de la Amistad — condiciones especiales generales."
         }
     ]
 }
