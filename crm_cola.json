@@ -1012,14 +1012,14 @@
             "nota": "Mensaje sí/no enviado 09/07. Si no responde al 16/07 → CERRAR DEFINITIVAMENTE. No volver a contactar."
         },
         {
-            "id": "KERS-11072026-FOLLOWUP",
+            "id": "KERS-14072026-FOLLOWUP",
             "nombre": "Kers Automotive",
             "telefono": "+595993586117",
-            "fecha": "2026-07-11",
-            "hora": "11:30",
-            "mensaje": "Buen sábado! Vi que tienen atención hasta las 13:00. ¿Tienen un momento para ver una demo rápida del sistema? Solo 10 minutos y lo ven funcionando en vivo.",
+            "fecha": "2026-07-14",
+            "hora": "09:30",
+            "mensaje": "Buen lunes! Soy Carlos de IsabSoft. Vi que nos escribieron el sábado. ¿Tienen un momento para ver una demo rápida del sistema para el taller? Solo 10 minutos y lo ven funcionando en vivo.",
             "estado": "programado",
-            "nota": "Inbound 11/07 vía promo WA. Respondió automático (bot). Seguimiento antes de las 13:00 para atrapar al dueño en horario laboral. Taller mecánico — Kers_Cod_33_33."
+            "nota": "Inbound 11/07 vía promo WA. Respondió automático (bot). Pasado al lunes 14/07 por falta de tiempo el sábado. Taller mecánico — Kers_Cod_33_33."
         },
         {
             "id": "BERNI-24072026-FOLLOWUP",
