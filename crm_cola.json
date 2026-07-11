@@ -2,6 +2,16 @@
     "ultima_actualizacion": "2026-07-11",
     "cola": [
         {
+            "id": "JIMMY-18072026-FOLLOWUP",
+            "nombre": "Jimmy Gómez",
+            "telefono": "+595981777327",
+            "fecha": "2026-07-18",
+            "hora": "10:00",
+            "mensaje": "Hola Jimmy, ¿cómo estás? Solo quería saber si pudiste ver mi mensaje de la semana pasada — si es el precio lo que frenó la decisión, tenemos una propuesta más simple que te puedo pasar.",
+            "estado": "programado",
+            "nota": "11/07 se preguntó si era el precio o tenía dudas. Si responde antes del 18/07, cancelar este. Si no responde → proponer Gs. 200k arranque + Gs. 400k/mes todo incluido (Wix absorbido)."
+        },
+        {
             "id": "MIGUEL-02062026-0830-ACTUALIZACIONES",
             "nombre": "Miguel Acuña",
             "telefono": "+595961807675",
