@@ -2,6 +2,16 @@
     "ultima_actualizacion": "2026-07-11",
     "cola": [
         {
+            "id": "CLIDER-14072026-TABLA",
+            "nombre": "Clider Schussmuller (CS Consultoría)",
+            "telefono": "+595981376388",
+            "fecha": "2026-07-14",
+            "hora": "09:00",
+            "mensaje": "Clider, buen lunes! ¿Pudiste mandarme la tabla nueva? Cuando estés listo arrancamos.",
+            "estado": "programado",
+            "nota": "11/07 respondió 'a full estoy aguantame que'. Tabla nueva pendiente. Si envía antes del lunes, cancelar este follow-up y proceder con carga + cobro saldo Gs.750k."
+        },
+        {
             "id": "JIMMY-18072026-FOLLOWUP",
             "nombre": "Jimmy Gómez",
             "telefono": "+595981777327",
