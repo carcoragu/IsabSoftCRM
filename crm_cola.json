@@ -2,6 +2,16 @@
     "ultima_actualizacion": "2026-07-11",
     "cola": [
         {
+            "id": "TEST-11072026-1450",
+            "nombre": "PRUEBA CRM",
+            "telefono": "+595981153477",
+            "fecha": "2026-07-11",
+            "hora": "14:50",
+            "mensaje": "✅ Prueba exitosa — el CRM lee el JSON automáticamente. Mensaje cargado a las 14:50.",
+            "estado": "programado",
+            "nota": "Mensaje de prueba para verificar que el CRM lee crm_cola.json en tiempo real."
+        },
+        {
             "id": "CLIDER-14072026-TABLA",
             "nombre": "Clider Schussmuller (CS Consultoría)",
             "telefono": "+595981376388",
