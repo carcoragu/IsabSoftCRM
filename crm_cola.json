@@ -2,6 +2,76 @@
     "ultima_actualizacion": "2026-07-11",
     "cola": [
         {
+            "id": "JESUS-13072026-ERP",
+            "nombre": "Jesus Marmolejo — ERP",
+            "telefono": "+595976585313",
+            "fecha": "2026-07-13",
+            "hora": "09:00",
+            "mensaje": "Jesús, buen día. Estuve revisando el sistema que me mandaste en octubre — la interfaz con el tablero de tareas, los estados, los responsables. Ahora lo entiendo bien.\n\nLovable es bueno para visualizar, pero lo que construye es frágil y no escala. Yo puedo tomar tu prototipo y construirlo robusto — con base de datos real, acceso móvil, integración con tus sistemas.\n\n¿Eso sigue siendo lo que querés construir o evolucionó la idea?",
+            "estado": "programado",
+            "nota": "9 meses sin respuesta al prototipo Lovable. Este mensaje aborda directamente el ERP. Alto valor potencial."
+        },
+        {
+            "id": "IVAN-13072026-CIERRE",
+            "nombre": "Ivan Nuñez — Seguros",
+            "telefono": "+595971330442",
+            "fecha": "2026-07-13",
+            "hora": "09:30",
+            "mensaje": "Ivan, buen día. Una pregunta rápida — ¿hoy llevás los vencimientos de pólizas en Excel, cuaderno, o tenés algún sistema?\n\nTe pregunto porque armamos algo específico para corredores que corre desde el celular. El plan de entrada arranca en Gs. 100.000/mes.\n\n¿Te interesa verlo?",
+            "estado": "programado",
+            "nota": "Sobre-mensajeado. Precio era la barrera (Gs. 350k). Ahora ofrecemos Gs. 100k de entrada. Pregunta de rubro primero, precio al final."
+        },
+        {
+            "id": "GUSTAVO-13072026-CIERRE",
+            "nombre": "Gustavo Fabián Reyes",
+            "telefono": "+595981766053",
+            "fecha": "2026-07-13",
+            "hora": "10:00",
+            "mensaje": "Gustavo, buen día. Soy Carlos de IsabSoft. El sistema está instalado en tus 3 equipos desde enero y acordamos 3 cuotas de Gs. 700.000.\n\nNecesito saber si regularizamos el pago o cerramos el servicio. Sin problema en cualquiera de los dos casos, pero necesito una respuesta esta semana.",
+            "estado": "programado",
+            "nota": "NUNCA PAGÓ. Sistema instalado ene/26. Aprobó 3×700k el 03/01/26. Llamada 19/06 no atendió. Mensaje de cierre definitivo."
+        },
+        {
+            "id": "GIOVANNI-16072026-FOLLOWUP",
+            "nombre": "Giovanni — Taller Automotriz",
+            "telefono": "+595961309822",
+            "fecha": "2026-07-16",
+            "hora": "09:00",
+            "mensaje": "Buen día Giovanni, ¿cómo estás? Te escribo para saber si hay alguna novedad de tu parte. Tengo disponible esta semana para mostrarte el sistema en 10 minutos si querés coordinar.",
+            "estado": "programado",
+            "nota": "Respondió interés 10/06. Follow-ups 11/06 y 15/06 sin respuesta. Mensaje enviado 09/07. Este es el último follow-up."
+        },
+        {
+            "id": "DAVID-16072026-FOLLOWUP",
+            "nombre": "David Alfonzo — Motormat",
+            "telefono": "+595976957120",
+            "fecha": "2026-07-16",
+            "hora": "09:30",
+            "mensaje": "Buen día David, ¿cómo estás? Quería saber si pudiste evaluar la propuesta. La instalación es Gs. 200.000 y Gs. 350.000/mes todo incluido.\n\n¿Sigue en agenda o lo dejamos para más adelante?",
+            "estado": "programado",
+            "nota": "Dijo 'para más adelante' el 19/06. Re-engagement enviado 09/07. Follow-up 16/07."
+        },
+        {
+            "id": "EDUARDO-16072026-FOLLOWUP",
+            "nombre": "Eduardo — Taller",
+            "telefono": "+595982199600",
+            "fecha": "2026-07-16",
+            "hora": "10:00",
+            "mensaje": "Buen día, soy Carlos de IsabSoft. Pasé personalmente en junio. Quería saber si el sistema para taller sigue siendo algo que te interesa o lo dejamos para más adelante.\n\nSin apuro, solo para saber si seguimos en contacto.",
+            "estado": "programado",
+            "nota": "Contacto presencial jun/26. Nunca respondió. Mensaje cierre enviado 09/07. Si no responde → cerrar definitivamente."
+        },
+        {
+            "id": "CLIENTETALLER-16072026-FOLLOWUP",
+            "nombre": "Cliente Taller",
+            "telefono": "+595986340084",
+            "fecha": "2026-07-16",
+            "hora": "10:30",
+            "mensaje": "Buen día, ¿cómo están? Quería retomar el tema del sistema para el taller. Si el papá puede revisar una demo esta semana, coordinamos en 15 minutos cuando les quede bien.\n\nQuedo atento.",
+            "estado": "programado",
+            "nota": "Inbound feb/26. Papá es decisor, nunca tuvo contacto directo. Mensaje enviado 09/07. Si no responde → cerrar hasta oct/26."
+        },
+        {
             "id": "RODRIGO-14072026-DEMO",
             "nombre": "Rodrigo Sarubbi — INGEMON",
             "telefono": "+595981884743",
