@@ -2,14 +2,14 @@
     "ultima_actualizacion": "2026-07-11",
     "cola": [
         {
-            "id": "TEST-11072026-1450",
-            "nombre": "PRUEBA CRM",
-            "telefono": "+595981153477",
-            "fecha": "2026-07-11",
-            "hora": "14:50",
-            "mensaje": "✅ Prueba exitosa — el CRM lee el JSON automáticamente. Mensaje cargado a las 14:50.",
+            "id": "RODRIGO-14072026-DEMO",
+            "nombre": "Rodrigo Sarubbi — INGEMON",
+            "telefono": "+595981884743",
+            "fecha": "2026-07-14",
+            "hora": "10:00",
+            "mensaje": "Rodrigo, buen día. Sé que hace tiempo que te vengo escribiendo sobre el sistema para INGEMON.\n\nEsta vez tengo algo concreto: la demo funcionando, podés probarla ahora mismo desde el celular 👇\n\n👉 carcoragu.github.io/alquiler-demo/\n\nFlota, contratos, alertas de devolución y seguros — todo en vivo.\n\nSin compromiso, solo para que lo veas.",
             "estado": "programado",
-            "nota": "Mensaje de prueba para verificar que el CRM lee crm_cola.json en tiempo real."
+            "nota": "Demo FleetControl lista. Primer mensaje con app real. Rodrigo nunca respondió a planes-rodrigo (27/05). Esta vez va con link interactivo. Si no responde → cerrar definitivamente."
         },
         {
             "id": "CLIDER-14072026-TABLA",
