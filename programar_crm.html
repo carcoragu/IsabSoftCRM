@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Programar Mensajes — IsabSoft CRM</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0d1117;font-family:'Segoe UI',Arial,sans-serif;color:#e6edf3;min-height:100vh;padding:16px;}
+.header{text-align:center;padding:20px 0 24px;border-bottom:1px solid #21262d;}
+.header h1{font-size:1.15rem;color:#1e88e5;font-weight:800;letter-spacing:.04em;}
+.header p{font-size:.75rem;color:#8b949e;margin-top:6px;}
+.container{max-width:600px;margin:0 auto;}
+.card{background:#161b22;border:1px solid #21262d;border-radius:14px;padding:18px;margin-top:16px;}
+.card-title{font-size:.72rem;font-weight:700;color:#1e88e5;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;}
+label{font-size:.75rem;color:#8b949e;display:block;margin-bottom:4px;margin-top:12px;}
+label:first-child{margin-top:0;}
+select,input[type=text],input[type=date],input[type=time],textarea{
+  width:100%;background:#0d1117;border:1px solid #30363d;border-radius:8px;
+  padding:10px 12px;color:#e6edf3;font-size:.85rem;outline:none;font-family:inherit;}
+select:focus,input:focus,textarea:focus{border-color:#1e88e5;}
+textarea{resize:vertical;min-height:90px;line-height:1.6;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.templates{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tpl-btn{padding:5px 12px;background:#161b22;border:1px solid #30363d;border-radius:20px;
+  color:#8b949e;font-size:.72rem;cursor:pointer;transition:.15s;}
+.tpl-btn:hover{background:#21262d;color:#fff;border-color:#1e88e5;}
+.canal-btns{display:flex;gap:8px;margin-top:6px;}
+.canal-btn{flex:1;padding:9px 4px;background:#0d1117;border:1px solid #30363d;
+  border-radius:8px;color:#8b949e;font-size:.78rem;cursor:pointer;text-align:center;transition:.15s;}
+.canal-btn.active{background:#1e3a5f;border-color:#1e88e5;color:#1e88e5;font-weight:700;}
+.btn-agregar{width:100%;margin-top:14px;padding:12px;
+  background:linear-gradient(135deg,#1565c0,#1e88e5);color:#fff;
+  border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;}
+.btn-agregar:hover{opacity:.9;}
+.lista-item{background:#0d1117;border:1px solid #21262d;border-radius:8px;
+  padding:10px 12px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;}
+.li-nombre{color:#1e88e5;font-weight:700;font-size:.82rem;}
+.li-fecha{color:#f0a500;font-size:.72rem;}
+.li-canal{color:#8b949e;font-size:.7rem;}
+.li-msg{color:#8b949e;font-size:.72rem;margin-top:2px;}
+.li-del{background:transparent;border:none;color:#6e7681;font-size:1.1rem;cursor:pointer;padding:0 4px;}
+.li-del:hover{color:#e53935;}
+.badge{display:inline-block;background:#1e88e5;color:#fff;border-radius:20px;
+  padding:2px 10px;font-size:.72rem;font-weight:700;margin-left:8px;}
+.btn-enviar{width:100%;padding:14px;background:linear-gradient(135deg,#1b5e20,#388e3c);
+  color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;}
+.btn-enviar:disabled{opacity:.45;cursor:not-allowed;}
+.btn-enviar:hover:not(:disabled){opacity:.9;}
+.empty{color:#8b949e;font-size:.78rem;text-align:center;padding:14px;}
+.log{margin-top:10px;font-size:.75rem;color:#8b949e;line-height:2.2;}
+.log .ok{color:#69f0ae;} .log .err{color:#e53935;}
+.cola-btn{display:flex;justify-content:space-between;align-items:center;
+  background:#0d1117;border:1px solid #30363d;border-radius:8px;
+  padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:.15s;}
+.cola-btn:hover{border-color:#1e88e5;background:#161b22;}
+.cola-btn .cb-nombre{color:#e6edf3;font-size:.82rem;font-weight:700;}
+.cola-btn .cb-hora{color:#f0a500;font-size:.72rem;}
+.cola-btn .cb-msg{color:#8b949e;font-size:.7rem;margin-top:2px;}
+.estado-badge{display:inline-block;font-size:.65rem;padding:1px 7px;border-radius:10px;margin-left:6px;font-weight:700;}
+.estado-hoy{background:#1b5e20;color:#69f0ae;}
+.estado-fut{background:#1e3a5f;color:#90caf9;}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>📋 Programar Mensajes — IsabSoft CRM</h1>
+    <p>Cargá los mensajes → el trigger los envía al CRM automáticamente en la fecha programada</p>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="card">
+    <div class="card-title">Nuevo mensaje</div>
+
+    <label>Cliente</label>
+    <select id="sel-cliente" onchange="selCliente()">
+      <option value="">— Seleccionar cliente —</option>
+    </select>
+
+    <div class="row2">
+      <div>
+        <label>Teléfono / Canal</label>
+        <input id="inp-tel" type="text" placeholder="+595981..."/>
+      </div>
+      <div>
+        <label>Canal</label>
+        <div class="canal-btns">
+          <div class="canal-btn active" onclick="setCanal('WA',this)">💬 WA</div>
+          <div class="canal-btn" onclick="setCanal('Messenger',this)">📘 MSG</div>
+          <div class="canal-btn" onclick="setCanal('Llamada',this)">📞</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div>
+        <label>Fecha</label>
+        <input id="inp-fecha" type="date"/>
+      </div>
+      <div>
+        <label>Hora (Paraguay)</label>
+        <input id="inp-hora" type="time" value="09:00"/>
+      </div>
+    </div>
+
+    <label>Plantillas rápidas</label>
+    <div class="templates">
+      <button class="tpl-btn" onclick="usarTpl('followup')">Follow-up</button>
+      <button class="tpl-btn" onclick="usarTpl('cobro')">Cobro</button>
+      <button class="tpl-btn" onclick="usarTpl('demo')">Demo</button>
+      <button class="tpl-btn" onclick="usarTpl('confirmacion')">Confirmación</button>
+      <button class="tpl-btn" onclick="usarTpl('contrato')">Contrato</button>
+      <button class="tpl-btn" onclick="usarTpl('reset')">Reset</button>
+    </div>
+
+    <label>Mensaje</label>
+    <textarea id="inp-msg" placeholder="Escribí el mensaje o usá una plantilla arriba..."></textarea>
+
+    <label>Notas internas (opcional)</label>
+    <input id="inp-notas" type="text" placeholder="Ej: tercer follow-up, no respondió x2"/>
+
+    <button class="btn-agregar" onclick="agregar()">+ Agregar a la lista</button>
+  </div>
+
+  <!-- COLA DESDE JSON -->
+  <div class="card">
+    <div class="card-title" id="cola-titulo">⚡ Cargando cola CRM...</div>
+    <p style="font-size:.72rem;color:#8b949e;margin-bottom:10px;">Clic en el cliente → se agrega directo a la lista de envío</p>
+    <div id="cola-04"><div class="empty">Cargando desde crm_cola.json...</div></div>
+  </div>
+
+  <!-- LISTA PREVIEW -->
+  <div class="card">
+    <div class="card-title">Mensajes a enviar <span class="badge" id="badge">0</span></div>
+    <div id="lista-preview"><p class="empty">Sin mensajes aún — agregá uno arriba</p></div>
+    <button class="btn-enviar" id="btn-enviar" onclick="enviarTodo()" disabled>🚀 Enviar todo al CRM</button>
+    <div class="log" id="log"></div>
+  </div>
+
+</div>
+<script>
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbxZMffRssiPI8YjY8F-7L8ZXrYxogTtEliAPRXJ16O-s7RNl_H4n_wN20ni_BUeyCUG/exec';
+
+var CLIENTES=[
+  {n:'Alcides Fernández',t:'+595983670608'},
+  {n:'Braulio Catalán',t:'+595983435561'},
+  {n:'Clider Schussmuller',t:'+595981376388'},
+  {n:'Cristian Britos — CBTEC',t:'+595981981091'},
+  {n:'David Alfonzo — Motormat',t:'+595976957120'},
+  {n:'Eduardo — Taller',t:'+595982199600'},
+  {n:'Enrique Enciso',t:'+595971233644'},
+  {n:'Eulogio',t:'+595986491067'},
+  {n:'GCR Motors',t:'+595974388777'},
+  {n:'Gustavo Fabián Reyes',t:'+595981766053'},
+  {n:'Ivan Nuñez — Seguros',t:'+595971330442'},
+  {n:'Jesus Marmolejo — ERP',t:'+595976585313'},
+  {n:'Jimmy Gómez',t:'+595981777327'},
+  {n:'Jorge — Agua Hunza',t:'+595985581265'},
+  {n:'Jose Berni — AgroSoft',t:'+595991852582'},
+  {n:'Karen Ortellado',t:'+595981797880'},
+  {n:'Kers Automotive',t:'+595993586117'},
+  {n:'LS Autocentro',t:'+595973549820'},
+  {n:'Miguel Acuña — GestFact',t:'+595961807675'},
+  {n:'Nato',t:'+595985462841'},
+  {n:'Oscar Acuña',t:'Messenger'},
+  {n:'Pedro Fernández',t:'+595992547312'},
+  {n:'Rodrigo Sarubbi — INGEMON',t:'+595981884743'},
+  {n:'S.S.G.',t:'+595981220528'},
+  {n:'Taller Chess',t:'Messenger'},
+  {n:'Taller Dima',t:'+595981577775'},
+  {n:'Taller Sanabria',t:'+595976753697'},
+  {n:'Vertical Reformas',t:'+595993284383'},
+  {n:'Cliente Taller',t:'+595986340084'},
+  {n:'Giovanni — Taller Automotriz',t:'+595961309822'},
+  {n:'Ganadero (Ped Soft)',t:'+595985673022'},
+  {n:'Climar',t:'pendiente'},
+  {n:'📢 Flyer — WA Status / Facebook',t:'—'},
+  {n:'Daniel Abatte — Taller',t:'+595981420695'},
+];
+
+var TPLS={
+  followup:'Buen día [NOMBRE], quería saber si pudo revisar nuestra propuesta. ¿Tiene unos minutos esta semana para conversar?',
+  cobro:'Buen día [NOMBRE], le recuerdo el abono pendiente. ¿Puede confirmarnos cuándo lo realizará?',
+  demo:'Buen día [NOMBRE], ¿tiene 15 minutos esta semana para ver el sistema funcionando en vivo? Le paso el link cuando confirme.',
+  confirmacion:'Buen día [NOMBRE], le confirmo nuestra reunión de mañana. ¿Seguimos en pie?',
+  contrato:'Buen día [NOMBRE], ¿pudo revisar las actualizaciones que le enviamos? Le tengo lista la propuesta de contrato de continuidad cuando quiera.',
+  reset:'Buen día [NOMBRE], retomo el contacto. Si en algún momento quiere ver el sistema, quedo a disposición sin compromiso.',
+};
+
+var canalActivo='WA';
+var lista=[];
+var colaJSON=[];
+
+var sel=document.getElementById('sel-cliente');
+CLIENTES.forEach(function(c,i){
+  var o=document.createElement('option');o.value=i;o.textContent=c.n;sel.appendChild(o);
+});
+
+var m=new Date();m.setDate(m.getDate()+1);
+document.getElementById('inp-fecha').value=m.getFullYear()+'-'+String(m.getMonth()+1).padStart(2,'0')+'-'+String(m.getDate()).padStart(2,'0');
+
+function selCliente(){
+  var idx=document.getElementById('sel-cliente').value;
+  if(idx==='')return;
+  document.getElementById('inp-tel').value=CLIENTES[idx].t;
+  document.getElementById('inp-msg').value='';
+  document.getElementById('inp-notas').value='';
+}
+function setCanal(c,btn){
+  canalActivo=c;
+  document.querySelectorAll('.canal-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function usarTpl(tipo){
+  var idx=document.getElementById('sel-cliente').value;
+  var nombre=idx!==''?CLIENTES[idx].n.split(' — ')[0]:'[NOMBRE]';
+  document.getElementById('inp-msg').value=TPLS[tipo].replace('[NOMBRE]',nombre);
+}
+function toISO(fecha,hora){
+  var d=fecha.split('-'),h=hora.split(':');
+  return new Date(Date.UTC(+d[0],+d[1]-1,+d[2],+h[0]+3,+h[1]||0)).toISOString();
+}
+function hoyISO(){
+  var h=new Date();
+  return h.getFullYear()+'-'+String(h.getMonth()+1).padStart(2,'0')+'-'+String(h.getDate()).padStart(2,'0');
+}
+function agregar(){
+  var idx=document.getElementById('sel-cliente').value;
+  var nombre=idx!==''?CLIENTES[idx].n:'';
+  var tel=document.getElementById('inp-tel').value.trim();
+  var fecha=document.getElementById('inp-fecha').value;
+  var hora=document.getElementById('inp-hora').value||'09:00';
+  var msg=document.getElementById('inp-msg').value.trim();
+  var notas=document.getElementById('inp-notas').value.trim();
+  if(!nombre){alert('Seleccioná un cliente');return;}
+  if(!tel){alert('Ingresá el teléfono');return;}
+  if(!fecha){alert('Seleccioná la fecha');return;}
+  if(!msg){alert('Escribí el mensaje');return;}
+  lista.push({nombre:nombre.split(' — ')[0],tel:tel,iso:toISO(fecha,hora),
+    display:fecha.split('-').reverse().join('/')+' '+hora,msg:msg,canal:canalActivo,notas:notas});
+  render();
+  document.getElementById('inp-msg').value='';
+  document.getElementById('inp-notas').value='';
+}
+function render(){
+  var d=document.getElementById('lista-preview');
+  document.getElementById('badge').textContent=lista.length;
+  document.getElementById('btn-enviar').disabled=lista.length===0;
+  if(!lista.length){d.innerHTML='<p class="empty">Sin mensajes aún — agregá uno arriba</p>';return;}
+  d.innerHTML=lista.map(function(x,i){
+    return '<div class="lista-item"><div>'+
+      '<span class="li-nombre">'+x.nombre+'</span> · <span class="li-canal">'+x.tel+'</span><br/>'+
+      '<span class="li-fecha">📅 '+x.display+'</span> · <span class="li-canal">'+x.canal+'</span><br/>'+
+      '<span class="li-msg">'+x.msg.substring(0,90)+(x.msg.length>90?'…':'')+'</span>'+
+      '</div><button class="li-del" onclick="del('+i+')">🗑</button></div>';
+  }).join('');
+}
+function del(i){lista.splice(i,1);render();}
+function enviarTodo(){
+  if(!lista.length)return;
+  document.getElementById('btn-enviar').disabled=true;
+  var log=document.getElementById('log');
+  log.innerHTML='Enviando '+lista.length+' mensajes...<br/>';
+  var idx=0;
+  function uno(){
+    if(idx>=lista.length){
+      log.innerHTML+='<span class="ok">✅ Todos programados correctamente</span>';
+      lista=[];render();return;
+    }
+    var x=lista[idx];
+    var cb='cb_'+Date.now()+'_'+idx;
+    var sc=document.createElement('script');
+    var done=false;
+    window[cb]=function(r){
+      done=true;delete window[cb];if(sc.parentNode)sc.parentNode.removeChild(sc);
+      log.innerHTML+=(r&&r.ok?'<span class="ok">✓ ':'<span class="err">✗ ')+x.nombre+' — '+x.display+'</span><br/>';
+      idx++;setTimeout(uno,400);
+    };
+    sc.onerror=function(){
+      if(done)return;done=true;delete window[cb];if(sc.parentNode)sc.parentNode.removeChild(sc);
+      log.innerHTML+='<span class="err">✗ '+x.nombre+' — sin conexión</span><br/>';
+      idx++;setTimeout(uno,400);
+    };
+    var body={action:'programar',nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,canal:x.canal,notas:x.notas};
+    sc.src=SCRIPT_URL+'?callback='+cb+'&body='+btoa(unescape(encodeURIComponent(JSON.stringify(body))));
+    document.head.appendChild(sc);
+  }
+  uno();
+}
+
+function renderColaDesdeJSON(){
+  var d=document.getElementById('cola-04');
+  var hoy=hoyISO();
+  var pendientes=colaJSON.filter(function(x){
+    return (x.estado==='programado'||x.estado==='pendiente') && x.fecha>=hoy;
+  });
+  if(!pendientes.length){
+    d.innerHTML='<div class="empty">No hay mensajes pendientes para hoy en adelante.</div>'+
+      '<button class="btn-agregar" style="margin-top:10px" onclick="cargarTodosJSON()">+ Cargar toda la cola pendiente</button>';
+    return;
+  }
+  var html='';
+  var diaActual='';
+  var hoyStr=hoy;
+  pendientes.forEach(function(x){
+    if(x.fecha!==diaActual){
+      diaActual=x.fecha;
+      var p=x.fecha.split('-');
+      var label=p[2]+'/'+p[1]+'/'+p[0];
+      var esHoy=x.fecha===hoyStr;
+      html+='<div style="font-size:.7rem;font-weight:700;color:#1e88e5;text-transform:uppercase;'+
+        'letter-spacing:.06em;margin:12px 0 6px;">'+(esHoy?'🔴 HOY — ':'')+label+'</div>';
+    }
+    var idx=colaJSON.indexOf(x);
+    html+='<div class="cola-btn" onclick="cargarItemJSON('+idx+')">'+
+      '<div><div class="cb-nombre">'+x.nombre+'</div>'+
+      '<div class="cb-msg">'+x.mensaje.substring(0,80)+'…</div></div>'+
+      '<div class="cb-hora" style="white-space:nowrap">📅 '+x.hora+'</div></div>';
+  });
+  html+='<button class="btn-agregar" style="margin-top:10px" onclick="cargarTodosJSON()">+ Cargar toda la cola pendiente</button>';
+  d.innerHTML=html;
+}
+
+function cargarItemJSON(i){
+  var x=colaJSON[i];
+  lista.push({
+    nombre:x.nombre,
+    tel:x.telefono,
+    iso:toISO(x.fecha,x.hora),
+    display:x.fecha.split('-').reverse().join('/')+' '+x.hora,
+    msg:x.mensaje,
+    canal:'WA',
+    notas:x.nota||''
+  });
+  render();
+}
+
+function cargarTodosJSON(){
+  var hoy=hoyISO();
+  colaJSON.filter(function(x){
+    return (x.estado==='programado'||x.estado==='pendiente') && x.fecha>=hoy;
+  }).forEach(function(x){
+    lista.push({
+      nombre:x.nombre,
+      tel:x.telefono,
+      iso:toISO(x.fecha,x.hora),
+      display:x.fecha.split('-').reverse().join('/')+' '+x.hora,
+      msg:x.mensaje,
+      canal:'WA',
+      notas:x.nota||''
+    });
+  });
+  render();
+}
+
+fetch('crm_cola.json?v='+Date.now())
+  .then(function(r){return r.json();})
+  .then(function(data){
+    colaJSON=data.cola||[];
+    var hoy=hoyISO();
+    var pendientesHoy=colaJSON.filter(function(x){return x.estado==='programado'&&x.fecha===hoy;}).length;
+    var pendientesFut=colaJSON.filter(function(x){return x.estado==='programado'&&x.fecha>hoy;}).length;
+    document.getElementById('cola-titulo').textContent=
+      '⚡ Cola CRM — Act. '+data.ultima_actualizacion+
+      ' · Hoy: '+pendientesHoy+' · Próximos: '+pendientesFut;
+    renderColaDesdeJSON();
+  })
+  .catch(function(){
+    document.getElementById('cola-titulo').textContent='⚡ Cola CRM — Error al cargar JSON';
+    document.getElementById('cola-04').innerHTML='<div class="empty">No se pudo cargar crm_cola.json</div>';
+  });
+
+render();
+</script>
+</body>
+</html>
