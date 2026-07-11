@@ -1110,6 +1110,26 @@
             "mensaje": "Berni, ¿cómo te fue con la reunión? ¿Pudiste hablar con tu suegro sobre retomar el sistema?",
             "estado": "programado",
             "nota": "Respondió 10/07 tras 4 meses silencio, reunión con suegro ese día. Si no responde al 24/07 → cerrar definitivamente."
+        },
+        {
+            "id": "GCR-16072026-FOLLOWUP",
+            "nombre": "GCR Motors",
+            "telefono": "+595974388777",
+            "fecha": "2026-07-16",
+            "hora": "11:00",
+            "mensaje": "Buen día, ¿cómo están? Le escribo para saber si pudo ver la propuesta del sistema para el taller — instalación sin costo y Gs. 400.000/mes con todo incluido: presupuestos, clientes, vehículos, WhatsApp IA y facturación.\n\n¿Tiene un momento esta semana para verlo en 10 minutos?",
+            "estado": "programado",
+            "nota": "Mensaje enviado 10/07 con promo instalación gratis + Gs.400k/mes todo incluido. Sin respuesta. Follow-up 16/07."
+        },
+        {
+            "id": "JORGE-14072026-FOLLOWUP",
+            "nombre": "Jorge — Agua Hunza Paraguay",
+            "telefono": "+595985581265",
+            "fecha": "2026-07-14",
+            "hora": "11:00",
+            "mensaje": "Sr. Jorge, buen día. Quedo atento a la lista de cambios que necesita en la web. Cuando la tenga me la envía y arrancamos.",
+            "estado": "programado",
+            "nota": "Respondió 10/07 pidiendo cambios en la web. Carlos respondió 'desde Gs.200k según necesidad'. Esperando lista de cambios de Jorge."
         }
     ]
 }
