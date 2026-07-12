@@ -1132,6 +1132,26 @@
             "nota": "Cobro mensual Gs.350k. Cuota 3 de 14. Vence 26/07/2026."
         },
         {
+            "id": "CBTEC-14082026-COBRO",
+            "nombre": "Cristian Britos (CBTEC)",
+            "telefono": "+595981981091",
+            "fecha": "2026-08-14",
+            "hora": "16:15",
+            "mensaje": "Cristian, buenas tardes. Pasando para avisar que ya entramos en la quincena — cuando puedas me hacés llegar los Gs. 200.000. Gracias!",
+            "estado": "programado",
+            "nota": "Cobro quincenal día 14 agosto a las 16:15."
+        },
+        {
+            "id": "CBTEC-28082026-COBRO",
+            "nombre": "Cristian Britos (CBTEC)",
+            "telefono": "+595981981091",
+            "fecha": "2026-08-28",
+            "hora": "16:15",
+            "mensaje": "Cristian, buenas tardes. Pasando para avisar que cerramos el mes — cuando puedas me hacés llegar los Gs. 200.000. Gracias!",
+            "estado": "programado",
+            "nota": "Cobro quincenal último viernes agosto a las 16:15."
+        },
+        {
             "id": "CLIMAR-03082026-AVISO-COBRO",
             "nombre": "Climar",
             "telefono": "pendiente confirmar",
