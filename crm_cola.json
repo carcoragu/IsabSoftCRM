@@ -1102,6 +1102,36 @@
             "nota": "Inbound 11/07 vía promo WA. Respondió automático (bot). Pasado al lunes 14/07 por falta de tiempo el sábado. Taller mecánico — Kers_Cod_33_33."
         },
         {
+            "id": "MIGUEL-14072026-CONDICIONES",
+            "nombre": "Miguel Acuña",
+            "telefono": "+595961807675",
+            "fecha": "2026-07-14",
+            "hora": "10:30",
+            "mensaje": "Miguel, buen día. Le paso un resumen de las condiciones de su plan para tenerlo por escrito:\n\n📋 *Plan GestFact — PCM Taller Mecánico*\n✅ Sistema instalado y funcionando desde mayo 2026\n✅ Acceso desde celular y PC incluido\n✅ Soporte por WhatsApp incluido\n✅ Actualizaciones y mejoras incluidas\n\n💳 *Pagos:*\n— Instalación: Gs. 200.000 ✅ (pagado 26/05)\n— Mensual: Gs. 350.000 — se cobra el 26 de cada mes\n— Duración: 14 cuotas (hasta jun 2027), luego Gs. 150.000/mes mantenimiento\n\n📌 *Condiciones:*\n— Cancelación con 15 días de aviso previo\n— El sistema y los datos son suyos — si en algún momento decide no continuar, le entregamos todo\n— Ante cualquier problema, soporte inmediato por WhatsApp\n\nQuedo a disposición para cualquier consulta. 👍",
+            "estado": "programado",
+            "nota": "Condiciones básicas del servicio — enviadas por escrito para respaldo de ambas partes."
+        },
+        {
+            "id": "MIGUEL-19072026-AVISO-COBRO",
+            "nombre": "Miguel Acuña",
+            "telefono": "+595961807675",
+            "fecha": "2026-07-19",
+            "hora": "10:00",
+            "mensaje": "Miguel, buen día. Le recuerdo que el domingo 26 vence la cuota del mes — Gs. 350.000. Cuando pueda me avisa. Gracias!",
+            "estado": "programado",
+            "nota": "Aviso una semana antes del cobro. Cuota 3 — vence 26/07/2026."
+        },
+        {
+            "id": "MIGUEL-26072026-COBRO",
+            "nombre": "Miguel Acuña",
+            "telefono": "+595961807675",
+            "fecha": "2026-07-26",
+            "hora": "09:00",
+            "mensaje": "Miguel, buen día. Hoy vence la cuota de julio — Gs. 350.000. Cuando pueda me avisa. Gracias!",
+            "estado": "programado",
+            "nota": "Cobro mensual Gs.350k. Cuota 3 de 14. Vence 26/07/2026."
+        },
+        {
             "id": "BERNI-24072026-FOLLOWUP",
             "nombre": "Jose Berni",
             "telefono": "+595991852582",
