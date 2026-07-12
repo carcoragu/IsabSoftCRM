@@ -1182,14 +1182,24 @@
             "nota": "Respondió 10/07 pidiendo cambios en la web. Carlos respondió 'desde Gs.200k según necesidad'. Esperando lista de cambios de Jorge."
         },
         {
-            "id": "CBTEC-13072026-COBRO",
+            "id": "CBTEC-14072026-COBRO",
             "nombre": "Cristian Britos (CBTEC)",
             "telefono": "+595981981091",
-            "fecha": "2026-07-13",
-            "hora": "10:30",
-            "mensaje": "Cristian, buen día. Pasando para avisar que ya entramos en la quincena — cuando puedas me hacés llegar los Gs. 200.000. Gracias!",
+            "fecha": "2026-07-14",
+            "hora": "16:15",
+            "mensaje": "Cristian, buenas tardes. Pasando para avisar que ya entramos en la quincena — cuando puedas me hacés llegar los Gs. 200.000. Gracias!",
             "estado": "programado",
-            "nota": "Cobro quincenal Gs.200k. Último pago Gs.215k el 27/06. Próximo 12-15/07."
+            "nota": "Cobro quincenal día 14 a las 16:15. Último pago Gs.215k el 27/06."
+        },
+        {
+            "id": "CBTEC-31072026-COBRO",
+            "nombre": "Cristian Britos (CBTEC)",
+            "telefono": "+595981981091",
+            "fecha": "2026-07-31",
+            "hora": "16:15",
+            "mensaje": "Cristian, buenas tardes. Pasando para avisar que cerramos el mes — cuando puedas me hacés llegar los Gs. 200.000. Gracias!",
+            "estado": "programado",
+            "nota": "Cobro quincenal último viernes del mes a las 16:15."
         },
         {
             "id": "KAREN-13072026-AMISTAT",
