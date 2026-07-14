@@ -278,7 +278,8 @@ function enviarTodo(){
     var done=false;
     window[cb]=function(r){
       done=true;delete window[cb];if(sc.parentNode)sc.parentNode.removeChild(sc);
-      log.innerHTML+=(r&&r.ok?'<span class="ok">✓ ':'<span class="err">✗ ')+x.nombre+' — '+x.display+'</span><br/>';
+      var detalle=(!r||!r.ok)&&r&&r.error?' → '+r.error:'';
+      log.innerHTML+=(r&&r.ok?'<span class="ok">✓ ':'<span class="err">✗ ')+x.nombre+' — '+x.display+detalle+'</span><br/>';
       idx++;setTimeout(uno,400);
     };
     sc.onerror=function(){
