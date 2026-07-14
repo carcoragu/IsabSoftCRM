@@ -141,7 +141,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6;}
 
 </div>
 <script>
-var SCRIPT_URL='https://script.google.com/macros/s/AKfycbxZMffRssiPI8YjY8F-7L8ZXrYxogTtEliAPRXJ16O-s7RNl_H4n_wN20ni_BUeyCUG/exec';
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycby3_FzX56NWkVWDlvuBX4wvrzJv9Dtvpih-exA-ufyGKmwLSvrKDcvsKOODWlATMAU8/exec';
 
 var CLIENTES=[
   {n:'Alcides Fernández',t:'+595983670608'},
@@ -192,6 +192,7 @@ var TPLS={
 var canalActivo='WA';
 var lista=[];
 var colaJSON=[];
+var enviando=false;
 
 var sel=document.getElementById('sel-cliente');
 CLIENTES.forEach(function(c,i){
@@ -259,7 +260,8 @@ function render(){
 }
 function del(i){lista.splice(i,1);render();}
 function enviarTodo(){
-  if(!lista.length)return;
+  if(!lista.length||enviando)return;
+  enviando=true;
   document.getElementById('btn-enviar').disabled=true;
   var log=document.getElementById('log');
   log.innerHTML='Enviando '+lista.length+' mensajes...<br/>';
@@ -267,10 +269,11 @@ function enviarTodo(){
   function uno(){
     if(idx>=lista.length){
       log.innerHTML+='<span class="ok">✅ Todos programados correctamente</span>';
-      lista=[];render();return;
+      lista=[];render();enviando=false;return;
     }
     var x=lista[idx];
-    var cb='cb_'+Date.now()+'_'+idx;
+    var id='MSG_'+Date.now()+'_'+idx;
+    var cb='cb_'+id;
     var sc=document.createElement('script');
     var done=false;
     window[cb]=function(r){
@@ -283,7 +286,7 @@ function enviarTodo(){
       log.innerHTML+='<span class="err">✗ '+x.nombre+' — sin conexión</span><br/>';
       idx++;setTimeout(uno,400);
     };
-    var body={action:'programar',nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,canal:x.canal,notas:x.notas};
+    var body={action:'add',id:id,nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,estado:'pending',canal:x.canal,notas:x.notas};
     sc.src=SCRIPT_URL+'?callback='+cb+'&body='+btoa(unescape(encodeURIComponent(JSON.stringify(body))));
     document.head.appendChild(sc);
   }
