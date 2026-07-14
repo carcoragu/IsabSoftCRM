@@ -1153,8 +1153,8 @@
         },
         {
             "id": "CLIMAR-03082026-AVISO-COBRO",
-            "nombre": "Climar",
-            "telefono": "pendiente confirmar",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
             "fecha": "2026-08-03",
             "hora": "10:00",
             "mensaje": "Buen día. Le recuerdo que el lunes 10 vence la primera cuota mensual — Gs. 400.000. Cuando pueda me avisa. Gracias!",
@@ -1163,13 +1163,23 @@
         },
         {
             "id": "CLIMAR-10082026-COBRO",
-            "nombre": "Climar",
-            "telefono": "pendiente confirmar",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
             "fecha": "2026-08-10",
             "hora": "09:00",
             "mensaje": "Buen día. Hoy vence la primera cuota mensual — Gs. 400.000. Cuando pueda me avisa. Gracias!",
             "estado": "programado",
             "nota": "Primer cobro mensual Gs.400k. Cuota 1 de 12. Instalación Gs.500k cobrada 10/07/2026."
+        },
+        {
+            "id": "CLIMAR-14072026-1500-FOLLOWUP",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-07-14",
+            "hora": "15:00",
+            "mensaje": "Marcos, buenas tardes! 👋\n\nSolo quería confirmar si recibiste el mensaje anterior con el resumen del sistema y los módulos adicionales.\n\nEstamos listos para arrancar el desarrollo esta semana y llegar a la entrega del *21/07* según lo acordado 🚀\n\n¿Nos confirmás?",
+            "estado": "programado",
+            "nota": "Seguimiento si no responde al mensaje de resumen plan + adicional PC Gs.500k. Cliente caliente — mover rápido."
         },
         {
             "id": "BERNI-24072026-FOLLOWUP",
