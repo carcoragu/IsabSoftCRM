@@ -1188,8 +1188,18 @@
             "fecha": "2026-07-14",
             "hora": "15:00",
             "mensaje": "Marcos, buenas tardes! 👋\n\nSolo quería confirmar si recibiste el mensaje anterior con el resumen del sistema y los módulos adicionales.\n\nEstamos listos para arrancar el desarrollo esta semana y llegar a la entrega del *21/07* según lo acordado 🚀\n\n¿Nos confirmás?",
+            "estado": "cancelado",
+            "nota": "Cancelado 14/07 — Marcos solo dio visto, se reagenda para 15/07 09:00."
+        },
+        {
+            "id": "CLIMAR-15072026-0900-FOLLOWUP",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-07-15",
+            "hora": "09:00",
+            "mensaje": "Marcos, buenos días! 👋\n\nSolo quería confirmar si recibiste el mensaje anterior con el resumen del sistema, los módulos adicionales y la impresora.\n\nEstamos listos para arrancar el desarrollo esta semana y llegar a la entrega del *21/07* según lo acordado.\n\n¿Nos confirmás?",
             "estado": "programado",
-            "nota": "Seguimiento si no responde al mensaje de resumen plan + adicional PC Gs.500k. Cliente caliente — mover rápido."
+            "nota": "Reagendado desde 14/07 15:00. Marcos solo dio visto al mensaje anterior."
         },
         {
             "id": "BERNI-24072026-FOLLOWUP",
