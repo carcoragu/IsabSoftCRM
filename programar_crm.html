@@ -287,7 +287,7 @@ function enviarTodo(){
       log.innerHTML+='<span class="err">✗ '+x.nombre+' — sin conexión</span><br/>';
       idx++;setTimeout(uno,400);
     };
-    var body={action:'programar',nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,canal:x.canal,notas:x.notas};
+    var body={action:'add',id:id,nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,estado:'pending',canal:x.canal,notas:x.notas};
     sc.src=SCRIPT_URL+'?callback='+cb+'&body='+btoa(unescape(encodeURIComponent(JSON.stringify(body))));
     document.head.appendChild(sc);
   }
