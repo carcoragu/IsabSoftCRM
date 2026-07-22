@@ -1402,6 +1402,16 @@
             "nota": "Inbound 19/07 vía Meta Ads. Demo enviada, precio consultado, objeción: 'estoy buscando algo más económico porque estamos empezando recién'. Follow-up 21/07 sin respuesta. Este mensaje: social proof Climar (instalado 22/07) + responde objeción precio sin bajar tarifa. Horario 8:00 — talleres revisan celular antes de meterse con los autos."
         },
         {
+            "id": "GUSTAVO-22082026-0900-EGRESOS",
+            "nombre": "Gustavo Fabián Reyes — Imprenta Graphium",
+            "telefono": "+595981766053",
+            "fecha": "2026-08-22",
+            "hora": "09:00",
+            "mensaje": "Gus, buen día. Activé el módulo de egresos en el sistema — podés registrar salarios, alquiler, ANDE, hosting y ver cuánto ganás limpio por mes. ¿Querés que lo vemos 10 minutos esta semana?",
+            "estado": "programado",
+            "nota": "Sistema instalado 3 equipos desde ene/26, nunca pagó. Hard close 13/07 sin respuesta. Llamada 22/07 10:43 no atendió. Pausa 30 días. Este mensaje: ángulo valor (egresos nunca activado) sin mencionar cobro. Si responde → demo → al final mencionar primera cuota 700k. Si no responde → cerrar definitivamente. NUNCA mencionar total Gs.1.350.000 — siempre 'primera cuota de 700k'."
+        },
+        {
             "id": "JIMMY-11082026-0900-TIENDA",
             "nombre": "Jimmy Gómez — Tienda Online",
             "telefono": "+595981777327",
