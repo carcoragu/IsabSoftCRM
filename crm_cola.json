@@ -1,5 +1,5 @@
 {
-    "ultima_actualizacion": "2026-07-14",
+    "ultima_actualizacion": "2026-07-22",
     "cola": [
         {
             "id": "JESUS-13072026-ERP",
@@ -1390,6 +1390,16 @@
             "mensaje": "Enrique, buen día. Esta semana arrancamos un desarrollo nuevo con un cliente. Por el Mes de la Amistad tenemos condiciones especiales para proyectos nuevos.\n\n¿Sigue en pie la app de estadísticas? Si querés retomamos esta semana.",
             "estado": "programado",
             "nota": "App estadísticas fútbol — desarrollo a medida. Múltiples msgs junio sin respuesta. Mes de la Amistad — condiciones especiales generales."
+        },
+        {
+            "id": "HECTOR-23072026-0800-FOLLOWUP",
+            "nombre": "Hector — Taller Mecánico (Cod_34)",
+            "telefono": "+595986400027",
+            "fecha": "2026-07-23",
+            "hora": "08:00",
+            "mensaje": "Hector, buen día! Hoy instalamos el sistema en un taller acá en Asunción — ellos también arrancaron recién y les viene perfecto para manejar los presupuestos y el stock de repuestos desde el celular.\n\nEl plan es Gs. 350.000/mes y este mes la instalación es sin costo — ideal para cuando uno está empezando porque no hay inversión grande por adelantado.\n\n¿Hacemos una videollamada de 15 minutos esta semana? 👌",
+            "estado": "programado",
+            "nota": "Inbound 19/07 vía Meta Ads. Demo enviada, precio consultado, objeción: 'estoy buscando algo más económico porque estamos empezando recién'. Follow-up 21/07 sin respuesta. Este mensaje: social proof Climar (instalado 22/07) + responde objeción precio sin bajar tarifa. Horario 8:00 — talleres revisan celular antes de meterse con los autos."
         },
         {
             "id": "JORGE-15072026-0930-PRESUPUESTO",
