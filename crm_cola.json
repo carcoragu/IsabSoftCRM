@@ -1402,6 +1402,16 @@
             "nota": "Inbound 19/07 vía Meta Ads. Demo enviada, precio consultado, objeción: 'estoy buscando algo más económico porque estamos empezando recién'. Follow-up 21/07 sin respuesta. Este mensaje: social proof Climar (instalado 22/07) + responde objeción precio sin bajar tarifa. Horario 8:00 — talleres revisan celular antes de meterse con los autos."
         },
         {
+            "id": "JIMMY-11082026-0900-TIENDA",
+            "nombre": "Jimmy Gómez — Tienda Online",
+            "telefono": "+595981777327",
+            "fecha": "2026-08-11",
+            "hora": "09:00",
+            "mensaje": "Jimmy, buen día. Armé una demo de cómo podría quedar tu tienda online:\n\n👉 https://carcoragu.github.io/electroshop-py/\n\nLo que incluye el plan económico:\n✅ Tienda online con tu catálogo de productos y precios\n✅ Fotos de cada producto\n✅ Botón de WhatsApp para que el cliente te contacte directo\n✅ Dominio propio .com (a tu nombre)\n✅ Sin comisión por cada venta\n✅ Pagos de tus clientes directo a tu cuenta bancaria\n\nArranque: Gs. 250.000 (única vez — configuración + dominio)\nMantenimiento: Gs. 300.000/mes\n\n¿Le das una mirada y me decís si avanzamos?",
+            "estado": "programado",
+            "nota": "8 meses seguimiento, sobre-mensajeado. Pausa 3 semanas. Dijo 'estoy buscando algo más barato'. Plan nuevo: GitHub Pages (hosting gratis), sin Pagopar, pagos por transferencia bancaria. Dominio .com ~Gs.6.400/mes absorbido por IsabSoft. Net IsabSoft: ~Gs.293.600/mes. Demo en vivo: carcoragu.github.io/electroshop-py/"
+        },
+        {
             "id": "JORGE-15072026-0930-PRESUPUESTO",
             "nombre": "Jorge — Agua Hunza Paraguay",
             "telefono": "+595985581265",
