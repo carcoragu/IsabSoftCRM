@@ -1450,6 +1450,16 @@
                      "mensaje":  "Miguel, ¿cómo va todo? Quería avisarte que tenemos dos funciones nuevas disponibles cuando quieras activarlas: (1) Editar y eliminar repuestos del stock directamente desde el celular, y (2) Registro de fotos del odómetro por entrada/salida de vehículo. ¿Te interesa que te lo mostremos en una llamada rápida?",
                      "estado":  "programado",
                      "nota":  "ESTRATÉGICO — No activar sin conversación previa. Funciones ya en HTML (Stock edit/delete + Fotos Km). Solo falta actualizar su Apps Script (3 bloques: deleteStock, saveFoto, getFotosLight). Ver project_miguel_requerimientos.md sección FUNCIONES NUEVAS para el código exacto. Puede ser upsell a Plan Premium."
+                 },
+                 {
+                     "id":  "CLIMAR-MARCELO-30072026-TIMBRADO",
+                     "nombre":  "Marcelo Hermosilla — Contador Climar",
+                     "telefono":  "+595994284255",
+                     "fecha":  "2026-07-30",
+                     "hora":  "09:00",
+                     "mensaje":  "Marcelo, buen día. Le escribo por el timbrado de Climar — ¿pudo avanzar con el trámite en SET? Quedo disponible si necesita algún dato técnico de nuestra parte.",
+                     "estado":  "programado",
+                     "nota":  "Seguimiento timbrado Climar. Docs enviados 16/07, seguimiento 23/07 sin respuesta. Activar Facturación y Libro Ventas en menu_climar.html cuando confirme N° de timbrado."
                  }
              ]
 }
