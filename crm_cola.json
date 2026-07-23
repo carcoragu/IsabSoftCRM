@@ -1440,6 +1440,16 @@
                      "mensaje":  "Clider, sigo dando seguimiento a Martín — en cuanto responda te aviso para coordinar lo del cotizador.\n\nPor otro lado, el 1 de agosto es el primer cobro de los Gs. 400.000. ¿Me confirmás para dejarlo agendado?",
                      "enviado":  false,
                      "enviado_en":  ""
+                 },
+                 {
+                     "id":  "MIGUEL-ACTIVACION-NUEVAS-FUNCIONES",
+                     "nombre":  "Miguel Acuña — Activar Stock Edit + Fotos KM",
+                     "telefono":  "+595961807675",
+                     "fecha":  "2026-10-01",
+                     "hora":  "09:00",
+                     "mensaje":  "Miguel, ¿cómo va todo? Quería avisarte que tenemos dos funciones nuevas disponibles cuando quieras activarlas: (1) Editar y eliminar repuestos del stock directamente desde el celular, y (2) Registro de fotos del odómetro por entrada/salida de vehículo. ¿Te interesa que te lo mostremos en una llamada rápida?",
+                     "estado":  "programado",
+                     "nota":  "ESTRATÉGICO — No activar sin conversación previa. Funciones ya en HTML (Stock edit/delete + Fotos Km). Solo falta actualizar su Apps Script (3 bloques: deleteStock, saveFoto, getFotosLight). Ver project_miguel_requerimientos.md sección FUNCIONES NUEVAS para el código exacto. Puede ser upsell a Plan Premium."
                  }
              ]
 }
