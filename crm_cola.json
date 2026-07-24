@@ -1460,6 +1460,50 @@
                      "mensaje":  "Marcelo, buen día. Le escribo por el timbrado de Climar — ¿pudo avanzar con el trámite en SET? Quedo disponible si necesita algún dato técnico de nuestra parte.",
                      "estado":  "programado",
                      "nota":  "Seguimiento timbrado Climar. Docs enviados 16/07, seguimiento 23/07 sin respuesta. Activar Facturación y Libro Ventas en menu_climar.html cuando confirme N° de timbrado."
+                 },
+                 {
+                     "id":  "BEA-BENITEZ-28072026-FOLLOWUP",
+                     "nombre":  "Bea Benitez",
+                     "telefono":  "+595987395640",
+                     "fecha":  "2026-07-28",
+                     "hora":  "09:00",
+                     "mensaje":  "Hola Bea! Te escribí el viernes — ¿pudiste ver la demo? Si querés coordinamos una videollamada hoy, 15 minutos y ves el sistema en vivo. ¿Te viene bien a la mañana o la tarde?",
+                     "enviado":  false,
+                     "enviado_en":  "",
+                     "nota":  "Mensaje inicial enviado 24/07/26. Rubro pendiente confirmar. Demo enviada: carcoragu.github.io/gestfact-demo clave demo2026."
+                 },
+                 {
+                     "id":  "FER-GAUTO-28072026-FOLLOWUP",
+                     "nombre":  "Fer Gauto",
+                     "telefono":  "+595994153119",
+                     "fecha":  "2026-07-28",
+                     "hora":  "09:30",
+                     "mensaje":  "Hola Fer! Te escribí el viernes — ¿pudiste ver la demo? Si querés coordinamos una videollamada hoy, 15 minutos y ves el sistema en vivo. ¿Te viene bien a la mañana o la tarde?",
+                     "enviado":  false,
+                     "enviado_en":  "",
+                     "nota":  "Mensaje inicial enviado 24/07/26. Rubro pendiente confirmar. Demo enviada: carcoragu.github.io/gestfact-demo clave demo2026."
+                 },
+                 {
+                     "id":  "OSCAR-LOPEZ-28072026-FOLLOWUP",
+                     "nombre":  "Oscar Lopez",
+                     "telefono":  "+595985846623",
+                     "fecha":  "2026-07-28",
+                     "hora":  "10:00",
+                     "mensaje":  "Hola Oscar! Te escribí el viernes — ¿pudiste ver la demo? Si querés coordinamos una videollamada hoy, 15 minutos y ves el sistema en vivo. ¿Te viene bien a la mañana o la tarde?",
+                     "enviado":  false,
+                     "enviado_en":  "",
+                     "nota":  "Mensaje inicial enviado 24/07/26. Rubro pendiente confirmar. Demo enviada: carcoragu.github.io/gestfact-demo clave demo2026."
+                 },
+                 {
+                     "id":  "SACE-AUTOMECANICA-28072026-FOLLOWUP",
+                     "nombre":  "Sace Automecanica",
+                     "telefono":  "+595974656598",
+                     "fecha":  "2026-07-28",
+                     "hora":  "10:30",
+                     "mensaje":  "Hola! Te escribí el viernes sobre el sistema para tu taller. ¿Pudiste verlo? Coordinamos una videollamada hoy — 15 minutos y ves todo en vivo. ¿Mañana o tarde?",
+                     "enviado":  false,
+                     "enviado_en":  "",
+                     "nota":  "Inbound 21/07. Calificación enviada 21/07. Follow-up 24/07. Taller mecánico Cod_35."
                  }
              ]
 }
