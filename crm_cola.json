@@ -1390,6 +1390,26 @@
             "mensaje": "Buenos días Clider! Te comento que Carlos Ramírez ya puede ingresar con cramirez@yacyreta.com.py desde acá:\n👉 https://carcoragu.wixsite.com/csconase\n\nLa primera vez le va a pedir que cree su contraseña.\n\nPor otro lado, quería aclararte algo sobre lo que hablamos de la marca Yacyretá — la personalización visual va incluida en el plan, sin costo. Lo que sí vamos a necesitar ver aparte cuando llegue el momento es el tema de los accesos para los 100 usuarios, porque eso es otro volumen y requiere un plan específico. Cuando quieras lo conversamos 💪",
             "estado": "programado",
             "nota": "Carlos Ramírez habilitado como miembro Wix el 27/07. Sheet Vencimiento ya tiene cramirez@yacyreta.com.py con ACTIVADO=1. Mensaje combina: (1) info acceso Carlos, (2) replanteo marca agua — personalización visual incluida, 100 usuarios es Plan Empresarial aparte. Carlos dijo que necesita 100 usuarios — esperar que Clider traiga el pedido formal para cotizar."
+        },
+        {
+            "id": "LUIS-27072026-1400-PRIMER-CONTACTO",
+            "nombre": "Luis González",
+            "telefono": "+595974214312",
+            "fecha": "2026-07-27",
+            "hora": "14:00",
+            "mensaje": "Luis, buenas! Le escribo de IsabSoft.\n\nTenemos un sistema para chapería y pintura — fotos de entrada del vehículo, presupuesto por WhatsApp y ficha completa de cada cliente.\n\nLa parte de las fotos es muy útil: queda registrado el estado del auto antes de ingresar, por si después hay algún reclamo del cliente.\n\n¿Le muestro cómo funciona en 10 minutos? Demo disponible en:\n👉 carcoragu.github.io/gestfact-demo/ (clave: demo2026)\n\nEste mes tenemos instalación sin costo 💪",
+            "estado": "programado",
+            "nota": "Primer contacto. Chapería y pintura. Cod_36. GestFact aplica bien — fotos entrada/salida clave para reclamos. Promo Mes Amistad julio: instalación sin costo."
+        },
+        {
+            "id": "LUIS-01082026-0900-FOLLOWUP",
+            "nombre": "Luis González",
+            "telefono": "+595974214312",
+            "fecha": "2026-08-01",
+            "hora": "09:00",
+            "mensaje": "Luis, buen día! Le escribo nuevamente de IsabSoft. ¿Pudo ver la demo del sistema para chapería? Si tiene alguna duda o quiere que le muestre en 10 minutos cómo funciona, con gusto lo coordinamos. Saludos!",
+            "estado": "programado",
+            "nota": "Follow-up si no respondió al primer contacto del 27/07. Chapería y pintura Cod_36."
         }
     ]
 }
