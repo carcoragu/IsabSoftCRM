@@ -1410,6 +1410,16 @@
             "mensaje": "Luis, buen día! Le escribo nuevamente de IsabSoft. ¿Pudo ver la demo del sistema para chapería? Si tiene alguna duda o quiere que le muestre en 10 minutos cómo funciona, con gusto lo coordinamos. Saludos!",
             "estado": "programado",
             "nota": "Follow-up si no respondió al primer contacto del 27/07. Chapería y pintura Cod_36."
+        },
+        {
+            "id": "MARTIN-01082026-0900-FOLLOWUP",
+            "nombre": "Martín (dominio Clider)",
+            "telefono": "+595971388585",
+            "fecha": "2026-08-01",
+            "hora": "09:00",
+            "mensaje": "Martín, cómo le fue con las auditorías? Espero que todo salió bien. Cuando pueda nos coordinamos para el cotizador del csca.com.py 🙌",
+            "estado": "programado",
+            "nota": "Auditorías ISO terminan jueves 30/07. Follow-up viernes 01/08. Pendiente: conectar cotizador csca.com.py al backend (Apps Script). Si Martín no puede avanzar → ofrecer a Clider que IsabSoft lo resuelve."
         }
     ]
 }
