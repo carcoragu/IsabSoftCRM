@@ -509,7 +509,7 @@ function apiCall(body, url) {
       reject(new Error('Error de red'));
     };
     const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(body))));
-    script.src = target + '?callback=' + cbName + '&body=' + b64;
+    script.src = target + '?callback=' + cbName + '&body=' + encodeURIComponent(b64);
     document.head.appendChild(script);
     setTimeout(() => {
       if (done) return; done = true; delete window[cbName];

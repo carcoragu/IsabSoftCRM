@@ -288,7 +288,7 @@ function enviarTodo(){
       idx++;setTimeout(uno,400);
     };
     var body={action:'add',id:id,nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,estado:'pending',canal:x.canal,notas:x.notas};
-    sc.src=SCRIPT_URL+'?callback='+cb+'&body='+btoa(unescape(encodeURIComponent(JSON.stringify(body))));
+    sc.src=SCRIPT_URL+'?callback='+cb+'&body='+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(body)))));
     document.head.appendChild(sc);
   }
   uno();
