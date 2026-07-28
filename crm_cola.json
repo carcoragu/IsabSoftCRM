@@ -1500,6 +1500,16 @@
             "mensaje": "Buen día. Hace unos meses les presentamos el sistema para taller — por si el papá quiere verlo en 10 minutos cuando tenga un momento, el link sigue disponible: carcoragu.github.io/gestfact-demo/ (clave: demo2026). Sin compromiso.",
             "estado": "programado",
             "nota": "En pausa desde 16/07/2026. Retomar 01/10/2026 — 90 días. Papá es el decisor, nunca tuvo contacto directo con Carlos. Ofrecer demo directamente a él."
+        },
+        {
+            "id": "DANIEL-ABATTE-29072026-REACTIVACION",
+            "nombre": "Daniel Abatte — Taller",
+            "telefono": "+595981420695",
+            "fecha": "2026-07-29",
+            "hora": "09:30",
+            "mensaje": "Daniel, buen día. ¿Esta semana te viene bien para los 10 minutos de demo del sistema? El martes 29 o miércoles 30 a las 10h me quedaría perfecto.\n\nPor si querés ir viendo mientras tanto: carcoragu.github.io/gestfact-demo/ (clave: demo2026) 👍",
+            "estado": "programado",
+            "nota": "Inbound 21/03. Pidió demo 25/03 pero nunca confirmó horario. Sobre-mensajeado (10+ msgs). Reset 18/06 sin respuesta. Proponer horario concreto — no preguntar si le interesa. Si no responde → cerrar."
         }
     ]
 }
