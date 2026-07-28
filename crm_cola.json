@@ -1412,6 +1412,16 @@
             "nota": "Follow-up si no respondió al primer contacto del 27/07. Chapería y pintura Cod_36."
         },
         {
+            "id": "OLIMPERO-28072026-0900-FOLLOWUP",
+            "nombre": "Olimpero",
+            "telefono": "+595986331322",
+            "fecha": "2026-07-28",
+            "hora": "09:00",
+            "mensaje": "Buen día! ¿Pudo ver el sistema? Si quiere le muestro cómo quedaría para su taller en 10 minutos — a la hora que le quede cómodo hoy o mañana. 🔧",
+            "estado": "programado",
+            "nota": "Inbound 27/07. Respondió 'Sí, quiero más info'. Demo + promo enviada 16:47. Follow-up mañana 28/07. Taller mecánico. Cod_37."
+        },
+        {
             "id": "MARTIN-01082026-0900-FOLLOWUP",
             "nombre": "Martín (dominio Clider)",
             "telefono": "+595971388585",
