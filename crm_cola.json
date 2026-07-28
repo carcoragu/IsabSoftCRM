@@ -1,5 +1,5 @@
 {
-    "ultima_actualizacion": "2026-07-11",
+    "ultima_actualizacion": "2026-07-28",
     "cola": [
         {
             "id": "JESUS-13072026-ERP",
@@ -1430,6 +1430,76 @@
             "mensaje": "Martín, cómo le fue con las auditorías? Espero que todo salió bien. Cuando pueda nos coordinamos para el cotizador del csca.com.py 🙌",
             "estado": "programado",
             "nota": "Auditorías ISO terminan jueves 30/07. Follow-up viernes 01/08. Pendiente: conectar cotizador csca.com.py al backend (Apps Script). Si Martín no puede avanzar → ofrecer a Clider que IsabSoft lo resuelve."
+        },
+        {
+            "id": "MIGUEL-29072026-0900-COBRO-FU",
+            "nombre": "Miguel Acuña",
+            "telefono": "+595961807675",
+            "fecha": "2026-07-29",
+            "hora": "09:00",
+            "mensaje": "Miguel, buen día. ¿Pudo ver mi mensaje de ayer sobre la cuota de julio? Gs. 350.000 — cuando le sea posible me avisa. Gracias!",
+            "estado": "programado",
+            "nota": "Cobro julio vencido 26/07. Recordatorio enviado 28/07 18:00 sin respuesta. Follow-up suave 29/07."
+        },
+        {
+            "id": "GIOVANNI-31072026-HORARIO",
+            "nombre": "Giovanni — Taller Automotriz",
+            "telefono": "+595961309822",
+            "fecha": "2026-07-31",
+            "hora": "09:00",
+            "mensaje": "Giovanni, buen día. Propongo algo concreto: ¿el lunes 03/08 o martes 04/08 a las 10h te quedaría bien para los 10 minutos de demo? Elegís el que mejor te venga.",
+            "estado": "programado",
+            "nota": "Último intento — proponer horario específico en lugar de pregunta abierta. Si no responde → cerrar definitivamente. Cod_28."
+        },
+        {
+            "id": "AGUATERIA-31072026-FOLLOWUP",
+            "nombre": "Aguatería (proveedor agua Carlos)",
+            "telefono": "sin número WA aún",
+            "fecha": "2026-07-31",
+            "hora": "10:00",
+            "mensaje": "VERIFICAR NÚMERO antes de enviar.\nBuen día, le escribo de IsabSoft — hablamos hace dos semanas cuando fui a pagar la factura de agua. ¿Pudo ver la propuesta del autoimpresor? Así no depende más del talonario impreso.",
+            "estado": "pendiente",
+            "nota": "Primer contacto presencial 17/07. Dolor: se quedó sin facturas impresas. OBTENER NÚMERO DE WHATSAPP antes de enviar. Verificar en próxima visita."
+        },
+        {
+            "id": "DAVID-MOTORMAT-04082026-CIERRE",
+            "nombre": "David Alfonzo — Motormat",
+            "telefono": "+595976957120",
+            "fecha": "2026-08-04",
+            "hora": "09:00",
+            "mensaje": "David, entiendo que no es el momento. Cierro el seguimiento por ahora — cuando quieras retomar el tema del sistema para el taller, acá estoy.",
+            "estado": "programado",
+            "nota": "Demo 03/06 interés confirmado. 3 follow-ups sin respuesta (09/07, 16/07, 04/08). Cierre definitivo. Propuesta Gs.200k+350k/mes."
+        },
+        {
+            "id": "GCR-04082026-REACTIVA",
+            "nombre": "GCR Motors",
+            "telefono": "+595974388777",
+            "fecha": "2026-08-04",
+            "hora": "10:00",
+            "mensaje": "Buen día, soy Carlos. La última vez que hablamos me dijo 'jakure' — que cuando tuviera un hueco me iba a avisar. ¿Apareció ese hueco?",
+            "estado": "programado",
+            "nota": "Lead caliente 2 años. Dijo 'jakure' mayo/26. Follow-up 16/07 sin respuesta. Ángulo personal — recordar su propio compromiso. NO proponer horario fijo. Si responde → demo 'sobre la marcha'. Si no → cerrar."
+        },
+        {
+            "id": "GUSTAVO-REYES-22082026-EGRESOS",
+            "nombre": "Gustavo Fabián Reyes",
+            "telefono": "+595981766053",
+            "fecha": "2026-08-22",
+            "hora": "09:00",
+            "mensaje": "Gustavo, buen día. Activamos el módulo de egresos para imprenta — salarios, alquiler, ANDE, hosting — y muestra el balance real del mes automático. Como ya lo tenés instalado, solo habría que activarlo. ¿Te interesa verlo?",
+            "estado": "programado",
+            "nota": "PAUSA TOTAL hasta 22/08. NO enviar nada antes. Ángulo módulo egresos — valor sin mencionar cobro. Sistema 6 meses instalado sin pagar. Llama más fácil que WA."
+        },
+        {
+            "id": "CLIENTETALLER-01102026-REACTIVACION",
+            "nombre": "Cliente Taller (hija + papá decisor)",
+            "telefono": "+595986340084",
+            "fecha": "2026-10-01",
+            "hora": "09:00",
+            "mensaje": "Buen día. Hace unos meses les presentamos el sistema para taller — por si el papá quiere verlo en 10 minutos cuando tenga un momento, el link sigue disponible: carcoragu.github.io/gestfact-demo/ (clave: demo2026). Sin compromiso.",
+            "estado": "programado",
+            "nota": "En pausa desde 16/07/2026. Retomar 01/10/2026 — 90 días. Papá es el decisor, nunca tuvo contacto directo con Carlos. Ofrecer demo directamente a él."
         }
     ]
 }
