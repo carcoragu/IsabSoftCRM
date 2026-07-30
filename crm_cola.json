@@ -1538,7 +1538,7 @@
             "fecha": "2026-07-30",
             "hora": "11:00",
             "mensaje": "Fer, buen día! ¿Le viene bien la demo a las 10h hoy? Si no puede esta mañana, decime qué horario le queda mejor y lo coordino.",
-            "estado": "programado",
+            "estado": "enviado",
             "nota": "Demo propuesta 30/07 10h. Si no confirma antes de las 11h → enviar este recordatorio. Promo instalación gratis vence 31/07."
         },
         {
