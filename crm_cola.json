@@ -1542,6 +1542,16 @@
             "nota": "Demo propuesta 30/07 10h. Si no confirma antes de las 11h → enviar este recordatorio. Promo instalación gratis vence 31/07."
         },
         {
+            "id": "FER-GAUTO-30072026-RECORDATORIO-1900",
+            "nombre": "Fer Gauto — Taller Mecánico",
+            "telefono": "+595994153119",
+            "fecha": "2026-07-30",
+            "hora": "18:45",
+            "mensaje": "⏰ RECORDATORIO: Demo con Fer Gauto en 15 minutos — 19:00 hs. Confirmó OK. Propuesta: Gs.350k/mes instalación gratis promo julio (vence mañana 31/07). Tener lista la demo de taller.",
+            "estado": "pendiente",
+            "nota": "Recordatorio interno — demo confirmada 19:00 hoy 30/07."
+        },
+        {
             "id": "VICTOR-ROJAS-30072026-FOLLOWUP",
             "nombre": "Victor Rojas — Despensa",
             "telefono": "+595992282065",
