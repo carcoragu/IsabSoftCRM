@@ -1502,6 +1502,16 @@
             "nota": "En pausa desde 16/07/2026. Retomar 01/10/2026 — 90 días. Papá es el decisor, nunca tuvo contacto directo con Carlos. Ofrecer demo directamente a él."
         },
         {
+            "id": "HECTOR-30072026-CIERRE",
+            "nombre": "Hector — Taller Mecánico",
+            "telefono": "+595986400027",
+            "fecha": "2026-07-30",
+            "hora": "09:00",
+            "mensaje": "Héctor, entiendo que el precio puede ser un limitante cuando uno está arrancando. No te molesto más — cuando el taller esté en marcha y quieras retomar el tema, acá estoy.",
+            "estado": "programado",
+            "nota": "4 mensajes sin respuesta (19/07, 21/07, 23/07, 24/07). Precio bajado a Gs.250k sin acuerdo. Cierre respetuoso — NO enviar más follow-ups si no responde."
+        },
+        {
             "id": "OSCAR-LOPEZ-30072026-FOLLOWUP",
             "nombre": "Oscar López — Taller Mecánico",
             "telefono": "+595985846623",
