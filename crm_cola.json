@@ -1508,7 +1508,7 @@
             "fecha": "2026-07-30",
             "hora": "10:30",
             "mensaje": "Marcos, buen día. ¿Le viene bien esta mañana o lo dejamos para la tarde?",
-            "estado": "programado",
+            "estado": "pendiente",
             "nota": "RustDesk propuesto 30/07 09:00. Si no responde antes de las 10:30 → enviar este. Deploy MDE+_be pendiente. No mencionar el conflicto anterior."
         },
         {
