@@ -1502,6 +1502,16 @@
             "nota": "En pausa desde 16/07/2026. Retomar 01/10/2026 — 90 días. Papá es el decisor, nunca tuvo contacto directo con Carlos. Ofrecer demo directamente a él."
         },
         {
+            "id": "OSCAR-LOPEZ-30072026-FOLLOWUP",
+            "nombre": "Oscar López — Taller Mecánico",
+            "telefono": "+595985846623",
+            "fecha": "2026-07-30",
+            "hora": "09:00",
+            "mensaje": "Oscar, buen día! ¿Pudo ver la demo del sistema? Si quiere le muestro en 15 minutos cómo quedaría para su taller — ¿hoy o mañana le viene bien?",
+            "estado": "programado",
+            "nota": "Inbound 22/07. Pidió demo activamente, enviada ese día. 7 días sin respuesta. Si no responde → 31/07 con urgencia promo."
+        },
+        {
             "id": "FER-GAUTO-30072026-DEMO",
             "nombre": "Fer Gauto — Taller Mecánico",
             "telefono": "+595994153119",
