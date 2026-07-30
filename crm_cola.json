@@ -1522,6 +1522,16 @@
             "nota": "Cotización Gs.3.500.000 contado enviada 28/07. Pregunta printer USB/BT sin respuesta. Soft follow-up — no presionar."
         },
         {
+            "id": "BEA-BENITEZ-31072026-PROMO",
+            "nombre": "Bea Benitez — Taller Mecánico",
+            "telefono": "+595987395640",
+            "fecha": "2026-07-31",
+            "hora": "09:30",
+            "mensaje": "Bea, buen día! Solo para avisarte que la instalación sin costo vence hoy. Si querés coordinar los 15 minutos de demo antes de que cierre, hoy mismo lo hacemos.",
+            "estado": "programado",
+            "nota": "Inbound 24/07 Facebook. Follow-up 29/07 sin respuesta. Promo vence 31/07 — urgencia real. Si no responde → cerrar."
+        },
+        {
             "id": "OLIMPERO-31072026-PROMOVENCE",
             "nombre": "Olimpero — Casa de Repuestos",
             "telefono": "+595986331322",
