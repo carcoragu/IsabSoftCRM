@@ -1590,6 +1590,16 @@
             "mensaje": "Daniel, buen día. ¿Esta semana te viene bien para los 10 minutos de demo del sistema? El martes 29 o miércoles 30 a las 10h me quedaría perfecto.\n\nPor si querés ir viendo mientras tanto: carcoragu.github.io/gestfact-demo/ (clave: demo2026) 👍",
             "estado": "programado",
             "nota": "Inbound 21/03. Pidió demo 25/03 pero nunca confirmó horario. Sobre-mensajeado (10+ msgs). Reset 18/06 sin respuesta. Proponer horario concreto — no preguntar si le interesa. Si no responde → cerrar."
+        },
+        {
+            "id": "FER-GAUTO-31072026-PROPUESTA-COORDINACION",
+            "para": "Carlos → Fer Gauto +595994153119",
+            "fecha": "2026-07-31",
+            "hora": "09:00",
+            "canal": "whatsapp",
+            "mensaje": "Fer, buenas! Tengo lista la propuesta con todo lo que conversamos anoche. ¿Le parece que se la envío ahora o prefiere que lo coordine para un horario en que pueda revisarla tranquilo y si tiene dudas lo vemos por videollamada?",
+            "estado": "programado",
+            "nota": "Propuesta lista en https://carcoragu.github.io/gestfact-demo/taller-fer-gauto.html — esperar confirmación de horario antes de enviar el link. Fer se inclinó por Plan Pago Único Gs.3.500.000. Demo hecha 30/07 19:00 por videollamada."
         }
     ]
 }
