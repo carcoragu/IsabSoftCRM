@@ -1603,20 +1603,20 @@
         },
         {
             "id": "FER-GAUTO-01082026-FOLLOWUP-SABADO",
-            "para": "Carlos → Fer Gauto +595994153119",
+            "nombre": "Fer Gauto — Taller Mecánico",
+            "telefono": "+595994153119",
             "fecha": "2026-08-01",
             "hora": "09:00",
-            "canal": "whatsapp",
             "mensaje": "Fer, buen día. Ayer no nos pudimos conectar — la promo instalación gratis venció ayer, pero si le interesa avanzar esta semana lo podemos hablar tranquilo. ¿Cuándo tiene 15 minutos para ver la propuesta juntos?",
             "estado": "programado",
             "nota": "Demo 30/07 exitosa. Propuesta enviada 31/07. Vio el mensaje 10:05 pero no respondió. Llamada 19:00 no se concretó. Promo venció 31/07 — interés genuino, retomar sin presión. Plan principal Gs.3.500.000 Pago Único, fallback Gs.2.500.000 si objeta precio."
         },
         {
             "id": "CBTEC-01082026-COBRO-SABADO",
-            "para": "Carlos → Lalo CBTEC +595981981091",
+            "nombre": "CBTEC — Lalo (Cristian Britos)",
+            "telefono": "+595981981091",
             "fecha": "2026-08-01",
             "hora": "09:30",
-            "canal": "whatsapp",
             "mensaje": "Lalo, buen día. Le recuerdo el abono quincenal de Gs. 200.000 que quedó pendiente del viernes. Cuando pueda coordinar la transferencia, gracias 🙏",
             "estado": "programado",
             "nota": "Cobro viernes 31/07 16:15 enviado a Lalo y Cristian — sin respuesta ni pago confirmado al cierre del día. Patrón habitual: pagan viernes. Si no pagaron → recordatorio sábado mañana."
