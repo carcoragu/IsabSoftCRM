@@ -1602,6 +1602,16 @@
             "nota": "Propuesta lista en https://carcoragu.github.io/gestfact-demo/taller-fer-gauto.html — esperar confirmación de horario antes de enviar el link. Fer se inclinó por Plan Pago Único Gs.3.500.000. Demo hecha 30/07 19:00 por videollamada."
         },
         {
+            "id": "CLIMAR-04082026-FOLLOWUP-IMPRESORA",
+            "nombre": "Climar — Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-04",
+            "hora": "09:00",
+            "mensaje": "Sr. Marcos, buen día. ¿Tiene un momento esta semana para coordinar la impresora?",
+            "estado": "programado",
+            "nota": "Mensaje del 29/07 sigue en 2 tildes grises. Si lunes sigue gris → llamar directo al +595 984 821707. Si responde → hacerle 2 preguntas de Oscar: 1) ¿Cuántas páginas imprimen por mes? 2) ¿La impresora va en oficina separada o en el taller mismo? Opciones: Brother L1652W Gs.1.410.255 (sin ADF) o L2660DW Gs.1.758.240 (con ADF ✅ recomendada). Total ~Gs.1.958.240 con Oscar+Bolt. IsabSoft Gs.0 regalo. Límite: instalar antes del 15/08 para que Marcos pague tranquilo el 25/08."
+        },
+        {
             "id": "FER-GAUTO-01082026-FOLLOWUP-SABADO",
             "nombre": "Fer Gauto — Taller Mecánico",
             "telefono": "+595994153119",
