@@ -1670,6 +1670,26 @@
             "mensaje": "",
             "estado": "pendiente",
             "nota": "Marcos confirmo continuar 01/08. RustDesk Plan A pendiente — hoy sabado o lunes 03/08 segun disponibilidad de Marcos. CHECKLIST: copiar desde G:\\Mi unidad\\install\\ a PC Marcos: (1) bincotfelNvaVersionClimar_A_Intalar2707.mde -> C:\\GestFact\\ (2) menu_climar.html -> C:\\GestFact\\ (3) Systemasoc.mdw -> C:\\presu\\ (4) 4 PS1 sync -> C:\\temp\\ (5) BDTALFACMarSupFicCli_be.mdb -> C:\\GestFact\\Data\\ (Marcos no cargo datos reales — reemplazo seguro). Resultado: Plan A activo en Access PC + Marca/Modelo/Anno + buscador repuestos. Web/movil ya disponible en climar.html."
+        },
+        {
+            "id": "FER-GAUTO-01082026-RESPUESTA",
+            "nombre": "Fer Gauto - Taller Mecanico",
+            "telefono": "+595994153119",
+            "fecha": "2026-08-01",
+            "hora": "11:00",
+            "mensaje": "",
+            "estado": "enviado",
+            "nota": "Fer respondio 01/08: 'Hola apa No pude ver bien todavia Estoy a mil con trabajos'. Respondimos: 'Tranquilo Fer, cuando tengas un momento me avisas y lo vemos. Sin apuro.' Tono amigable, no rechazo — solo ocupado. Propuesta en taller-fer-gauto.html. Plan Pago Unico Gs.3.500.000, fallback Gs.2.500.000."
+        },
+        {
+            "id": "FER-GAUTO-03082026-FOLLOWUP-LUNES",
+            "nombre": "Fer Gauto - Taller Mecanico",
+            "telefono": "+595994153119",
+            "fecha": "2026-08-03",
+            "hora": "09:30",
+            "mensaje": "Fer, buen dia. Cuando tengas 15 minutos esta semana me avisas y lo vemos juntos.",
+            "estado": "programado",
+            "nota": "Fer dijo el 01/08 que estaba a mil con trabajos. Respondimos sin presion. Follow-up suave lunes. Si no responde esta semana esperar 15 dias antes de volver a contactar. No mencionar promo — ya vencio."
         }
     ]
 }
