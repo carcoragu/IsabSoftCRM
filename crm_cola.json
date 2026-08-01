@@ -1690,6 +1690,16 @@
             "mensaje": "Fer, buen dia. Cuando tengas 15 minutos esta semana me avisas y lo vemos juntos.",
             "estado": "programado",
             "nota": "Fer dijo el 01/08 que estaba a mil con trabajos. Respondimos sin presion. Follow-up suave lunes. Si no responde esta semana esperar 15 dias antes de volver a contactar. No mencionar promo — ya vencio."
+        },
+        {
+            "id": "MIGUEL-04082026-UPSELL-PAQUETE",
+            "nombre": "Miguel Acuna - PCM Taller",
+            "telefono": "+595981153477",
+            "fecha": "2026-08-04",
+            "hora": "09:30",
+            "mensaje": "Miguel, buen dia! Tenia para mostrarte algo que creo que te va a interesar — una actualizacion del sistema con control de stock desde el celular y foto del odometro al recibir y entregar cada auto. Son 15 minutos en video. Cuando tenes un momento esta semana?",
+            "estado": "programado",
+            "nota": "Cobros al dia: mayo+junio+julio pagados. Upsell: Gs.500.000 unico + sube de Gs.350k a Gs.400k/mes. Incluye: Stock web/movil (editar/eliminar/buscar), Fotos Kilometraje, frmStock+precio costo en Access, frmIngresoEgreso+frmFlujoCaja en Access, rptStock+rptIngresoEgreso. Demo: mostrar Climar como caso real. Si acepta: activar Apps Script Miguel (deleteStock+saveFoto+getFotosLight) + instalar modulos Access via AnyDesk. NO activar nada antes del acuerdo de precio. Licencia actualizada a 2026-08-26."
         }
     ]
 }
