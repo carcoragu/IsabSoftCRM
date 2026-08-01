@@ -1650,6 +1650,26 @@
             "mensaje": "Sr. Marcos, buen dia. Pudo ver mi mensaje del sabado? Quedamos listos para conectarnos cuando disponga.",
             "estado": "programado",
             "nota": "Si Marcos respondio positivo el fin de semana: ya enviar mensaje impresora y cancelar este followup. Si no respondio: enviar este lunes 09:00. Si trae reintegro: los dos pagos tienen entrega confirmada por el mismo. Plan A listo 15-20 min. Impresora: Brother L2660DW Gs.1.758.240 recomendada. Preguntar: cuantas pag/mes y si va en oficina o taller."
+        },
+        {
+            "id": "CLIMAR-03082026-FOLLOWUP-RESPUESTA",
+            "nombre": "Climar - Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-03",
+            "hora": "09:00",
+            "mensaje": "",
+            "estado": "cancelado",
+            "nota": "Marcos respondio positivo el 01/08 al mensaje de disculpa: dale dale sin problema. CANCELADO — no enviar."
+        },
+        {
+            "id": "CLIMAR-01082026-RUSTDESK-PLAN-A",
+            "nombre": "Climar - Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-01",
+            "hora": "11:00",
+            "mensaje": "",
+            "estado": "pendiente",
+            "nota": "Marcos confirmo continuar 01/08. RustDesk Plan A pendiente — hoy sabado o lunes 03/08 segun disponibilidad de Marcos. CHECKLIST: copiar desde G:\\Mi unidad\\install\\ a PC Marcos: (1) bincotfelNvaVersionClimar_A_Intalar2707.mde -> C:\\GestFact\\ (2) menu_climar.html -> C:\\GestFact\\ (3) Systemasoc.mdw -> C:\\presu\\ (4) 4 PS1 sync -> C:\\temp\\ (5) BDTALFACMarSupFicCli_be.mdb -> C:\\GestFact\\Data\\ (Marcos no cargo datos reales — reemplazo seguro). Resultado: Plan A activo en Access PC + Marca/Modelo/Anno + buscador repuestos. Web/movil ya disponible en climar.html."
         }
     ]
 }
