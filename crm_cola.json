@@ -1630,6 +1630,26 @@
             "mensaje": "Lalo, buen día. Le recuerdo el abono quincenal de Gs. 200.000 que quedó pendiente del viernes. Cuando pueda coordinar la transferencia, gracias 🙏",
             "estado": "programado",
             "nota": "Cobro viernes 31/07 16:15 enviado a Lalo y Cristian — sin respuesta ni pago confirmado al cierre del día. Patrón habitual: pagan viernes. Si no pagaron → recordatorio sábado mañana."
+        },
+        {
+            "id": "CLIMAR-01082026-MENSAJE-DISCULPA",
+            "nombre": "Climar - Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-01",
+            "hora": "10:00",
+            "mensaje": "",
+            "estado": "enviado",
+            "nota": "Mensaje disculpa enviado 01/08. Marcos frustrado 31/07 22:44 amenazando reintegro. Reconocimos demora en instalaciones. Aclaramos: avisamos 25/07 mismo dia, intento 27/07 fallo por conexion de Marcos. Lo instalado funciona. Pendiente: Plan A gratis (15-20 min) + timbrado Marcelo. Si responde positivo enviar mensaje impresora inmediato. Si insiste reintegro: instalacion y Adicional PC entregados y confirmados por el mismo el 22/07."
+        },
+        {
+            "id": "CLIMAR-03082026-FOLLOWUP-RESPUESTA",
+            "nombre": "Climar - Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-03",
+            "hora": "09:00",
+            "mensaje": "Sr. Marcos, buen dia. Pudo ver mi mensaje del sabado? Quedamos listos para conectarnos cuando disponga.",
+            "estado": "programado",
+            "nota": "Si Marcos respondio positivo el fin de semana: ya enviar mensaje impresora y cancelar este followup. Si no respondio: enviar este lunes 09:00. Si trae reintegro: los dos pagos tienen entrega confirmada por el mismo. Plan A listo 15-20 min. Impresora: Brother L2660DW Gs.1.758.240 recomendada. Preguntar: cuantas pag/mes y si va en oficina o taller."
         }
     ]
 }
