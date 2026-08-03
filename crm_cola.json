@@ -1642,14 +1642,24 @@
             "nota": "Follow-up mañana si no confirmó hoy. Prioridad: instalar Plan A (Marca/Modelo/Año + buscador). Impresora: si Marcos retoma el tema, corregir traslado de Gs.50k a Gs.100k y confirmar total Gs.1.660.255 + entrega 24hs Microlider."
         },
         {
+            "id": "MARCELO-CLIMAR-04082026-0730-TIMBRADO-RECHAZO",
+            "nombre": "Marcelo Hermosilla — Contador Climar",
+            "telefono": "+595994284255",
+            "fecha": "2026-08-04",
+            "hora": "07:30",
+            "mensaje": "Marcelo, buen día. Antes de que llame a SET, quería comentarle algo. IsabSoft estaba en proceso de regularización tributaria — hoy presentamos las declaraciones que estaban pendientes (IRP-RSP 2024/2025 y Registro Anual de Comprobantes 2024/2025). Queda pendiente un pago de IVA que estamos gestionando.\n\nEs probable que el rechazo esté relacionado con eso. Una vez regularizado el RUC completamente, usted puede volver a presentar la solicitud sin inconvenientes. Le aviso en cuanto esté todo en orden. Disculpe los inconvenientes y gracias por su comprensión.",
+            "estado": "programado",
+            "nota": "Enviar ANTES que Marcelo llame a SET (que abre 08:30). DNIT rechazó timbrado autoimpresor Climar — causa probable: RUC IsabSoft tenía declaraciones faltantes + deuda IVA. Declaraciones presentadas 03/08 ✅. Falta pagar IVA Gs.3.097.925."
+        },
+        {
             "id": "MARCELO-CLIMAR-10082026-FOLLOWUP",
             "nombre": "Marcelo Hermosilla — Contador Climar",
             "telefono": "+595994284255",
             "fecha": "2026-08-10",
             "hora": "09:00",
-            "mensaje": "Marcelo, buen día. ¿Pudo avanzar con la presentación del timbrado en Marangatu? Quedo atento por si necesita algo adicional. Gracias.",
+            "mensaje": "Marcelo, buen día. ¿Pudo averiguar el motivo del rechazo del timbrado? Quedo atento para corregir lo que sea necesario de nuestra parte.",
             "estado": "programado",
-            "nota": "Seguimiento timbrado autoimpresor Climar. Tenía todos los datos desde 24/07 (modelo duplicado, logo, RUC IsabSoft 2333029-5, campos auditoría). Mensaje enviado 03/08. Si no respondió al 10/08 → este follow-up."
+            "nota": "Seguimiento tras rechazo timbrado. Declaraciones IsabSoft presentadas 03/08. Pago IVA en gestión. Esperando confirmación motivo oficial de SET."
         },
         {
             "id": "OSCAR-03082026-1700-EPSON-TM-U220",
