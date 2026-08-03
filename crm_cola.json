@@ -1622,6 +1622,56 @@
             "nota": "Demo 30/07 exitosa. Propuesta enviada 31/07. Vio el mensaje 10:05 pero no respondió. Llamada 19:00 no se concretó. Promo venció 31/07 — interés genuino, retomar sin presión. Plan principal Gs.3.500.000 Pago Único, fallback Gs.2.500.000 si objeta precio."
         },
         {
+            "id": "CLIMAR-MARCOS-03082026-1500-RUSTDESK",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-03",
+            "hora": "15:00",
+            "mensaje": "Sr. Marcos, buen día. ¿Le viene bien esta tarde para la conexión rápida por RustDesk? No le toma más de 20 minutos y dejamos el sistema al 100%.",
+            "estado": "pendiente",
+            "nota": "Enviar SOLO si no respondió al mensaje de las 09:19. Marcos leyó (visto) pero no respondió. Objetivo: confirmar horario RustDesk Plan A (Marca/Modelo/Año + buscador repuestos). NO mencionar impresora ni precio — esperar que él retome ese tema."
+        },
+        {
+            "id": "CLIMAR-MARCOS-04082026-0900-RUSTDESK",
+            "nombre": "Climar Sr. Marcos",
+            "telefono": "+595984821707",
+            "fecha": "2026-08-04",
+            "hora": "09:00",
+            "mensaje": "Sr. Marcos, buen día. ¿Le viene bien esta mañana para la conexión por RustDesk? Termino la actualización en 20 minutos y queda todo listo.",
+            "estado": "programado",
+            "nota": "Follow-up mañana si no confirmó hoy. Prioridad: instalar Plan A (Marca/Modelo/Año + buscador). Impresora: si Marcos retoma el tema, corregir traslado de Gs.50k a Gs.100k y confirmar total Gs.1.660.255 + entrega 24hs Microlider."
+        },
+        {
+            "id": "MARCELO-CLIMAR-10082026-FOLLOWUP",
+            "nombre": "Marcelo Hermosilla — Contador Climar",
+            "telefono": "+595994284255",
+            "fecha": "2026-08-10",
+            "hora": "09:00",
+            "mensaje": "Marcelo, buen día. ¿Pudo avanzar con la presentación del timbrado en Marangatu? Quedo atento por si necesita algo adicional. Gracias.",
+            "estado": "programado",
+            "nota": "Seguimiento timbrado autoimpresor Climar. Tenía todos los datos desde 24/07 (modelo duplicado, logo, RUC IsabSoft 2333029-5, campos auditoría). Mensaje enviado 03/08. Si no respondió al 10/08 → este follow-up."
+        },
+        {
+            "id": "CESAR-RUBEN-04082026-PRESUPUESTO",
+            "nombre": "Cesar Ruben",
+            "telefono": "+595981658370",
+            "fecha": "2026-08-04",
+            "hora": "09:00",
+            "mensaje": "PENDIENTE INTERNAS: (1) Oscar confirme precio Epson TM-U220 con instalación. (2) Cesar envíe ubicación. Con esos dos datos armar presupuesto final y enviar.",
+            "estado": "pendiente",
+            "nota": "Cod_41. Inbound 03/08 Facebook. Quiere 80mm USB. Dos opciones: ZKTeco ZKP8003 Gs.684k y Epson TM-U220 (precio pendiente Oscar). Cesar avisado que estamos consultando con técnico."
+        },
+        {
+            "id": "CESAR-RUBEN-05082026-FOLLOWUP",
+            "nombre": "Cesar Ruben",
+            "telefono": "+595981658370",
+            "fecha": "2026-08-05",
+            "hora": "09:00",
+            "mensaje": "Cesar, buen día. ¿Pudo ver mi mensaje de ayer? Quedamos en enviarle el presupuesto con las opciones de impresora — necesitamos su dirección para incluir la instalación. Cuando pueda me la envía. 👍",
+            "estado": "programado",
+            "nota": "Follow-up si no respondió con ubicación. Cod_41."
+        },
+        {
             "id": "CBTEC-01082026-COBRO-SABADO",
             "nombre": "CBTEC — Lalo (Cristian Britos)",
             "telefono": "+595981981091",
@@ -1630,76 +1680,6 @@
             "mensaje": "Lalo, buen día. Le recuerdo el abono quincenal de Gs. 200.000 que quedó pendiente del viernes. Cuando pueda coordinar la transferencia, gracias 🙏",
             "estado": "programado",
             "nota": "Cobro viernes 31/07 16:15 enviado a Lalo y Cristian — sin respuesta ni pago confirmado al cierre del día. Patrón habitual: pagan viernes. Si no pagaron → recordatorio sábado mañana."
-        },
-        {
-            "id": "CLIMAR-01082026-MENSAJE-DISCULPA",
-            "nombre": "Climar - Sr. Marcos",
-            "telefono": "+595984821707",
-            "fecha": "2026-08-01",
-            "hora": "10:00",
-            "mensaje": "",
-            "estado": "enviado",
-            "nota": "Mensaje disculpa enviado 01/08. Marcos frustrado 31/07 22:44 amenazando reintegro. Reconocimos demora en instalaciones. Aclaramos: avisamos 25/07 mismo dia, intento 27/07 fallo por conexion de Marcos. Lo instalado funciona. Pendiente: Plan A gratis (15-20 min) + timbrado Marcelo. Si responde positivo enviar mensaje impresora inmediato. Si insiste reintegro: instalacion y Adicional PC entregados y confirmados por el mismo el 22/07."
-        },
-        {
-            "id": "CLIMAR-03082026-FOLLOWUP-RESPUESTA",
-            "nombre": "Climar - Sr. Marcos",
-            "telefono": "+595984821707",
-            "fecha": "2026-08-03",
-            "hora": "09:00",
-            "mensaje": "Sr. Marcos, buen dia. Pudo ver mi mensaje del sabado? Quedamos listos para conectarnos cuando disponga.",
-            "estado": "programado",
-            "nota": "Si Marcos respondio positivo el fin de semana: ya enviar mensaje impresora y cancelar este followup. Si no respondio: enviar este lunes 09:00. Si trae reintegro: los dos pagos tienen entrega confirmada por el mismo. Plan A listo 15-20 min. Impresora: Brother L2660DW Gs.1.758.240 recomendada. Preguntar: cuantas pag/mes y si va en oficina o taller."
-        },
-        {
-            "id": "CLIMAR-03082026-FOLLOWUP-RESPUESTA",
-            "nombre": "Climar - Sr. Marcos",
-            "telefono": "+595984821707",
-            "fecha": "2026-08-03",
-            "hora": "09:00",
-            "mensaje": "",
-            "estado": "cancelado",
-            "nota": "Marcos respondio positivo el 01/08 al mensaje de disculpa: dale dale sin problema. CANCELADO — no enviar."
-        },
-        {
-            "id": "CLIMAR-01082026-RUSTDESK-PLAN-A",
-            "nombre": "Climar - Sr. Marcos",
-            "telefono": "+595984821707",
-            "fecha": "2026-08-01",
-            "hora": "11:00",
-            "mensaje": "",
-            "estado": "pendiente",
-            "nota": "Marcos confirmo continuar 01/08. RustDesk Plan A pendiente — hoy sabado o lunes 03/08 segun disponibilidad de Marcos. CHECKLIST: copiar desde G:\\Mi unidad\\install\\ a PC Marcos: (1) bincotfelNvaVersionClimar_A_Intalar2707.mde -> C:\\GestFact\\ (2) menu_climar.html -> C:\\GestFact\\ (3) Systemasoc.mdw -> C:\\presu\\ (4) 4 PS1 sync -> C:\\temp\\ (5) BDTALFACMarSupFicCli_be.mdb -> C:\\GestFact\\Data\\ (Marcos no cargo datos reales — reemplazo seguro). Resultado: Plan A activo en Access PC + Marca/Modelo/Anno + buscador repuestos. Web/movil ya disponible en climar.html."
-        },
-        {
-            "id": "FER-GAUTO-01082026-RESPUESTA",
-            "nombre": "Fer Gauto - Taller Mecanico",
-            "telefono": "+595994153119",
-            "fecha": "2026-08-01",
-            "hora": "11:00",
-            "mensaje": "",
-            "estado": "enviado",
-            "nota": "Fer respondio 01/08: 'Hola apa No pude ver bien todavia Estoy a mil con trabajos'. Respondimos: 'Tranquilo Fer, cuando tengas un momento me avisas y lo vemos. Sin apuro.' Tono amigable, no rechazo — solo ocupado. Propuesta en taller-fer-gauto.html. Plan Pago Unico Gs.3.500.000, fallback Gs.2.500.000."
-        },
-        {
-            "id": "FER-GAUTO-03082026-FOLLOWUP-LUNES",
-            "nombre": "Fer Gauto - Taller Mecanico",
-            "telefono": "+595994153119",
-            "fecha": "2026-08-03",
-            "hora": "09:30",
-            "mensaje": "Fer, buen dia. Cuando tengas 15 minutos esta semana me avisas y lo vemos juntos.",
-            "estado": "programado",
-            "nota": "Fer dijo el 01/08 que estaba a mil con trabajos. Respondimos sin presion. Follow-up suave lunes. Si no responde esta semana esperar 15 dias antes de volver a contactar. No mencionar promo — ya vencio."
-        },
-        {
-            "id": "MIGUEL-04082026-UPSELL-PAQUETE",
-            "nombre": "Miguel Acuna - PCM Taller",
-            "telefono": "+595981153477",
-            "fecha": "2026-08-04",
-            "hora": "09:30",
-            "mensaje": "Miguel, buen dia! Tenia para mostrarte algo que creo que te va a interesar — una actualizacion del sistema con control de stock desde el celular y foto del odometro al recibir y entregar cada auto. Son 15 minutos en video. Cuando tenes un momento esta semana?",
-            "estado": "programado",
-            "nota": "Cobros al dia: mayo+junio+julio pagados. Upsell: Gs.500.000 unico + sube de Gs.350k a Gs.400k/mes. Incluye: Stock web/movil (editar/eliminar/buscar), Fotos Kilometraje, frmStock+precio costo en Access, frmIngresoEgreso+frmFlujoCaja en Access, rptStock+rptIngresoEgreso. Demo: mostrar Climar como caso real. Si acepta: activar Apps Script Miguel (deleteStock+saveFoto+getFotosLight) + instalar modulos Access via AnyDesk. NO activar nada antes del acuerdo de precio. Licencia actualizada a 2026-08-26."
         }
     ]
 }
