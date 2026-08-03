@@ -1652,14 +1652,14 @@
             "nota": "Seguimiento timbrado autoimpresor Climar. Tenía todos los datos desde 24/07 (modelo duplicado, logo, RUC IsabSoft 2333029-5, campos auditoría). Mensaje enviado 03/08. Si no respondió al 10/08 → este follow-up."
         },
         {
-            "id": "OSCAR-04082026-EPSON-TM-U220",
+            "id": "OSCAR-03082026-1700-EPSON-TM-U220",
             "nombre": "Oscar — Técnico",
             "telefono": "pendiente confirmar",
-            "fecha": "2026-08-04",
-            "hora": "09:00",
-            "mensaje": "Oscar, ¿pudiste ver mi mensaje de ayer? ¿Podés conseguir la Epson TM-U220? ¿Cuánto quedaría con instalación a domicilio?",
+            "fecha": "2026-08-03",
+            "hora": "17:00",
+            "mensaje": "Oscar, ¿pudiste ver mi mensaje? ¿Podés conseguir la Epson TM-U220? ¿Cuánto quedaría con instalación a domicilio? Necesito el dato esta tarde — le prometí el presupuesto a un cliente para esta noche.",
             "estado": "programado",
-            "nota": "Mensaje enviado 03/08 preguntando por Epson TM-U220 con instalación — para presupuesto de Cesar Ruben (Cod_41). Pendiente respuesta Oscar. Cuando confirme → armar presupuesto final para Cesar con las dos opciones (ZKTeco Gs.684k vs Epson TM-U220 precio a confirmar)."
+            "nota": "⚠️ URGENTE — Cesar Ruben (Cod_41) espera presupuesto esta noche. Mensaje enviado a Oscar esta mañana sin respuesta. Recordatorio a las 17:00. Sin dato de Oscar → enviar solo opción ZKTeco Gs.684k con instalación."
         },
         {
             "id": "CESAR-RUBEN-04082026-PRESUPUESTO",
