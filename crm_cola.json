@@ -1628,7 +1628,7 @@
             "fecha": "2026-08-03",
             "hora": "15:00",
             "mensaje": "Sr. Marcos, buen día. ¿Le viene bien esta tarde para la conexión rápida por RustDesk? No le toma más de 20 minutos y dejamos el sistema al 100%.",
-            "estado": "pendiente",
+            "estado": "cancelado",
             "nota": "Enviar SOLO si no respondió al mensaje de las 09:19. Marcos leyó (visto) pero no respondió. Objetivo: confirmar horario RustDesk Plan A (Marca/Modelo/Año + buscador repuestos). NO mencionar impresora ni precio — esperar que él retome ese tema."
         },
         {
