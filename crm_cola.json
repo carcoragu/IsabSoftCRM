@@ -1,5 +1,5 @@
 ﻿{
-    "ultima_actualizacion": "2026-07-29",
+    "ultima_actualizacion": "2026-08-04",
     "cola": [
         {
             "id": "JESUS-13072026-ERP",
@@ -1700,6 +1700,16 @@
             "mensaje": "Lalo, buen día. Le recuerdo el abono quincenal de Gs. 200.000 que quedó pendiente del viernes. Cuando pueda coordinar la transferencia, gracias 🙏",
             "estado": "programado",
             "nota": "Cobro viernes 31/07 16:15 enviado a Lalo y Cristian — sin respuesta ni pago confirmado al cierre del día. Patrón habitual: pagan viernes. Si no pagaron → recordatorio sábado mañana."
+        },
+        {
+            "id": "FER-GAUTO-06082026-FOLLOWUP-3CUOTAS",
+            "nombre": "Fer Gauto - Taller Mecánico",
+            "telefono": "+595994153119",
+            "fecha": "2026-08-06",
+            "hora": "10:00",
+            "mensaje": "Fer, ¿pudo ver la propuesta de las 3 cuotas? Cualquier duda me cuenta.",
+            "estado": "programado",
+            "nota": "Dejó en visto el mensaje de 3 cuotas Gs.1.170.000 enviado 03/08. Dijo no apurado y viendo otras opciones. No presionar. Si rechaza 3 cuotas ofrecer Plan Mensual Gs.350k/mes. Cod_38."
         }
     ]
 }
