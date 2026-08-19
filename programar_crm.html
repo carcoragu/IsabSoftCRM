@@ -141,7 +141,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6;}
 
 </div>
 <script>
-var SCRIPT_URL='https://script.google.com/macros/s/AKfycby3_FzX56NWkVWDlvuBX4wvrzJv9Dtvpih-exA-ufyGKmwLSvrKDcvsKOODWlATMAU8/exec';
+var SCRIPT_URL='https://script.google.com/macros/s/AKfycbxZMffRssiPI8YjY8F-7L8ZXrYxogTtEliAPRXJ16O-s7RNl_H4n_wN20ni_BUeyCUG/exec';
 
 var CLIENTES=[
   {n:'Alcides Fernández',t:'+595983670608'},
@@ -175,9 +175,19 @@ var CLIENTES=[
   {n:'Cliente Taller',t:'+595986340084'},
   {n:'Giovanni — Taller Automotriz',t:'+595961309822'},
   {n:'Ganadero (Ped Soft)',t:'+595985673022'},
-  {n:'Climar',t:'pendiente'},
+  {n:'Sr. Marcos — Climar',t:'+595984821707'},
   {n:'📢 Flyer — WA Status / Facebook',t:'—'},
   {n:'Daniel Abatte — Taller',t:'+595981420695'},
+  {n:'Mara — Taller',t:'+595991372129'},
+  {n:'Villalba — Taller',t:'+595971845416'},
+  {n:'Leguizcar — Lubricentro',t:'+595983894555'},
+  {n:'GD — Taller',t:'+595975535053'},
+  {n:'Sace Automecanica',t:'+595974656598'},
+  {n:'Bea Benitez — Taller',t:'+595987395640'},
+  {n:'Luis González — Chapería',t:'+595974214312'},
+  {n:'Olimpero — Repuestos',t:'+595986331322'},
+  {n:'Victor Rojas — Despensa',t:'+595992282065'},
+  {n:'Hector — Taller',t:'+595986400027'},
 ];
 
 var TPLS={
@@ -288,17 +298,26 @@ function enviarTodo(){
       idx++;setTimeout(uno,400);
     };
     var body={action:'add',id:id,nombre:x.nombre,telefono:x.tel,fecha_hora:x.iso,mensaje:x.msg,estado:'pending',canal:x.canal,notas:x.notas};
-    sc.src=SCRIPT_URL+'?callback='+cb+'&body='+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(body)))));
+    sc.src=SCRIPT_URL+'?payload='+encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(body)))))+'&callback='+cb;
     document.head.appendChild(sc);
   }
   uno();
+}
+
+function isoToLocalFecha(iso){
+  var d=new Date(new Date(iso).getTime()-3*3600000);
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function isoToLocalHora(iso){
+  var d=new Date(new Date(iso).getTime()-3*3600000);
+  return String(d.getUTCHours()).padStart(2,'0')+':'+String(d.getUTCMinutes()).padStart(2,'0');
 }
 
 function renderColaDesdeJSON(){
   var d=document.getElementById('cola-04');
   var hoy=hoyISO();
   var pendientes=colaJSON.filter(function(x){
-    return (x.estado==='programado'||x.estado==='pendiente') && x.fecha>=hoy;
+    return x.estado==='pending' && isoToLocalFecha(x.fecha_hora)>=hoy;
   });
   if(!pendientes.length){
     d.innerHTML='<div class="empty">No hay mensajes pendientes para hoy en adelante.</div>'+
@@ -309,11 +328,13 @@ function renderColaDesdeJSON(){
   var diaActual='';
   var hoyStr=hoy;
   pendientes.forEach(function(x){
-    if(x.fecha!==diaActual){
-      diaActual=x.fecha;
-      var p=x.fecha.split('-');
+    var fecha=isoToLocalFecha(x.fecha_hora);
+    var hora=isoToLocalHora(x.fecha_hora);
+    if(fecha!==diaActual){
+      diaActual=fecha;
+      var p=fecha.split('-');
       var label=p[2]+'/'+p[1]+'/'+p[0];
-      var esHoy=x.fecha===hoyStr;
+      var esHoy=fecha===hoyStr;
       html+='<div style="font-size:.7rem;font-weight:700;color:#1e88e5;text-transform:uppercase;'+
         'letter-spacing:.06em;margin:12px 0 6px;">'+(esHoy?'🔴 HOY — ':'')+label+'</div>';
     }
@@ -321,7 +342,7 @@ function renderColaDesdeJSON(){
     html+='<div class="cola-btn" onclick="cargarItemJSON('+idx+')">'+
       '<div><div class="cb-nombre">'+x.nombre+'</div>'+
       '<div class="cb-msg">'+x.mensaje.substring(0,80)+'…</div></div>'+
-      '<div class="cb-hora" style="white-space:nowrap">📅 '+x.hora+'</div></div>';
+      '<div class="cb-hora" style="white-space:nowrap">📅 '+hora+'</div></div>';
   });
   html+='<button class="btn-agregar" style="margin-top:10px" onclick="cargarTodosJSON()">+ Cargar toda la cola pendiente</button>';
   d.innerHTML=html;
@@ -332,11 +353,11 @@ function cargarItemJSON(i){
   lista.push({
     nombre:x.nombre,
     tel:x.telefono,
-    iso:toISO(x.fecha,x.hora),
-    display:x.fecha.split('-').reverse().join('/')+' '+x.hora,
+    iso:x.fecha_hora,
+    display:isoToLocalFecha(x.fecha_hora).split('-').reverse().join('/')+' '+isoToLocalHora(x.fecha_hora),
     msg:x.mensaje,
     canal:'WA',
-    notas:x.nota||''
+    notas:''
   });
   render();
 }
@@ -344,37 +365,55 @@ function cargarItemJSON(i){
 function cargarTodosJSON(){
   var hoy=hoyISO();
   colaJSON.filter(function(x){
-    return (x.estado==='programado'||x.estado==='pendiente') && x.fecha>=hoy;
+    return x.estado==='pending' && isoToLocalFecha(x.fecha_hora)>=hoy;
   }).forEach(function(x){
     lista.push({
       nombre:x.nombre,
       tel:x.telefono,
-      iso:toISO(x.fecha,x.hora),
-      display:x.fecha.split('-').reverse().join('/')+' '+x.hora,
+      iso:x.fecha_hora,
+      display:isoToLocalFecha(x.fecha_hora).split('-').reverse().join('/')+' '+isoToLocalHora(x.fecha_hora),
       msg:x.mensaje,
       canal:'WA',
-      notas:x.nota||''
+      notas:''
     });
   });
   render();
 }
 
-fetch('crm_cola.json?v='+Date.now())
-  .then(function(r){return r.json();})
-  .then(function(data){
-    colaJSON=data.cola||[];
+function cargarColaDesdeSheet(){
+  document.getElementById('cola-titulo').textContent='⚡ Cargando cola CRM...';
+  var cb='cb_cola_'+Date.now();
+  var body={action:'getAll'};
+  var payload=encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(body)))));
+  var url=SCRIPT_URL+'?payload='+payload+'&callback='+cb;
+  window[cb]=function(data){
+    delete window[cb];
+    var sc=document.getElementById(cb);if(sc)sc.remove();
+    if(!data||!data.ok){
+      document.getElementById('cola-titulo').textContent='⚡ Cola CRM — Error al cargar';
+      document.getElementById('cola-04').innerHTML='<div class="empty">Error al cargar desde Sheet</div>';
+      return;
+    }
+    colaJSON=data.data||[];
     var hoy=hoyISO();
-    var pendientesHoy=colaJSON.filter(function(x){return x.estado==='programado'&&x.fecha===hoy;}).length;
-    var pendientesFut=colaJSON.filter(function(x){return x.estado==='programado'&&x.fecha>hoy;}).length;
+    var pendientesHoy=colaJSON.filter(function(x){return x.estado==='pending'&&isoToLocalFecha(x.fecha_hora)===hoy;}).length;
+    var pendientesFut=colaJSON.filter(function(x){return x.estado==='pending'&&isoToLocalFecha(x.fecha_hora)>hoy;}).length;
+    var now=new Date().toLocaleTimeString('es-PY',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('cola-titulo').textContent=
-      '⚡ Cola CRM — Act. '+data.ultima_actualizacion+
+      '⚡ Cola CRM — Act. '+now+
       ' · Hoy: '+pendientesHoy+' · Próximos: '+pendientesFut;
     renderColaDesdeJSON();
-  })
-  .catch(function(){
-    document.getElementById('cola-titulo').textContent='⚡ Cola CRM — Error al cargar JSON';
-    document.getElementById('cola-04').innerHTML='<div class="empty">No se pudo cargar crm_cola.json</div>';
-  });
+  };
+  var sc=document.createElement('script');
+  sc.id=cb;sc.src=url;
+  sc.onerror=function(){
+    document.getElementById('cola-titulo').textContent='⚡ Cola CRM — Sin conexión';
+    document.getElementById('cola-04').innerHTML='<div class="empty">No se pudo conectar con el Sheet</div>';
+  };
+  document.body.appendChild(sc);
+}
+
+cargarColaDesdeSheet();
 
 render();
 </script>
